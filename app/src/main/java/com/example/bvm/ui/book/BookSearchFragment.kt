@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_book.*
 /**
  * 图书查询页面
  */
-class bookFragment: Fragment() {
+class BookSearchFragment: Fragment() {
 
     val viewModel by lazy { ViewModelProviders.of(this).get(BookViewModel::class.java) }
 
@@ -41,19 +41,20 @@ class bookFragment: Fragment() {
         adapter = BookAdapter(this, viewModel.bookList)
         recyclerView.adapter = adapter
 
-        val book1 = Book("测试1", "2021.11.27", "这是一个测试用书", "测试",
-            "https://ceshi.com", "www.douban.com", "9.0")
-        viewModel.insertBooks(book1)
-        val book2 = Book("测试2", "2021.11.27", "这也是一个测试用书", "测试",
-            "https://ceshi.com", "www.douban.com", "9.0")
-        viewModel.insertBooks(book2)
+//        val book1 = Book("测试1", "2021.11.27", "这是一个测试用书", "测试",
+//            "https://ceshi.com", "www.douban.com", "9.0")
+//        viewModel.insertBooks(book1)
+//        val book2 = Book("测试2", "2021.11.27", "这也是一个测试用书", "测试",
+//            "https://ceshi.com", "www.douban.com", "9.0")
+//        viewModel.insertBooks(book2)
 
 
 
         searchBookEdit.addTextChangedListener { editable ->
             val content = editable.toString()
             if (content.isNotEmpty()) {
-                viewModel.searchAllBooks(content)
+//                viewModel.searchAllBooks(content)
+                viewModel.searchBookByTitle(content)
             } else {
                 recyclerView.visibility = View.GONE
                 bgImageView.visibility = View.VISIBLE

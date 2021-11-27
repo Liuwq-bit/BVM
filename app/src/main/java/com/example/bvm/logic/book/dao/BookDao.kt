@@ -14,5 +14,6 @@ interface BookDao {
     @Query("select * from Book")
     fun loadAllBooks(): List<Book>
 
-
+    @Query("select * from Book where title like '%' || :title || '%'")  // 使用双竖杠进行拼接
+    fun searchBooks(title: String): List<Book>
 }

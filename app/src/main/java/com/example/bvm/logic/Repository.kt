@@ -18,31 +18,28 @@ import kotlin.concurrent.thread
 
 object Repository {
 
-    fun searchIsbn(isbn: String) = liveData(Dispatchers.IO) {
-        val result = try {
-            val isbnResponse = BookNetwork.searchIsbn(isbn)
-            if (isbnResponse != null) {
-                val books = isbnResponse.books
-                Result.success(books)
-            } else {
-                Result.failure(RuntimeException("response message is ${isbnResponse.message}"))
-            }
-        } catch (e: Exception) {
-            Result.failure<List<Book>>(e)
-        }
-        emit(result)
-    }
+//    fun searchIsbn(isbn: String) = liveData(Dispatchers.IO) {
+//        val result = try {
+//            val isbnResponse = BookNetwork.searchIsbn(isbn)
+//            if (isbnResponse != null) {
+//                val books = isbnResponse.books
+//                Result.success(books)
+//            } else {
+//                Result.failure(RuntimeException("response message is ${isbnResponse.message}"))
+//            }
+//        } catch (e: Exception) {
+//            Result.failure<List<Book>>(e)
+//        }
+//        emit(result)
+//    }
 
     // 插入数据并返回id
     fun insertBook(book: Book): Long {
         return BookDatabase.getDatabase(BVMApplication.context).bookDao().insertBook(book)
     }
 
-    fun searchAllBook(): List<Book> {
-        return BookDatabase.getDatabase(BVMApplication.context).bookDao().loadAllBooks()
-    }
-
-    fun searchAll() = liveData(Dispatchers.IO) {
+    // 搜索全部图书数据
+    fun searchAllBook() = liveData(Dispatchers.IO) {
         val result = try {
             val bookResponse = BookDatabase.getDatabase(BVMApplication.context).bookDao().loadAllBooks()
             Result.success(bookResponse)
@@ -51,5 +48,17 @@ object Repository {
         }
         emit(result)
     }
+
+    // 搜索全部图书数据
+    fun searchBookByTitle(title: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val bookResponse = BookDatabase.getDatabase(BVMApplication.context).bookDao().searchBooks(title)
+            Result.success(bookResponse)
+        } catch (e: Exception) {
+            Result.failure<List<Book>>(e)
+        }
+        emit(result)
+    }
+
 
 }

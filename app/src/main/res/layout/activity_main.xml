@@ -6,10 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <fragment
-        android:id="@+id/bookFragment"
-        android:name="com.example.bvm.ui.book.bookFragment"
+<!--    <fragment-->
+<!--        android:id="@+id/bookFragment"-->
+<!--        android:name="com.example.bvm.ui.book.BookSearchFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/modelTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_gravity="bottom"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/modelViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
 
 </FrameLayout>
