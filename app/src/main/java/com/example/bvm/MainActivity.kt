@@ -21,6 +21,9 @@ import androidx.customview.widget.ViewDragHelper
 import androidx.drawerlayout.widget.DrawerLayout
 
 import android.app.Activity
+import android.view.MotionEvent
+import android.view.View
+import kotlinx.android.synthetic.main.activity_main.view.*
 import java.lang.Exception
 import java.lang.reflect.Field
 
@@ -61,6 +64,15 @@ class MainActivity : AppCompatActivity() {
             }
         }.attach()
 
+        // 设置TabLayout点击事件
+        modelTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                modelViewPager.currentItem = tab?.position!!
+            }
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        })
 
         setDrawerLeftEdgeSize(this, drawerLayout, 0.1f)
     }
@@ -72,9 +84,7 @@ class MainActivity : AppCompatActivity() {
 
         override fun getItemCount() = titleList.size
 
-        override fun createFragment(position: Int) : Fragment {
-            return fragmentList[position]
-        }
+        override fun createFragment(position: Int) = fragmentList[position]
 
 
     }
