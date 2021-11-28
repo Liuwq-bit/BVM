@@ -5,10 +5,13 @@
       <map>
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/book_item.xml" value="0.1" />
+        <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/book_list.xml" value="0.1" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/book_list_item.xml" value="0.1" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/fragment_book.xml" value="0.1" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/music_list.xml" value="0.36614583333333334" />
+        <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/nav_header.xml" value="0.1" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/video_list_item.xml" value="0.11666666666666667" />
+        <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/menu/nav_menu_xml.xml" value="0.1" />
       </map>
     </option>
   </component>

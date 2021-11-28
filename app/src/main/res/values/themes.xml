@@ -3,7 +3,7 @@
     <style name="Theme.BVM" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#090</item>
-        <item name="colorPrimaryDark">#091</item>
+        <item name="colorPrimaryDark">#090</item>
         <item name="colorAccent">#090</item>
         <!-- Customize your theme here. -->
     </style>
