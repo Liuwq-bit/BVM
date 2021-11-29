@@ -10,7 +10,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.bvm.ui.book.BookListFragment
 import com.example.bvm.ui.music.MusicListFragment
-import com.example.bvm.ui.video.VideoListFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,14 +20,13 @@ import androidx.customview.widget.ViewDragHelper
 import androidx.drawerlayout.widget.DrawerLayout
 
 import android.app.Activity
-import android.view.MotionEvent
-import android.view.View
-import kotlinx.android.synthetic.main.activity_main.view.*
+import com.example.bvm.ui.video.VideoListFragment
 import java.lang.Exception
 import java.lang.reflect.Field
 
 
 class MainActivity : AppCompatActivity() {
+
 
     val titleList = listOf(BookListFragment.type, VideoListFragment.type, MusicListFragment.type)   // 各个页面类型的标题
     val fragmentList = ArrayList<Fragment>()    // 存放各个页面的Fragment
@@ -85,7 +83,6 @@ class MainActivity : AppCompatActivity() {
         override fun getItemCount() = titleList.size
 
         override fun createFragment(position: Int) = fragmentList[position]
-
 
     }
 

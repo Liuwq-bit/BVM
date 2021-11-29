@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/videoRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="影视测试界面"
-        android:textSize="24sp"/>
+        android:layout_height="match_parent" />
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

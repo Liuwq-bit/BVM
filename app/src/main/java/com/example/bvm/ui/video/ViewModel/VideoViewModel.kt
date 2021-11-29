@@ -1,4 +1,4 @@
-package com.example.bvm.ui.book.ViewModel
+package com.example.bvm.ui.video.ViewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -7,25 +7,29 @@ import com.example.bvm.logic.Repository
 import com.example.bvm.logic.book.model.Book
 import kotlin.concurrent.thread
 
-class BookViewModel : ViewModel() {
+class VideoViewModel : ViewModel() {
 
     private val searchLiveData = MutableLiveData<String>()
 
-    val bookList = ArrayList<Book>()
+    val videoList = ArrayList<Book>()
 
-    val bookLiveData = Transformations.switchMap(searchLiveData) { title ->
+    val videoLiveData = Transformations.switchMap(searchLiveData) { title ->
+        // todo change item
         Repository.searchAllBook()
 //        Repository.searchBookByTitle(title)
     }
 
+    // todo
     fun searchAllBooks() {
         searchLiveData.value = ""
     }
 
+    // todo
     fun searchBookByTitle(title: String) {
         searchLiveData.value = title
     }
 
+    // todo
     fun insertBooks(book: Book) {
         thread {
             Repository.insertBook(book)

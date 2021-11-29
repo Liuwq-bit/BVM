@@ -7,4 +7,12 @@
         <item name="colorAccent">#090</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="InfoActivityTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">#090</item>
+        <item name="colorPrimaryDark">#090</item>
+        <item name="colorAccent">#090</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
 </resources>

@@ -33,13 +33,16 @@
         </com.google.android.material.appbar.AppBarLayout>
 
 
+<!--        界面滑动切换-->
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/modelViewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_marginBottom="55dp"/>
 
+<!--        底部导航栏-->
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,6 +59,7 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
+<!--    导航页面-->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navView"
         android:layout_width="match_parent"

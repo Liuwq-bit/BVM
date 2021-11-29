@@ -6,6 +6,7 @@ import androidx.lifecycle.liveData
 import com.example.bvm.BVMApplication
 import com.example.bvm.logic.book.db.BookDatabase
 import com.example.bvm.logic.book.model.Book
+import com.example.bvm.logic.book.model.BookResponse
 import com.example.bvm.logic.book.network.BookNetwork
 import kotlinx.coroutines.Dispatchers
 import java.lang.Exception
@@ -42,6 +43,7 @@ object Repository {
     fun searchAllBook() = liveData(Dispatchers.IO) {
         val result = try {
             val bookResponse = BookDatabase.getDatabase(BVMApplication.context).bookDao().loadAllBooks()
+//            Log.d("MainActivity", bookResponse[0].title)
             Result.success(bookResponse)
         } catch (e: Exception) {
             Result.failure<List<Book>>(e)
