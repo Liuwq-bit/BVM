@@ -42,19 +42,27 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_marginBottom="55dp"/>
 
-<!--        底部导航栏-->
-        <com.google.android.material.appbar.AppBarLayout
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/modelBottomNavigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom">
+            android:layout_gravity="bottom"
+            android:background="?android:attr/windowBackground"
+            app:menu="@menu/bottom_nav_menu"/>
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/modelTabLayout"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_gravity="bottom"/>
+<!--&lt;!&ndash;        底部导航栏&ndash;&gt;-->
+<!--        <com.google.android.material.appbar.AppBarLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="bottom">-->
 
-        </com.google.android.material.appbar.AppBarLayout>
+<!--            <com.google.android.material.tabs.TabLayout-->
+<!--                android:id="@+id/modelTabLayout"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="55dp"-->
+<!--                android:layout_gravity="bottom"/>-->
+
+<!--        </com.google.android.material.appbar.AppBarLayout>-->
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

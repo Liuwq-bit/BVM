@@ -20,14 +20,17 @@ import androidx.customview.widget.ViewDragHelper
 import androidx.drawerlayout.widget.DrawerLayout
 
 import android.app.Activity
+import android.widget.Toast
+import androidx.viewpager2.widget.ViewPager2
 import com.example.bvm.ui.video.VideoListFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.lang.Exception
 import java.lang.reflect.Field
 
 
 class MainActivity : AppCompatActivity() {
 
-
+    var tmp = 0;
     val titleList = listOf(BookListFragment.type, VideoListFragment.type, MusicListFragment.type)   // 各个页面类型的标题
     val fragmentList = ArrayList<Fragment>()    // 存放各个页面的Fragment
 
@@ -53,24 +56,57 @@ class MainActivity : AppCompatActivity() {
 
         modelViewPager.adapter = MyAdapter(supportFragmentManager, lifecycle)
 
-        TabLayoutMediator(modelTabLayout, modelViewPager) { tab: TabLayout.Tab, position: Int ->
-            tab.text = titleList[position]  // 设置文字内容
-            when (position) {   // 设置图标
-                0 -> tab.icon = getDrawable(R.drawable.ic_carwashing)
-                1 -> tab.icon = getDrawable(R.drawable.ic_clear_day)
-                2 -> tab.icon = getDrawable(R.drawable.ic_clear_night)
-            }
-        }.attach()
 
-        // 设置TabLayout点击事件
-        modelTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                modelViewPager.currentItem = tab?.position!!
+        // 设置底部点击事件
+        modelBottomNavigation.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_book -> {
+                    modelViewPager.currentItem = 0
+                }
+                R.id.navigation_video -> {
+                    modelViewPager.currentItem = 1
+                }
+                R.id.navigation_music -> {
+                    modelViewPager.currentItem = 2
+                }
             }
-            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            true
+        }
 
-            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        // 设置viewPager切换选择
+        modelViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+//                Toast.makeText(BVMApplication.context, "$position", Toast.LENGTH_SHORT).show()
+                when (position) {
+                    0 -> modelBottomNavigation.selectedItemId = R.id.navigation_book
+                    1 -> modelBottomNavigation.selectedItemId = R.id.navigation_video
+                    2 -> modelBottomNavigation.selectedItemId = R.id.navigation_music
+                }
+            }
         })
+
+
+//
+//        TabLayoutMediator(modelTabLayout, modelViewPager) { tab: TabLayout.Tab, position: Int ->
+//            tab.text = titleList[position]  // 设置文字内容
+//            when (position) {   // 设置图标
+//                0 -> tab.icon = getDrawable(R.drawable.ic_carwashing)
+//                1 -> tab.icon = getDrawable(R.drawable.ic_clear_day)
+//                2 -> tab.icon = getDrawable(R.drawable.ic_clear_night)
+//            }
+//        }.attach()
+//
+//        // 设置TabLayout点击事件
+//        modelTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+//            override fun onTabSelected(tab: TabLayout.Tab?) {
+//                modelViewPager.currentItem = tab?.position!!
+//            }
+//            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+//
+//            override fun onTabReselected(tab: TabLayout.Tab?) {}
+//        })
+
+
 
         setDrawerLeftEdgeSize(this, drawerLayout, 0.1f)
     }
@@ -89,6 +125,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+//            android.R.id.home -> {
+//                modelViewPager.currentItem = (++tmp) % 3
+//            }
             android.R.id.home -> drawerLayout.openDrawer(GravityCompat.START)
         }
         return true
@@ -97,7 +136,7 @@ class MainActivity : AppCompatActivity() {
     /**
      *  设置DrawerLayout侧滑范围
       */
-    fun setDrawerLeftEdgeSize(
+    private fun setDrawerLeftEdgeSize(
         activity: Activity?,
         drawerLayout: DrawerLayout?,
         displayWidthPercentage: Float) {
