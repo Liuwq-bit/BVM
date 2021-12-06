@@ -10,8 +10,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.bvm.ui.book.BookListFragment
 import com.example.bvm.ui.music.MusicListFragment
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_main.*
 import android.util.DisplayMetrics
 
@@ -20,17 +18,16 @@ import androidx.customview.widget.ViewDragHelper
 import androidx.drawerlayout.widget.DrawerLayout
 
 import android.app.Activity
-import android.widget.Toast
+import android.content.Intent
 import androidx.viewpager2.widget.ViewPager2
+import com.example.bvm.ui.common.AddModelActivity
 import com.example.bvm.ui.video.VideoListFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.lang.Exception
 import java.lang.reflect.Field
 
 
 class MainActivity : AppCompatActivity() {
 
-    var tmp = 0;
     val titleList = listOf(BookListFragment.type, VideoListFragment.type, MusicListFragment.type)   // 各个页面类型的标题
     val fragmentList = ArrayList<Fragment>()    // 存放各个页面的Fragment
 
@@ -44,9 +41,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         // 设置侧滑菜单点击事件
-        navView.setCheckedItem(R.id.navCall)
-        navView.setNavigationItemSelectedListener {
-            drawerLayout.closeDrawers()
+//        navView.setCheckedItem(R.id.navFriends)
+        navView.setNavigationItemSelectedListener { item ->
+            if (item.itemId == R.id.bookAdd) {
+                intent = Intent(this, AddModelActivity::class.java)
+                startActivity(intent)
+                drawerLayout.closeDrawers()
+            } else {
+                drawerLayout.closeDrawers()
+            }
             true
         }
 
@@ -109,6 +112,9 @@ class MainActivity : AppCompatActivity() {
 
 
         setDrawerLeftEdgeSize(this, drawerLayout, 0.1f)
+
+//        intent = Intent(this, BookInputActivity::class.java)
+//        startActivity(intent)
     }
 
     /**
@@ -125,9 +131,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-//            android.R.id.home -> {
-//                modelViewPager.currentItem = (++tmp) % 3
-//            }
             android.R.id.home -> drawerLayout.openDrawer(GravityCompat.START)
         }
         return true

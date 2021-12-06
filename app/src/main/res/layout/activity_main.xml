@@ -50,7 +50,6 @@
             android:background="?android:attr/windowBackground"
             app:menu="@menu/bottom_nav_menu"/>
 
-<!--&lt;!&ndash;        底部导航栏&ndash;&gt;-->
 <!--        <com.google.android.material.appbar.AppBarLayout-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="wrap_content"-->

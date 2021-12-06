@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#090"
+    tools:context=".ui.common.AddModelActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFF">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/bookInputToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="#090"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    app:layout_scrollFlags="scroll|enterAlways|snap"/>
+
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/modelAddTabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+                <!--        界面滑动切换-->
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/modelAddPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    app:layout_scrollFlags="scroll"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+    </ScrollView>
+
+
+
+
+    <!--        &lt;!&ndash;书名&ndash;&gt;-->
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/bookTitleText"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:endIconMode="clear_text"-->
+<!--            android:hint="书名"-->
+<!--            android:layout_margin="10dp">-->
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"/>-->
+
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--        &lt;!&ndash;作者&ndash;&gt;-->
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/bookAuthorText"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:endIconMode="clear_text"-->
+<!--            android:hint="作者"-->
+<!--            android:layout_margin="10dp">-->
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"/>-->
+
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/bookCommitFab"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="bottom|end"-->
+<!--            android:layout_margin="16dp"-->
+<!--            android:src="@drawable/ic_done"/>-->
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

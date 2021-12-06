@@ -17,6 +17,9 @@ import com.example.bvm.ui.book.ViewModel.BookViewModel
 import kotlinx.android.synthetic.main.book_list.*
 import kotlinx.android.synthetic.main.search_item.*
 
+/**
+ * 书籍信息展示列表
+ */
 class BookListFragment: Fragment() {
 
     val viewModel by lazy { ViewModelProviders.of(this).get(BookViewModel::class.java) }

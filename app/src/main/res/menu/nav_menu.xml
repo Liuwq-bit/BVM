@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/navCall"
+            android:id="@+id/bookAdd"
             android:icon="@drawable/nav_call"
-            android:title="Call"/>
+            android:title="@string/model_add_name"/>
         <item
             android:id="@+id/navFriends"
             android:icon="@drawable/nav_friends"
