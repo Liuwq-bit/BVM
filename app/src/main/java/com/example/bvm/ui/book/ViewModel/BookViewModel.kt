@@ -13,9 +13,9 @@ class BookViewModel : ViewModel() {
 
     val bookList = ArrayList<Book>()
 
-    val bookLiveData = Transformations.switchMap(searchLiveData) { title ->
+    val bookLiveData = Transformations.switchMap(searchLiveData) { book_name ->
         Repository.searchAllBook()
-//        Repository.searchBookByTitle(title)
+//        Repository.searchBookByTitle(book_name)
     }
 
     fun searchAllBooks() {

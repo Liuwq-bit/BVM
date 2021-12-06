@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#090"
+    android:background="#FFF"
     tools:context=".ui.common.AddModelActivity">
 
     <ScrollView
@@ -14,7 +14,7 @@
 
         <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="#FFF">
 
                 <androidx.appcompat.widget.Toolbar
@@ -37,7 +37,7 @@
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/modelAddPager"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:adjustViewBounds="true"
                     app:layout_scrollFlags="scroll"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior" />

@@ -1,19 +1,13 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 1,
+    "version": 2,
     "identityHash": "b618c57bd165224d20cb976da52c6913",
     "entities": [
       {
         "tableName": "Book",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`book_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `book_name` TEXT NOT NULL, `label` TEXT NOT NULL, `info` TEXT NOT NULL, `add_time` TEXT NOT NULL, `publish_time` TEXT NOT NULL, `pic` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`book_name` TEXT NOT NULL, `label` TEXT NOT NULL, `info` TEXT NOT NULL, `add_time` TEXT NOT NULL, `publish_time` TEXT NOT NULL, `pic` TEXT NOT NULL, `book_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
         "fields": [
-          {
-            "fieldPath": "book_id",
-            "columnName": "book_id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
           {
             "fieldPath": "book_name",
             "columnName": "book_name",
@@ -48,6 +42,12 @@
             "fieldPath": "pic",
             "columnName": "pic",
             "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "book_id",
+            "columnName": "book_id",
+            "affinity": "INTEGER",
             "notNull": true
           }
         ],

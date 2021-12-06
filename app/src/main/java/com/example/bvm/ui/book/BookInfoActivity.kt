@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.activity_book_info.*
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.widget.ImageView
+import com.bumptech.glide.Glide
 import com.example.bvm.BVMApplication
 import com.example.bvm.BVMApplication.Companion.context
 
@@ -19,6 +20,7 @@ class BookInfoActivity : AppCompatActivity() {
     companion object {
         const val BOOK_TITLE = "bookTitle"
         const val BOOK_INFO = "bookInfo"
+        const val BOOK_PIC = "bookPic"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,10 +29,11 @@ class BookInfoActivity : AppCompatActivity() {
 
         val bookTitle = intent.getStringExtra(BOOK_TITLE) ?: ""
         val bookInfo = intent.getStringExtra(BOOK_INFO) ?: ""
+        val bookPic = intent.getStringExtra(BOOK_PIC) ?: ""
         setSupportActionBar(bookInfoToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         bookInfoCollapsingToolbar.title = bookTitle
-//        Glide.with(this).load(url).into(bookInfoImageView)
+        Glide.with(this).load(bookPic).into(bookInfoImageView)
         bookInfoContextText.text = bookInfo
 
         bookInfoImageView.setOnClickListener {

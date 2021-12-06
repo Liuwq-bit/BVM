@@ -6,8 +6,6 @@ import androidx.lifecycle.liveData
 import com.example.bvm.BVMApplication
 import com.example.bvm.logic.book.db.BookDatabase
 import com.example.bvm.logic.book.model.Book
-import com.example.bvm.logic.book.model.BookResponse
-import com.example.bvm.logic.book.network.BookNetwork
 import kotlinx.coroutines.Dispatchers
 import java.lang.Exception
 import java.lang.RuntimeException

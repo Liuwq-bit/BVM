@@ -23,7 +23,7 @@ class VideoAdapter(private val fragment: Fragment, private val videoList: List<B
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
-            R.layout.item,
+            R.layout.book_list_item,
             parent, false
         )
         val holder = ViewHolder(view)
@@ -31,8 +31,8 @@ class VideoAdapter(private val fragment: Fragment, private val videoList: List<B
             val position = holder.adapterPosition
             val video = videoList[position]
             val intent = Intent(context, VideoInfoActivity::class.java).apply {
-                putExtra(VideoInfoActivity.VIDEO_TITLE, video.title)
-                putExtra(VideoInfoActivity.VIDEO_INFO, video.bookInfo)
+                putExtra(VideoInfoActivity.VIDEO_TITLE, video.book_name)
+                putExtra(VideoInfoActivity.VIDEO_INFO, video.info)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK // 在新的task中开启activity
             }
             context.startActivity(intent)
@@ -42,17 +42,17 @@ class VideoAdapter(private val fragment: Fragment, private val videoList: List<B
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val video = videoList[position]
-        if (video.title.length > 9) {
-            val shortTitle = video.title.substring(0, 9) + " ..."
+        if (video.book_name.length > 9) {
+            val shortTitle = video.book_name.substring(0, 9) + " ..."
             holder.videoName.text = shortTitle
         } else
-            holder.videoName.text = video.title
+            holder.videoName.text = video.book_name
 
-        if (video.bookInfo.length > 30) {
-            val shortInfo = video.bookInfo.substring(0, 29) + " ..."
+        if (video.info.length > 30) {
+            val shortInfo = video.info.substring(0, 29) + " ..."
             holder.videoInfo.text = shortInfo
         } else
-            holder.videoInfo.text = video.bookInfo
+            holder.videoInfo.text = video.info
     }
 
     override fun getItemCount() = videoList.size
