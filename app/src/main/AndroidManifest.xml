@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.bvm">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,12 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BVM">
         <activity
-            android:name=".ui.common.AddModelActivity"
-            android:label="@string/model_add_name"
+            android:name=".ui.music.MusicInfoActivity"
+            android:theme="@style/InfoActivityTheme"
             android:exported="false" />
         <activity
+            android:name=".ui.common.AddModelActivity"
+            android:exported="false"
+            android:label="@string/model_add_name" />
+        <activity
             android:name=".ui.video.VideoInfoActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/InfoActivityTheme" />
         <activity
             android:name=".ui.book.BookInfoActivity"
             android:exported="false"

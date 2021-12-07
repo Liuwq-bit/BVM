@@ -1,9 +1,9 @@
-package com.example.bvm.logic.book.dao
+package com.example.bvm.logic.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.bvm.logic.book.model.Book
+import com.example.bvm.logic.model.Book
 
 @Dao
 interface BookDao {

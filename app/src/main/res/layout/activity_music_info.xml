@@ -6,13 +6,13 @@
     android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/videoInfoAppBar"
+        android:id="@+id/musicInfoAppBar"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/videoInfoCollapsingToolbar"
+            android:id="@+id/musicInfoCollapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -22,7 +22,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
-                android:id="@+id/videoInfoImageView"
+                android:id="@+id/musicInfoImageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -30,7 +30,7 @@
                 android:fitsSystemWindows="true" />
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/videoInfoToolbar"
+                android:id="@+id/musicInfoToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"/>
@@ -59,7 +59,7 @@
                 app:cardCornerRadius="4dp"/>
 
             <TextView
-                android:id="@+id/videoInfoContextText"
+                android:id="@+id/musicInfoContextText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"/>
@@ -69,12 +69,13 @@
     </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/videoInfoCommit"
+        android:id="@+id/musicInfoCommit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:src="@drawable/ic_comment"
-        app:layout_anchor="@id/videoInfoAppBar"
+        app:layout_anchor="@id/musicInfoAppBar"
         app:layout_anchorGravity="bottom|end"/>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

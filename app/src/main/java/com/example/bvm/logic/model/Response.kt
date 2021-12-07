@@ -1,4 +1,4 @@
-package com.example.bvm.logic.book.model
+package com.example.bvm.logic.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -41,7 +41,7 @@ data class Author(var author_name: String,
  * 影视信息
  */
 @Entity
-data class Video(@PrimaryKey var video_name: String,
+data class Video(var video_name: String,
                  var video_type: String,
                  var label: String,
                  var info: String,

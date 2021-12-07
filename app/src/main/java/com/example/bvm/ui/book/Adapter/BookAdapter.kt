@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.bvm.BVMApplication.Companion.context
 import com.example.bvm.R
-import com.example.bvm.logic.book.model.Book
+import com.example.bvm.logic.model.Book
 import com.example.bvm.ui.book.BookInfoActivity
 
 class BookAdapter(private val fragment: Fragment, private val bookList: List<Book>) :
@@ -24,7 +24,7 @@ class BookAdapter(private val fragment: Fragment, private val bookList: List<Boo
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.book_list_item,
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item,
             parent, false)
         val holder = ViewHolder(view)
         holder.itemView.setOnClickListener {

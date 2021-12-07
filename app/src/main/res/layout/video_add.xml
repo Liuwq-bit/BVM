@@ -7,20 +7,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:layout_scrollFlags="scroll">
 
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
-        <!--书名-->
+        <!--影视名-->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/bookNameText"
+            android:id="@+id/videoNameText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:endIconMode="clear_text"
-            android:hint="书名"
+            android:hint="影视名"
             android:layout_margin="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -29,13 +28,43 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!--作者-->
+        <!--影视类型-->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/bookAuthorText"
+            android:id="@+id/videoTypeText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:endIconMode="clear_text"
-            android:hint="作者"
+            android:hint="影视类型"
+            android:layout_margin="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--影视标签-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/videoLabelText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:endIconMode="clear_text"
+            android:hint="影视标签"
+            android:layout_margin="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--参演者-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/videoActorText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:endIconMode="clear_text"
+            android:hint="参演者"
             android:layout_margin="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -45,28 +74,14 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-    <!--                图书标签-->
+
+        <!--影视信息-->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/bookLabelText"
+            android:id="@+id/videoInfoText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:endIconMode="clear_text"
-            android:hint="图书标签"
-            android:layout_margin="10dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-    <!--        图书信息-->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/bookInfoText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:endIconMode="clear_text"
-            android:hint="图书信息"
+            android:hint="影视信息"
             android:layout_margin="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -76,13 +91,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-    <!--    出版时间-->
+        <!--发行时间-->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/bookPublishTimeText"
+            android:id="@+id/videoPublishTimeText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:endIconMode="clear_text"
-            android:hint="出版时间"
+            android:hint="发行时间"
             android:layout_margin="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -92,13 +107,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-    <!--    图书封面-->
+        <!--影视封面-->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/bookPicText"
+            android:id="@+id/videoPicText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:endIconMode="clear_text"
-            android:hint="图书封面"
+            android:hint="影视封面"
             android:layout_margin="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -116,7 +131,7 @@
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/bookCommitFab"
+            android:id="@+id/videoCommitFab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
@@ -124,6 +139,5 @@
             android:src="@drawable/ic_done"/>
 
     </LinearLayout>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

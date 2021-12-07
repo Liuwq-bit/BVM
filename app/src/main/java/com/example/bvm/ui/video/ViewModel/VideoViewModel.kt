@@ -4,35 +4,32 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.bvm.logic.Repository
-import com.example.bvm.logic.book.model.Book
+import com.example.bvm.logic.model.Book
+import com.example.bvm.logic.model.Video
 import kotlin.concurrent.thread
 
 class VideoViewModel : ViewModel() {
 
     private val searchLiveData = MutableLiveData<String>()
 
-    val videoList = ArrayList<Book>()
+    val videoList = ArrayList<Video>()
 
-    val videoLiveData = Transformations.switchMap(searchLiveData) { title ->
-        // todo change item
-        Repository.searchAllBook()
-//        Repository.searchBookByTitle(title)
+    val videoLiveData = Transformations.switchMap(searchLiveData) { video_name ->
+        Repository.searchAllVideo()
+//        Repository.searchVideoByName(video_name)
     }
 
-    // todo
-    fun searchAllBooks() {
+    fun searchAllVideos() {
         searchLiveData.value = ""
     }
 
-    // todo
-    fun searchBookByTitle(title: String) {
-        searchLiveData.value = title
+    fun searchVideoByName(video_name: String) {
+        searchLiveData.value = video_name
     }
 
-    // todo
-    fun insertBooks(book: Book) {
+    fun insertVideos(video: Video) {
         thread {
-            Repository.insertBook(book)
+            Repository.insertVideo(video)
         }
     }
 }

@@ -50,18 +50,18 @@ class VideoListFragment: Fragment() {
 
 
         viewModel.videoLiveData.observe(viewLifecycleOwner, Observer { result -> // 动态查询数据
-            val books = result.getOrNull()
-            if (books != null) {
+            val videos = result.getOrNull()
+            if (videos != null) {
                 viewModel.videoList.clear()
-                viewModel.videoList.addAll(books)
+                viewModel.videoList.addAll(videos)
                 adapter.notifyDataSetChanged()
             } else {
-                Toast.makeText(activity, "未能查询到任何书籍", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "未能查询到任何影视", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()
             }
         })
 
-        viewModel.searchAllBooks()  // 显示所有书籍
+        viewModel.searchAllVideos()  // 显示所有书籍
 
     }
 }

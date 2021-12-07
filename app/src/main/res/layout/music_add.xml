@@ -7,20 +7,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:layout_scrollFlags="scroll">
 
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
-        <!--书名-->
+        <!--音乐名-->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/bookNameText"
+            android:id="@+id/musicNameText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:endIconMode="clear_text"
-            android:hint="书名"
+            android:hint="音乐名"
             android:layout_margin="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -29,13 +28,28 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!--作者-->
+        <!--音乐标签-->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/bookAuthorText"
+            android:id="@+id/musicLabelText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:endIconMode="clear_text"
-            android:hint="作者"
+            android:hint="音乐标签"
+            android:layout_margin="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--歌手-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/musicSingerText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:endIconMode="clear_text"
+            android:hint="歌手"
             android:layout_margin="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -45,44 +59,14 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-    <!--                图书标签-->
+
+        <!--音乐信息-->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/bookLabelText"
+            android:id="@+id/musicInfoText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:endIconMode="clear_text"
-            android:hint="图书标签"
-            android:layout_margin="10dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-    <!--        图书信息-->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/bookInfoText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:endIconMode="clear_text"
-            android:hint="图书信息"
-            android:layout_margin="10dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-    <!--    出版时间-->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/bookPublishTimeText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:endIconMode="clear_text"
-            android:hint="出版时间"
+            android:hint="音乐信息"
             android:layout_margin="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -92,13 +76,29 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-    <!--    图书封面-->
+        <!--发行时间-->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/bookPicText"
+            android:id="@+id/musicPublishTimeText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:endIconMode="clear_text"
-            android:hint="图书封面"
+            android:hint="发行时间"
+            android:layout_margin="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!--封面-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/musicPicText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:endIconMode="clear_text"
+            android:hint="封面"
             android:layout_margin="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -116,7 +116,7 @@
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/bookCommitFab"
+            android:id="@+id/musicCommitFab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"

@@ -1,4 +1,4 @@
-package com.example.bvm.logic.book.db
+package com.example.bvm.logic.db
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase

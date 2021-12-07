@@ -1,15 +1,16 @@
 package com.example.bvm.logic
 
-import android.content.Context
-import android.util.Log
 import androidx.lifecycle.liveData
+import com.bumptech.glide.util.ExceptionPassthroughInputStream
 import com.example.bvm.BVMApplication
-import com.example.bvm.logic.book.db.BookDatabase
-import com.example.bvm.logic.book.model.Book
+import com.example.bvm.logic.db.BookDatabase
+import com.example.bvm.logic.db.MusicDatabase
+import com.example.bvm.logic.db.VideoDatabase
+import com.example.bvm.logic.model.Book
+import com.example.bvm.logic.model.Music
+import com.example.bvm.logic.model.Video
 import kotlinx.coroutines.Dispatchers
 import java.lang.Exception
-import java.lang.RuntimeException
-import kotlin.concurrent.thread
 
 /*
     仓库类，判断数据源调用
@@ -32,12 +33,16 @@ object Repository {
 //        emit(result)
 //    }
 
-    // 插入数据并返回id
+    /**
+     *   插入图书数据并返回id
+     */
     fun insertBook(book: Book): Long {
         return BookDatabase.getDatabase(BVMApplication.context).bookDao().insertBook(book)
     }
 
-    // 搜索全部图书数据
+    /**
+     * 搜索全部图书数据
+     */
     fun searchAllBook() = liveData(Dispatchers.IO) {
         val result = try {
             val bookResponse = BookDatabase.getDatabase(BVMApplication.context).bookDao().loadAllBooks()
@@ -49,10 +54,12 @@ object Repository {
         emit(result)
     }
 
-    // 搜索全部图书数据
-    fun searchBookByTitle(title: String) = liveData(Dispatchers.IO) {
+    /**
+     * 按标题搜索图书数据
+     */
+    fun searchBookByName(book_name: String) = liveData(Dispatchers.IO) {
         val result = try {
-            val bookResponse = BookDatabase.getDatabase(BVMApplication.context).bookDao().searchBooks(title)
+            val bookResponse = BookDatabase.getDatabase(BVMApplication.context).bookDao().searchBooks(book_name)
             Result.success(bookResponse)
         } catch (e: Exception) {
             Result.failure<List<Book>>(e)
@@ -60,5 +67,70 @@ object Repository {
         emit(result)
     }
 
+    /**
+     * 插入影视数据并返回id
+     */
+    fun insertVideo(video: Video): Long {
+        return VideoDatabase.getDatabase(BVMApplication.context).videoDao().insertVideo(video)
+    }
+
+    /**
+     * 搜索全部影视数据
+     */
+    fun searchAllVideo() = liveData(Dispatchers.IO) {
+        val result = try {
+            val videoResponse = VideoDatabase.getDatabase(BVMApplication.context).videoDao().loadAllVideos()
+            Result.success(videoResponse)
+        } catch (e: Exception) {
+            Result.failure<List<Video>>(e)
+        }
+        emit(result)
+    }
+
+    /**
+     * 按标题搜索影视数据
+     */
+    fun searchVideoByName(video_name: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val videoResponse = VideoDatabase.getDatabase(BVMApplication.context).videoDao().searchVideos(video_name)
+            Result.success(videoResponse)
+        } catch (e: Exception) {
+            Result.failure<List<Video>>(e)
+        }
+        emit(result)
+    }
+
+    /**
+     * 插入音乐数据并返回id
+     */
+    fun insertMusic(music: Music): Long {
+        return MusicDatabase.getDatabase(BVMApplication.context).musicDao().insertMusic(music)
+    }
+
+    /**
+     * 搜索全部音乐数据
+     */
+    fun searchAllMusic() = liveData(Dispatchers.IO) {
+        val result = try {
+            val musicResponse = MusicDatabase.getDatabase(BVMApplication.context).musicDao().loadAllMusics()
+            Result.success(musicResponse)
+        } catch (e: Exception) {
+            Result.failure<List<Music>>(e)
+        }
+        emit(result)
+    }
+
+    /**
+     * 按标题搜索音乐数据
+     */
+    fun searchMusicByName(music_name: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val musicResponse = MusicDatabase.getDatabase(BVMApplication.context).musicDao().searchMusics(music_name)
+            Result.success(musicResponse)
+        } catch (e: Exception) {
+            Result.failure<List<Music>>(e)
+        }
+        emit(result)
+    }
 
 }

@@ -1,45 +1,45 @@
-package com.example.bvm.ui.video
+package com.example.bvm.ui.music
 
 import android.app.Dialog
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.example.bvm.BVMApplication.Companion.context
+import com.example.bvm.BVMApplication
 import com.example.bvm.R
+import kotlinx.android.synthetic.main.activity_music_info.*
 import kotlinx.android.synthetic.main.activity_video_info.*
+import kotlinx.android.synthetic.main.activity_video_info.videoInfoToolbar
 
-
-class VideoInfoActivity : AppCompatActivity() {
+class MusicInfoActivity : AppCompatActivity() {
 
     companion object {
-        const val VIDEO_TITLE = "videoTitle"
-        const val VIDEO_INFO = "videoInfo"
-        const val VIDEO_IMAGE = "videoImage"
+        const val MUSIC_TITLE = "musicTitle"
+        const val MUSIC_INFO = "musicInfo"
+        const val MUSIC_IMAGE = "musicImage"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_video_info)
+        setContentView(R.layout.activity_music_info)
 
-        val videoTitle = intent.getStringExtra(VIDEO_TITLE) ?: ""
-        val videoInfo = intent.getStringExtra(VIDEO_INFO) ?: ""
-        val videoPic = intent.getStringExtra(VIDEO_IMAGE) ?: ""
-        setSupportActionBar(videoInfoToolbar)
+        val musicTitle = intent.getStringExtra(MUSIC_TITLE) ?: ""
+        val musicInfo = intent.getStringExtra(MUSIC_INFO) ?: ""
+        val musicPic = intent.getStringExtra(MUSIC_IMAGE) ?: ""
+        setSupportActionBar(musicInfoToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        videoInfoCollapsingToolbar.title = videoTitle
-        Glide.with(this).load(videoPic).into(videoInfoImageView)
-        videoInfoContextText.text = videoInfo
+        musicInfoCollapsingToolbar.title = musicTitle
+        Glide.with(this).load(musicPic).into(musicInfoImageView)
+        musicInfoContextText.text = musicInfo
 
-        videoInfoImageView.setOnClickListener {
-            val tmp = videoInfoImageView.drawable as BitmapDrawable
+        musicInfoImageView.setOnClickListener {
+            val tmp = musicInfoImageView.drawable as BitmapDrawable
             val bitmap = tmp.bitmap
             bigImageLoader(bitmap)
         }
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -54,7 +54,7 @@ class VideoInfoActivity : AppCompatActivity() {
 
     private fun bigImageLoader(bitmap: Bitmap) {
         val dialog = Dialog(this)
-        val image = ImageView(context)
+        val image = ImageView(BVMApplication.context)
         image.setImageBitmap(bitmap)
         dialog.setContentView(image)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)

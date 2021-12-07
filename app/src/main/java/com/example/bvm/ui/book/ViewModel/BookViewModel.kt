@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.bvm.logic.Repository
-import com.example.bvm.logic.book.model.Book
+import com.example.bvm.logic.model.Book
 import kotlin.concurrent.thread
 
 class BookViewModel : ViewModel() {

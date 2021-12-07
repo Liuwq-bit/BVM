@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bvm.R
-import com.example.bvm.logic.book.model.Book
 import com.example.bvm.ui.book.Adapter.BookAdapter
 import com.example.bvm.ui.book.ViewModel.BookViewModel
 import kotlinx.android.synthetic.main.book_list.*
