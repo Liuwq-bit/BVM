@@ -13,6 +13,7 @@ import com.example.bvm.R
 import com.example.bvm.ui.book.Adapter.BookAdapter
 import com.example.bvm.ui.book.ViewModel.BookViewModel
 import kotlinx.android.synthetic.main.book_list.*
+import kotlin.concurrent.thread
 
 /**
  * 书籍信息展示列表
@@ -43,6 +44,12 @@ class BookListFragment: Fragment() {
         adapter = BookAdapter(this, viewModel.bookList)
         bookRecyclerView.adapter = adapter
 
+        bookListSwipeRefresh.setColorSchemeResources(R.color.cardview_shadow_end_color)
+        bookListSwipeRefresh.setOnRefreshListener {
+            reFreshBooks(adapter)
+        }
+
+
 //        val book1 = Book("测试3", "2021.11.27", "这是一个测试用书", "测试",
 //            "https://ceshi.com", "www.douban.com")
 //        viewModel.insertBooks(book1)
@@ -66,5 +73,15 @@ class BookListFragment: Fragment() {
 
         viewModel.searchAllBooks()  // 显示所有书籍
 
+    }
+
+    private fun reFreshBooks(adapter: BookAdapter) {
+        thread {
+            Thread.sleep(2000)
+            activity?.runOnUiThread {
+                adapter.notifyDataSetChanged()
+                bookListSwipeRefresh.isRefreshing = false
+            }
+        }
     }
 }

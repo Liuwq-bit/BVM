@@ -12,8 +12,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bvm.R
 import com.example.bvm.ui.music.Adapter.MusicAdapter
 import com.example.bvm.ui.music.ViewModel.MusicViewModel
+import com.example.bvm.ui.video.Adapter.VideoAdapter
 import com.example.bvm.ui.video.ViewModel.VideoViewModel
+import kotlinx.android.synthetic.main.book_list.*
 import kotlinx.android.synthetic.main.music_list.*
+import kotlin.concurrent.thread
 
 class MusicListFragment: Fragment() {
 
@@ -40,6 +43,11 @@ class MusicListFragment: Fragment() {
         adapter = MusicAdapter(this, viewModel.musicList)
         musicRecyclerView.adapter = adapter
 
+        musicListSwipeRefresh.setColorSchemeResources(R.color.cardview_shadow_end_color)
+        musicListSwipeRefresh.setOnRefreshListener {
+            reFreshMusics(adapter)
+        }
+
         viewModel.musicLiveData.observe(viewLifecycleOwner, Observer { result ->
             val musics = result.getOrNull()
             if (musics != null) {
@@ -54,4 +62,15 @@ class MusicListFragment: Fragment() {
 
         viewModel.searchAllMusics() // 显示所有音乐
     }
+
+    private fun reFreshMusics(adapter: MusicAdapter) {
+        thread {
+            Thread.sleep(2000)
+            activity?.runOnUiThread {
+                adapter.notifyDataSetChanged()
+                musicListSwipeRefresh.isRefreshing = false
+            }
+        }
+    }
+
 }

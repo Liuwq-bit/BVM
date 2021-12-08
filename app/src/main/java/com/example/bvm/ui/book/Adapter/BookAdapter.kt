@@ -20,6 +20,7 @@ class BookAdapter(private val fragment: Fragment, private val bookList: List<Boo
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val bookTitle: TextView = view.findViewById(R.id.itemTitle)
         val bookInfo: TextView = view.findViewById(R.id.itemInfo)
+        val bookAuthor: TextView = view.findViewById(R.id.authorText)
         val bookImage: ImageView = view.findViewById(R.id.itemImage)
     }
 
@@ -43,17 +44,19 @@ class BookAdapter(private val fragment: Fragment, private val bookList: List<Boo
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val book = bookList[position]
-        if (book.book_name.length > 9) {
-            val shortTitle = book.book_name.substring(0, 9) + " ..."
-            holder.bookTitle.text = shortTitle
-        } else
-            holder.bookTitle.text = book.book_name
-
-        if (book.info.length > 30) {
-            val shortInfo = book.info.substring(0, 29) + " ..."
-            holder.bookInfo.text = shortInfo
-        } else
-            holder.bookInfo.text = book.info
+        holder.bookTitle.text = book.book_name
+        holder.bookInfo.text = book.info.substring(0, 60)+ "..."
+//        if (book.book_name.length > 9) {
+//            val shortTitle = book.book_name.substring(0, 9) + " ..."
+//            holder.bookTitle.text = shortTitle
+//        } else
+//            holder.bookTitle.text = book.book_name
+//
+//        if (book.info.length > 30) {
+//            val shortInfo = book.info.substring(0, 29) + " ..."
+//            holder.bookInfo.text = shortInfo
+//        } else
+//            holder.bookInfo.text = book.info
         Glide.with(context).load(book.pic).into(holder.bookImage)   // 加载图片
 //        holder.bookImage.setImageResource(Glide.with(context).load(book.pic).into(holder.bookImage))
     }

@@ -46,6 +46,7 @@ class MusicAdapter(private val fragment: Fragment, private val musicList: List<M
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val music = musicList[position]
+//        val re = Regex("^[a-zA-Z]*")  // 使用正则表达式匹配数据
         if (music.music_name.length > 9) {
             val shortTitle = music.music_name.substring(0, 9) + " ..."
             holder.musicName.text = shortTitle
@@ -59,6 +60,7 @@ class MusicAdapter(private val fragment: Fragment, private val musicList: List<M
             holder.musicInfo.text = music.info
 
         Glide.with(context).load(music.pic).into(holder.musicImage)
+
     }
 
     override fun getItemCount() = musicList.size

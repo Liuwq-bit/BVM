@@ -10,9 +10,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bvm.R
+import com.example.bvm.ui.book.Adapter.BookAdapter
 import com.example.bvm.ui.video.Adapter.VideoAdapter
 import com.example.bvm.ui.video.ViewModel.VideoViewModel
+import kotlinx.android.synthetic.main.book_list.*
 import kotlinx.android.synthetic.main.video_list.*
+import kotlin.concurrent.thread
 
 
 class VideoListFragment: Fragment() {
@@ -41,6 +44,11 @@ class VideoListFragment: Fragment() {
         adapter = VideoAdapter(this, viewModel.videoList)
         videoRecyclerView.adapter = adapter
 
+        videoListSwipeRefresh.setColorSchemeResources(R.color.cardview_shadow_end_color)
+        videoListSwipeRefresh.setOnRefreshListener {
+            reFreshVideos(adapter)
+        }
+
 //        val book1 = Book("测试3", "2021.11.27", "这是一个测试用书", "测试",
 //            "https://ceshi.com", "www.douban.com", "9.0")
 //        viewModel.insertBooks(book1)
@@ -64,4 +72,15 @@ class VideoListFragment: Fragment() {
         viewModel.searchAllVideos()  // 显示所有书籍
 
     }
+
+    private fun reFreshVideos(adapter: VideoAdapter) {
+        thread {
+            Thread.sleep(2000)
+            activity?.runOnUiThread {
+                adapter.notifyDataSetChanged()
+                videoListSwipeRefresh.isRefreshing = false
+            }
+        }
+    }
+
 }

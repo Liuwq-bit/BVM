@@ -3,17 +3,19 @@ package com.example.bvm.logic
 import androidx.lifecycle.liveData
 import com.bumptech.glide.util.ExceptionPassthroughInputStream
 import com.example.bvm.BVMApplication
+import com.example.bvm.logic.db.AuthorDatabase
 import com.example.bvm.logic.db.BookDatabase
 import com.example.bvm.logic.db.MusicDatabase
 import com.example.bvm.logic.db.VideoDatabase
+import com.example.bvm.logic.model.Author
 import com.example.bvm.logic.model.Book
 import com.example.bvm.logic.model.Music
 import com.example.bvm.logic.model.Video
 import kotlinx.coroutines.Dispatchers
 import java.lang.Exception
 
-/*
-    仓库类，判断数据源调用
+/**
+ *  仓库类，为viewModel提供数据库调用接口
  */
 
 object Repository {
@@ -133,4 +135,36 @@ object Repository {
         emit(result)
     }
 
+    /**
+     * 插入作者数据并返回id
+     */
+    fun insertAuthor(author: Author): Long {
+        return AuthorDatabase.getDatabase(BVMApplication.context).authorDao().insertAuthor(author)
+    }
+
+    /**
+     * 搜索全部作者数据
+     */
+    fun searchAllAuthor() = liveData(Dispatchers.IO) {
+        val result = try {
+            val authorResponse = AuthorDatabase.getDatabase(BVMApplication.context).authorDao().loadAllAuthor()
+            Result.success(authorResponse)
+        } catch (e: Exception) {
+            Result.failure<List<Author>>(e)
+        }
+        emit(result)
+    }
+
+    /**
+     * 按作者姓名搜索作者数据
+     */
+    fun searchAuthorByName(authorName: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val authorResponse = AuthorDatabase.getDatabase(BVMApplication.context).authorDao().searchAuthor(authorName)
+            Result.success(authorName)
+        } catch (e: Exception) {
+            Result.failure<List<Author>>(e)
+        }
+        emit(result)
+    }
 }
