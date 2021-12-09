@@ -3,14 +3,8 @@ package com.example.bvm.logic
 import androidx.lifecycle.liveData
 import com.bumptech.glide.util.ExceptionPassthroughInputStream
 import com.example.bvm.BVMApplication
-import com.example.bvm.logic.db.AuthorDatabase
-import com.example.bvm.logic.db.BookDatabase
-import com.example.bvm.logic.db.MusicDatabase
-import com.example.bvm.logic.db.VideoDatabase
-import com.example.bvm.logic.model.Author
-import com.example.bvm.logic.model.Book
-import com.example.bvm.logic.model.Music
-import com.example.bvm.logic.model.Video
+import com.example.bvm.logic.db.*
+import com.example.bvm.logic.model.*
 import kotlinx.coroutines.Dispatchers
 import java.lang.Exception
 
@@ -19,6 +13,55 @@ import java.lang.Exception
  */
 
 object Repository {
+
+    /**
+     *   插入用户数据并返回id
+     */
+    fun insertUser(user: User): Long {
+        return UserDatabase.getDatabase(BVMApplication.context).userDao().insertUser(user)
+    }
+
+    /**
+     * 搜索全部用户数据
+     */
+    fun searchAllUser() = liveData(Dispatchers.IO) {
+        val result = try {
+            val userResponse = UserDatabase.getDatabase(BVMApplication.context).userDao().loadAllUsers()
+//            Log.d("MainActivity", bookResponse[0].title)
+            Result.success(userResponse)
+        } catch (e: Exception) {
+            Result.failure<List<User>>(e)
+        }
+        emit(result)
+    }
+
+    /**
+     * 按用户名搜索用户数据
+     */
+    fun searchUserByName(user_name: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val userResponse = UserDatabase.getDatabase(BVMApplication.context).userDao().searchUserByName(user_name)
+            Result.success(userResponse)
+        } catch (e: Exception) {
+            Result.failure<List<User>>(e)
+        }
+        emit(result)
+    }
+
+    /**
+     * 按用户名搜索用户数据
+     */
+    fun searchUserById(user_id: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val userResponse = UserDatabase.getDatabase(BVMApplication.context).userDao().searchUserById(user_id.toLong())
+            Result.success(userResponse)
+        } catch (e: Exception) {
+            Result.failure<List<User>>(e)
+        }
+        emit(result)
+    }
+
+
 
 //    fun searchIsbn(isbn: String) = liveData(Dispatchers.IO) {
 //        val result = try {
@@ -34,6 +77,8 @@ object Repository {
 //        }
 //        emit(result)
 //    }
+
+
 
     /**
      *   插入图书数据并返回id

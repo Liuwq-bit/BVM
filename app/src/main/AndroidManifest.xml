@@ -14,9 +14,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BVM">
         <activity
-            android:name=".ui.music.MusicInfoActivity"
-            android:theme="@style/InfoActivityTheme"
+            android:name=".ui.common.SignupActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".ui.common.LoginActivity"
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.music.MusicInfoActivity"
+            android:exported="false"
+            android:theme="@style/InfoActivityTheme" />
         <activity
             android:name=".ui.common.AddModelActivity"
             android:exported="false"
@@ -30,13 +44,8 @@
             android:exported="false"
             android:theme="@style/InfoActivityTheme" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.common.MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

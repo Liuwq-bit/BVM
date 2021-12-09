@@ -1,4 +1,4 @@
-package com.example.bvm
+package com.example.bvm.ui.common
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,7 +20,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import android.app.Activity
 import android.content.Intent
 import androidx.viewpager2.widget.ViewPager2
-import com.example.bvm.ui.common.AddModelActivity
+import com.example.bvm.R
 import com.example.bvm.ui.video.VideoListFragment
 import java.lang.Exception
 import java.lang.reflect.Field

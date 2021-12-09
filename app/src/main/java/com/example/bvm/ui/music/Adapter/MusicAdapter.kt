@@ -46,18 +46,23 @@ class MusicAdapter(private val fragment: Fragment, private val musicList: List<M
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val music = musicList[position]
-//        val re = Regex("^[a-zA-Z]*")  // 使用正则表达式匹配数据
-        if (music.music_name.length > 9) {
-            val shortTitle = music.music_name.substring(0, 9) + " ..."
-            holder.musicName.text = shortTitle
-        } else
-            holder.musicName.text = music.music_name
+        holder.musicName.text = music.music_name
 
-        if (music.info.length > 30) {
-            val shortInfo = music.info.substring(0, 29) + " ..."
-            holder.musicInfo.text = shortInfo
-        } else
-            holder.musicInfo.text = music.info
+        val info = music.info.substring(0, 100)
+        holder.musicInfo.text = info
+
+//        val re = Regex("^[a-zA-Z]*")  // 使用正则表达式匹配数据
+//        if (music.music_name.length > 9) {
+//            val shortTitle = music.music_name.substring(0, 9) + " ..."
+//            holder.musicName.text = shortTitle
+//        } else
+//            holder.musicName.text = music.music_name
+//
+//        if (music.info.length > 30) {
+//            val shortInfo = music.info.substring(0, 29) + " ..."
+//            holder.musicInfo.text = shortInfo
+//        } else
+//            holder.musicInfo.text = music.info
 
         Glide.with(context).load(music.pic).into(holder.musicImage)
 
