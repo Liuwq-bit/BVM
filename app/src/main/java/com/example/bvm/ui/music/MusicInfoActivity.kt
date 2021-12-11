@@ -20,6 +20,8 @@ class MusicInfoActivity : AppCompatActivity() {
         const val MUSIC_TITLE = "musicTitle"
         const val MUSIC_INFO = "musicInfo"
         const val MUSIC_IMAGE = "musicImage"
+        const val MUSIC_SINGER = "musicSinger"
+        const val MUSIC_SINGER_INFO = "musicSingerInfo"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,11 +31,15 @@ class MusicInfoActivity : AppCompatActivity() {
         val musicTitle = intent.getStringExtra(MUSIC_TITLE) ?: ""
         val musicInfo = intent.getStringExtra(MUSIC_INFO) ?: ""
         val musicPic = intent.getStringExtra(MUSIC_IMAGE) ?: ""
+        val musicSinger = intent.getStringExtra(MUSIC_SINGER) ?: ""
+        val musicSingerInfo = intent.getStringExtra(MUSIC_SINGER_INFO) ?: ""
         setSupportActionBar(musicInfoToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         musicInfoCollapsingToolbar.title = musicTitle
         Glide.with(this).load(musicPic).into(musicInfoImageView)
         musicInfoContextText.text = musicInfo
+        musicSingerContextText.text = musicSinger
+        musicSingerInfoContextText.text = musicSingerInfo
 
         musicInfoImageView.setOnClickListener {
             val tmp = musicInfoImageView.drawable as BitmapDrawable

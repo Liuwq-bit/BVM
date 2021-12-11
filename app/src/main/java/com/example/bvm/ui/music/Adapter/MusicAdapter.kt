@@ -49,6 +49,8 @@ class MusicAdapter(private val fragment: Fragment, private val musicList: List<M
                 putExtra(MusicInfoActivity.MUSIC_TITLE, music.music_name)
                 putExtra(MusicInfoActivity.MUSIC_INFO, music.info)
                 putExtra(MusicInfoActivity.MUSIC_IMAGE, music.pic)
+                putExtra(MusicInfoActivity.MUSIC_SINGER, music.singer)
+                putExtra(MusicInfoActivity.MUSIC_SINGER_INFO, music.singerInfo)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK   // 在新的task中开启activity
             }
             context.startActivity(intent)

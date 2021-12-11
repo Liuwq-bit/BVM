@@ -21,6 +21,8 @@ class BookInfoActivity : AppCompatActivity() {
         const val BOOK_TITLE = "bookTitle"
         const val BOOK_INFO = "bookInfo"
         const val BOOK_PIC = "bookPic"
+        const val BOOK_AUTHOR = "bookAuthor"
+        const val BOOK_AUTHOR_INFO = "bookAuthorInfo"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,11 +32,15 @@ class BookInfoActivity : AppCompatActivity() {
         val bookTitle = intent.getStringExtra(BOOK_TITLE) ?: ""
         val bookInfo = intent.getStringExtra(BOOK_INFO) ?: ""
         val bookPic = intent.getStringExtra(BOOK_PIC) ?: ""
+        val bookAuthor = intent.getStringExtra(BOOK_AUTHOR) ?: ""
+        val bookAuthorInfo = intent.getStringExtra(BOOK_AUTHOR_INFO) ?: ""
         setSupportActionBar(bookInfoToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         bookInfoCollapsingToolbar.title = bookTitle
         Glide.with(this).load(bookPic).into(bookInfoImageView)
         bookInfoContextText.text = bookInfo
+        bookAuthorContextText.text = bookAuthor
+        bookAuthorInfoContextText.text = bookAuthorInfo
 
         bookInfoImageView.setOnClickListener {
             val tmp = bookInfoImageView.drawable as BitmapDrawable

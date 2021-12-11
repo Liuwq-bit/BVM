@@ -19,6 +19,8 @@ class VideoInfoActivity : AppCompatActivity() {
         const val VIDEO_TITLE = "videoTitle"
         const val VIDEO_INFO = "videoInfo"
         const val VIDEO_IMAGE = "videoImage"
+        const val VIDEO_ACTOR = "videoActor"
+        const val VIDEO_ACTOR_INFO = "videoActorInfo"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,11 +30,15 @@ class VideoInfoActivity : AppCompatActivity() {
         val videoTitle = intent.getStringExtra(VIDEO_TITLE) ?: ""
         val videoInfo = intent.getStringExtra(VIDEO_INFO) ?: ""
         val videoPic = intent.getStringExtra(VIDEO_IMAGE) ?: ""
+        val videoActor = intent.getStringExtra(VIDEO_ACTOR) ?: ""
+        val videoActorInfo = intent.getStringExtra(VIDEO_ACTOR_INFO) ?: ""
         setSupportActionBar(videoInfoToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         videoInfoCollapsingToolbar.title = videoTitle
         Glide.with(this).load(videoPic).into(videoInfoImageView)
         videoInfoContextText.text = videoInfo
+        videoActorContextText.text = videoActor
+        videoActorInfoContextText.text = videoActorInfo
 
         videoInfoImageView.setOnClickListener {
             val tmp = videoInfoImageView.drawable as BitmapDrawable

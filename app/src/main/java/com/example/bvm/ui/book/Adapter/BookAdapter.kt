@@ -45,6 +45,8 @@ class BookAdapter(private val fragment: Fragment, private val bookList: List<Boo
                 putExtra(BookInfoActivity.BOOK_TITLE, book.book_name)
                 putExtra(BookInfoActivity.BOOK_INFO, book.info)
                 putExtra(BookInfoActivity.BOOK_PIC, book.pic)
+                putExtra(BookInfoActivity.BOOK_AUTHOR, book.author)
+                putExtra(BookInfoActivity.BOOK_AUTHOR_INFO, book.authorInfo)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK // 在新的task中开启activity
             }
             context.startActivity(intent)
