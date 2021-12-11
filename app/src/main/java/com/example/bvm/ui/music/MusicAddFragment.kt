@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.bvm.R
 import com.example.bvm.logic.model.Music
+import com.example.bvm.logic.model.Singer
 import com.example.bvm.ui.music.ViewModel.MusicViewModel
 import kotlinx.android.synthetic.main.music_add.*
 import java.text.SimpleDateFormat
@@ -33,6 +34,7 @@ class MusicAddFragment : Fragment() {
             // todo 增加格式判断机制
             val musicName = musicNameText.editText?.text.toString()
             val musicSinger = musicSingerText.editText?.text.toString()
+            val musicSingerInfo = musicSingerInfoText.editText?.text.toString()
             val musicLabel = musicLabelText.editText?.text.toString()
             val musicInfo = musicInfoText.editText?.text.toString()
             val musicPublish = musicPublishTimeText.editText?.text.toString()
@@ -41,8 +43,9 @@ class MusicAddFragment : Fragment() {
             val date = Date()
             val dateFormat = SimpleDateFormat("yyyy-MM-dd")
 
-            val music = Music(musicName, musicLabel, musicInfo, dateFormat.format(date), musicPublish, musicPic)
-            viewModel.insertMusics(music)
+            val music = Music(musicName, musicLabel, musicInfo, musicSinger, musicSingerInfo, dateFormat.format(date), musicPublish, musicPic)
+            val singer = Singer(musicSinger, musicSingerInfo)
+            viewModel.insertMusics(music, singer)
 
             Toast.makeText(context, "添加成功", Toast.LENGTH_SHORT).show()
         }

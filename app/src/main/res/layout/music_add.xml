@@ -12,6 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/s33995572"/>
+
 
         <!--音乐名-->
         <com.google.android.material.textfield.TextInputLayout
@@ -58,6 +64,23 @@
 
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <!--歌手信息-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/musicSingerInfoText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:endIconMode="clear_text"
+            android:hint="歌手信息"
+            android:layout_margin="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
 
         <!--音乐信息-->
@@ -106,12 +129,6 @@
                 android:layout_height="wrap_content"/>
 
         </com.google.android.material.textfield.TextInputLayout>
-
-        <ImageView
-            android:layout_width="90dp"
-            android:layout_height="160dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/s33995572"/>
 
 
 

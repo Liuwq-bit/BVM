@@ -67,6 +67,9 @@ class MusicListFragment: Fragment() {
         thread {
             Thread.sleep(2000)
             activity?.runOnUiThread {
+
+                viewModel.searchAllMusics()
+
                 adapter.notifyDataSetChanged()
                 musicListSwipeRefresh.isRefreshing = false
             }

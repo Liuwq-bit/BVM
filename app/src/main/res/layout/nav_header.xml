@@ -9,18 +9,18 @@
         android:id="@+id/iconImage"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:src="@drawable/img_header"
+        android:src="@drawable/icon_image"
         android:layout_centerInParent="true"/>
 
     <TextView
-        android:id="@+id/mailText"
+        android:id="@+id/mainNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/iconImage"
         android:layout_centerInParent="true"
         android:layout_marginTop="6dp"
-        android:text="檀桐"
         android:textColor="#FFF"
+        android:text="aaa"
         android:textSize="18sp"/>
 
 </RelativeLayout>

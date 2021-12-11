@@ -23,6 +23,8 @@ data class User(var user_name: String,
 data class Book(var book_name: String,
                 var label: String,
                 var info: String,
+                var author: String,
+                var authorInfo: String,
                 var add_time: String,
                 var publish_time: String,
                 var pic: String) {
@@ -46,6 +48,8 @@ data class Video(var video_name: String,
                  var video_type: String,
                  var label: String,
                  var info: String,
+                 var actor: String,
+                 var actorInfo: String,
                  var add_time: String,
                  var publish_time: String,
                  var pic: String) {
@@ -69,6 +73,8 @@ data class Actor(var actor_name: String,
 data class Music(var music_name: String,
                  var label: String,
                  var info: String,
+                 var singer: String,
+                 var singerInfo: String,
                  var add_time: String,
                  var publish_time: String,
                  var pic: String) {
@@ -90,7 +96,7 @@ data class Singer(var singer_name: String,
  */
 @Entity
 data class BookMark(@PrimaryKey var user_id: Long,
-                    @PrimaryKey var book_id: Long,
+                    var book_id: Long,
                     var type: Int,
                     var change_time: String)
 
@@ -100,7 +106,7 @@ data class BookMark(@PrimaryKey var user_id: Long,
  */
 @Entity
 data class VideoMark(@PrimaryKey var user_id: Long,
-                    @PrimaryKey var video_id: Long,
+                    var video_id: Long,
                     var type: Int,
                     var change_time: String)
 
@@ -110,7 +116,7 @@ data class VideoMark(@PrimaryKey var user_id: Long,
  */
 @Entity
 data class MusicMark(@PrimaryKey var user_id: Long,
-                    @PrimaryKey var music_id: Long,
+                    var music_id: Long,
                     var type: Int,
                     var change_time: String)
 
@@ -120,7 +126,7 @@ data class MusicMark(@PrimaryKey var user_id: Long,
  */
 @Entity
 data class BookComment(@PrimaryKey var book_id: Long,
-                        @PrimaryKey var user_id: Long,
+                        var user_id: Long,
                         var comment: String,
                         var grade: Double,
                         var change_time: String)
@@ -131,7 +137,7 @@ data class BookComment(@PrimaryKey var book_id: Long,
  */
 @Entity
 data class VideoComment(@PrimaryKey var video_id: Long,
-                        @PrimaryKey var user_id: Long,
+                        var user_id: Long,
                         var comment: String,
                         var grade: Double,
                         var change_time: String)
@@ -142,7 +148,7 @@ data class VideoComment(@PrimaryKey var video_id: Long,
  */
 @Entity
 data class MusicComment(@PrimaryKey var music_id: Long,
-                        @PrimaryKey var user_id: Long,
+                        var user_id: Long,
                         var comment: String,
                         var grade: Double,
                         var change_time: String)
@@ -153,7 +159,7 @@ data class MusicComment(@PrimaryKey var music_id: Long,
  */
 @Entity
 data class AuthorOfBook(@PrimaryKey var book_id: Long,
-                        @PrimaryKey var author_id: Long)
+                        var author_id: Long)
 
 
 /**
@@ -161,11 +167,11 @@ data class AuthorOfBook(@PrimaryKey var book_id: Long,
  */
 @Entity
 data class ActorOfVideo(@PrimaryKey var video_id: Long,
-                        @PrimaryKey var actor_id: Long)
+                        var actor_id: Long)
 
 /**
  * 音乐歌手映射表
  */
 @Entity
 data class SingerOfMusic(@PrimaryKey var music_id: Long,
-                        @PrimaryKey var singer_id: Long)
+                        var singer_id: Long)

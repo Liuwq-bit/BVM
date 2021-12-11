@@ -6,22 +6,32 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.bvm.BVMApplication.Companion.context
 import com.example.bvm.R
 import com.example.bvm.logic.model.Book
 import com.example.bvm.ui.book.BookInfoActivity
+import com.example.bvm.ui.book.ViewModel.BookViewModel
+import com.google.android.material.button.MaterialButton
+import kotlinx.android.synthetic.main.book_list.*
+import kotlin.concurrent.thread
 
 class BookAdapter(private val fragment: Fragment, private val bookList: List<Book>) :
     RecyclerView.Adapter<BookAdapter.ViewHolder>() {
+
+    val viewModel by lazy { ViewModelProviders.of(fragment).get(BookViewModel::class.java) }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val bookTitle: TextView = view.findViewById(R.id.itemTitle)
         val bookInfo: TextView = view.findViewById(R.id.itemInfo)
         val bookAuthor: TextView = view.findViewById(R.id.authorText)
         val bookImage: ImageView = view.findViewById(R.id.itemImage)
+        val deleteBtn: MaterialButton = view.findViewById(R.id.deleteItemBtn)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -46,6 +56,7 @@ class BookAdapter(private val fragment: Fragment, private val bookList: List<Boo
         val book = bookList[position]
         holder.bookTitle.text = book.book_name
         holder.bookInfo.text = book.info.substring(0, 60)+ "..."
+        holder.bookAuthor.text = book.author
 //        if (book.book_name.length > 9) {
 //            val shortTitle = book.book_name.substring(0, 9) + " ..."
 //            holder.bookTitle.text = shortTitle
@@ -59,7 +70,49 @@ class BookAdapter(private val fragment: Fragment, private val bookList: List<Boo
 //            holder.bookInfo.text = book.info
         Glide.with(context).load(book.pic).into(holder.bookImage)   // 加载图片
 //        holder.bookImage.setImageResource(Glide.with(context).load(book.pic).into(holder.bookImage))
+
+
+//        viewModel.authorLiveData.observe(fragment.viewLifecycleOwner, Observer { result ->
+//            val authors = result.getOrNull()
+//            if (authors != null) {
+//                viewModel.authorList.clear()
+//                viewModel.authorList.addAll(authors)
+//            }
+//        })
+//        viewModel.searchAuthorByBookId(book.book_id.toString())
+//        holder.bookAuthor.text = viewModel.authorList[0].author_name   // 设置作者
+
+        holder.deleteBtn.setOnClickListener {
+            viewModel.deleteBookById(book.book_id)
+            viewModel.bookLiveData.observe(fragment.viewLifecycleOwner, Observer { result -> // 动态查询数据
+                val books = result.getOrNull()
+                if (books != null) {
+//                bookRecyclerView.visibility = View.VISIBLE
+                    viewModel.bookList.clear()
+                    viewModel.bookList.addAll(books)
+                    notifyDataSetChanged()
+                } else {
+                    Toast.makeText(context, "未能查询到任何书籍", Toast.LENGTH_SHORT).show()
+                    result.exceptionOrNull()?.printStackTrace()
+                }
+            })
+
+            reFreshBooks()
+        }
     }
 
     override fun getItemCount() = bookList.size
+
+    private fun reFreshBooks() {
+        thread {
+            Thread.sleep(500)
+            fragment.activity?.runOnUiThread {
+
+                viewModel.searchAllBooks()  // 显示所有书籍
+
+                notifyDataSetChanged()
+            }
+        }
+    }
+
 }

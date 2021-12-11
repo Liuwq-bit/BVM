@@ -5,6 +5,8 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.bvm.logic.Repository
 import com.example.bvm.logic.model.Music
+import com.example.bvm.logic.model.Singer
+import com.example.bvm.logic.model.SingerOfMusic
 import com.example.bvm.logic.model.Video
 import kotlin.concurrent.thread
 
@@ -27,9 +29,18 @@ class MusicViewModel : ViewModel() {
         searchLiveData.value = music_name
     }
 
-    fun insertMusics(music: Music) {
+    fun insertMusics(music: Music, singer: Singer) {
         thread {
-            Repository.insertMusic(music)
+            val music_id = Repository.insertMusic(music)
+            val singer_id = Repository.insertSinger(singer)
+            val tmp = SingerOfMusic(music_id, singer_id)
+            Repository.insertSingerOfMusic(tmp)
+        }
+    }
+
+    fun deleteMusicById(music_id: Long) {
+        thread {
+            Repository.deleteMusicById(music_id)
         }
     }
 

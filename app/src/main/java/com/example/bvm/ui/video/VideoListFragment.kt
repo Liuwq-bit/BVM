@@ -77,6 +77,9 @@ class VideoListFragment: Fragment() {
         thread {
             Thread.sleep(2000)
             activity?.runOnUiThread {
+
+                viewModel.searchAllVideos()
+
                 adapter.notifyDataSetChanged()
                 videoListSwipeRefresh.isRefreshing = false
             }

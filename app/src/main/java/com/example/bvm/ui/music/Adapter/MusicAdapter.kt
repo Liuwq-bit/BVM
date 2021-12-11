@@ -6,21 +6,33 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.bvm.BVMApplication.Companion.context
 import com.example.bvm.R
 import com.example.bvm.logic.model.Music
+import com.example.bvm.ui.book.Adapter.BookAdapter
 import com.example.bvm.ui.music.MusicInfoActivity
+import com.example.bvm.ui.music.ViewModel.MusicViewModel
+import com.google.android.material.button.MaterialButton
+import kotlinx.android.synthetic.main.book_list.*
+import kotlin.concurrent.thread
 
 class MusicAdapter(private val fragment: Fragment, private val musicList: List<Music>):
     RecyclerView.Adapter<MusicAdapter.ViewHolder>(){
 
+    val viewModel by lazy { ViewModelProviders.of(fragment).get(MusicViewModel::class.java) }
+
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val musicName: TextView = view.findViewById(R.id.itemTitle)
         val musicInfo: TextView = view.findViewById(R.id.itemInfo)
+        val musicSinger: TextView = view.findViewById(R.id.authorText)
         val musicImage: ImageView = view.findViewById(R.id.itemImage)
+        val deleteBtn: MaterialButton = view.findViewById(R.id.deleteItemBtn)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -64,9 +76,41 @@ class MusicAdapter(private val fragment: Fragment, private val musicList: List<M
 //        } else
 //            holder.musicInfo.text = music.info
 
+        holder.musicSinger.text = music.singer
         Glide.with(context).load(music.pic).into(holder.musicImage)
+
+        holder.deleteBtn.setOnClickListener {
+            viewModel.deleteMusicById(music.music_id)
+
+            viewModel.musicLiveData.observe(fragment.viewLifecycleOwner, Observer { result -> // 动态查询数据
+                val musics = result.getOrNull()
+                if (musics != null) {
+                    viewModel.musicList.clear()
+                    viewModel.musicList.addAll(musics)
+                    notifyDataSetChanged()
+                } else {
+                    Toast.makeText(context, "未能查询到任何书籍", Toast.LENGTH_SHORT).show()
+                    result.exceptionOrNull()?.printStackTrace()
+                }
+            })
+
+            reFreshMusic()
+        }
 
     }
 
     override fun getItemCount() = musicList.size
+
+    private fun reFreshMusic() {
+        thread {
+            Thread.sleep(500)
+            fragment.activity?.runOnUiThread {
+
+                viewModel.searchAllMusics()  // 显示所有音乐
+
+                notifyDataSetChanged()
+            }
+        }
+    }
+
 }

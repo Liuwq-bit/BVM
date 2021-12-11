@@ -79,6 +79,9 @@ class BookListFragment: Fragment() {
         thread {
             Thread.sleep(2000)
             activity?.runOnUiThread {
+
+                viewModel.searchAllBooks()  // 显示所有书籍
+
                 adapter.notifyDataSetChanged()
                 bookListSwipeRefresh.isRefreshing = false
             }

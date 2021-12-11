@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.bvm.logic.Repository
+import com.example.bvm.logic.model.Actor
+import com.example.bvm.logic.model.ActorOfVideo
 import com.example.bvm.logic.model.Book
 import com.example.bvm.logic.model.Video
 import kotlin.concurrent.thread
@@ -27,9 +29,18 @@ class VideoViewModel : ViewModel() {
         searchLiveData.value = video_name
     }
 
-    fun insertVideos(video: Video) {
+    fun insertVideos(video: Video, actor: Actor) {
         thread {
-            Repository.insertVideo(video)
+            val video_id = Repository.insertVideo(video)
+            val actor_id = Repository.insertActor(actor)
+            val tmp = ActorOfVideo(video_id, actor_id)
+            Repository.insertActorOfVideo(tmp)
+        }
+    }
+
+    fun deleteVideoById(video_id: Long) {
+        thread {
+            Repository.deleteVideoById(video_id)
         }
     }
 }

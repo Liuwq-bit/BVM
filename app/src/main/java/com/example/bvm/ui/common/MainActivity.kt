@@ -19,9 +19,17 @@ import androidx.drawerlayout.widget.DrawerLayout
 
 import android.app.Activity
 import android.content.Intent
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
+import com.example.bvm.BVMApplication
 import com.example.bvm.R
 import com.example.bvm.ui.video.VideoListFragment
+import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.android.synthetic.main.activity_book_info.*
+import kotlinx.android.synthetic.main.nav_header.*
 import java.lang.Exception
 import java.lang.reflect.Field
 

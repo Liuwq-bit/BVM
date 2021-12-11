@@ -16,11 +16,12 @@ class BVMApplication : Application() {
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
 
-        var USER: User? = null
+        lateinit var USER: User
     }
 
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
+        USER = User("aaa", "123456", "https://pic1.zhimg.com/v2-abed1a8c04700ba7d72b45195223e0ff_xs.jpg?source=1940ef5c", "2021-12-11")
     }
 }

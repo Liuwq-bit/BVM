@@ -67,7 +67,7 @@ class AddModelActivity : AppCompatActivity() {
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
 
-        modelAddPager.offscreenPageLimit = 3    // 预加载3个fragment
+        modelAddPager.offscreenPageLimit = 1    // 预加载3个fragment
 
     }
 

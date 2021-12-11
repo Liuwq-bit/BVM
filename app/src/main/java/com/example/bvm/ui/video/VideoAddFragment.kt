@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.bvm.R
+import com.example.bvm.logic.model.Actor
 import com.example.bvm.logic.model.Video
 import com.example.bvm.ui.video.ViewModel.VideoViewModel
 import kotlinx.android.synthetic.main.video_add.*
@@ -34,6 +35,7 @@ class VideoAddFragment : Fragment() {
             val videoName = videoNameText.editText?.text.toString()
             val videoType = videoTypeText.editText?.text.toString()
             val videoActor = videoActorText.editText?.text.toString()
+            val videoActorInfo = videoActorInfoText.editText?.text.toString()
             val videoLabel = videoLabelText.editText?.text.toString()
             val videoInfo = videoInfoText.editText?.text.toString()
             val videoPublish = videoPublishTimeText.editText?.text.toString()
@@ -42,8 +44,9 @@ class VideoAddFragment : Fragment() {
             val date = Date()
             val dateFormat = SimpleDateFormat("yyyy-MM-dd")
 
-            val video = Video(videoName, videoType, videoLabel, videoInfo, dateFormat.format(date), videoPublish, videoPic)
-            viewModel.insertVideos(video)
+            val video = Video(videoName, videoType, videoLabel, videoInfo, videoActor, videoActorInfo, dateFormat.format(date), videoPublish, videoPic)
+            val actor = Actor(videoActor, videoActorInfo)
+            viewModel.insertVideos(video, actor)
 
             Toast.makeText(context, "添加成功", Toast.LENGTH_SHORT).show()
         }
