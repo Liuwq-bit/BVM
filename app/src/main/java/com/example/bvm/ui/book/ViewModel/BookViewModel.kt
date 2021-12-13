@@ -13,19 +13,12 @@ import kotlin.concurrent.thread
 class BookViewModel : ViewModel() {
 
     private val searchLiveData = MutableLiveData<String>()
-//    private val searchAuthorLiveData = MutableLiveData<String>()
 
     val bookList = ArrayList<Book>()
-//    val authorList = ArrayList<Author>()
 
     val bookLiveData = Transformations.switchMap(searchLiveData) { book_name ->
         Repository.searchAllBook()
-//        Repository.searchBookByTitle(book_name)
     }
-
-//    val authorLiveData = Transformations.switchMap(searchAuthorLiveData) { book_id ->
-//        Repository.searchAuthorByBookId(book_id)
-//    }
 
     fun searchAllBooks() {
         searchLiveData.value = ""
@@ -49,8 +42,4 @@ class BookViewModel : ViewModel() {
             Repository.deleteBookById(book_id)
         }
     }
-
-//    fun searchAuthorByBookId(book_id: String) {
-//        searchAuthorLiveData.value = book_id
-//    }
 }

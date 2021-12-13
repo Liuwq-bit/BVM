@@ -49,15 +49,6 @@ class BookListFragment: Fragment() {
             reFreshBooks(adapter)
         }
 
-
-//        val book1 = Book("测试3", "2021.11.27", "这是一个测试用书", "测试",
-//            "https://ceshi.com", "www.douban.com")
-//        viewModel.insertBooks(book1)
-//        val book2 = Book("测试4", "2021.11.27", "这也是一个测试用书", "测试",
-//            "https://ceshi.com", "www.douban.com")
-//        viewModel.insertBooks(book2)
-
-
         viewModel.bookLiveData.observe(viewLifecycleOwner, Observer { result -> // 动态查询数据
             val books = result.getOrNull()
             if (books != null) {

@@ -3,11 +3,14 @@ package com.example.bvm.ui.music
 import android.app.Dialog
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.example.bvm.BVMApplication
 import com.example.bvm.R
 import kotlinx.android.synthetic.main.activity_music_info.*
@@ -42,9 +45,13 @@ class MusicInfoActivity : AppCompatActivity() {
         musicSingerInfoContextText.text = musicSingerInfo
 
         musicInfoImageView.setOnClickListener {
-            val tmp = musicInfoImageView.drawable as BitmapDrawable
-            val bitmap = tmp.bitmap
-            bigImageLoader(bitmap)
+//            val tmp = musicInfoImageView.drawable as BitmapDrawable
+//            val bitmap = tmp.bitmap
+//            bigImageLoader(bitmap)
+            load(musicPic) { bitmap ->
+                bigImageLoader(bitmap)
+            }
+
         }
     }
 
@@ -67,5 +74,25 @@ class MusicInfoActivity : AppCompatActivity() {
         dialog.show()
         image.setOnClickListener { dialog.cancel() }
     }
+
+    /**
+     * 加载网络地址 [url] 图片返回 Bitmap
+     */
+    private fun load(url: String, success: (Bitmap) -> Unit) {
+        Glide.with(BVMApplication.context) // context，可添加到参数中
+            .asBitmap()
+            .load(url)
+            .into(object : CustomTarget<Bitmap>() {
+                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                    // 成功返回 Bitmap
+                    success.invoke(resource)
+                }
+
+                override fun onLoadCleared(placeholder: Drawable?) {
+
+                }
+            })
+    }
+
 
 }

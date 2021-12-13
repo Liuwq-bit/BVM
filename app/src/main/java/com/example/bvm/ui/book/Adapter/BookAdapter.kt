@@ -56,33 +56,13 @@ class BookAdapter(private val fragment: Fragment, private val bookList: List<Boo
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val book = bookList[position]
+
         holder.bookTitle.text = book.book_name
         holder.bookInfo.text = book.info.substring(0, 60)+ "..."
         holder.bookAuthor.text = book.author
-//        if (book.book_name.length > 9) {
-//            val shortTitle = book.book_name.substring(0, 9) + " ..."
-//            holder.bookTitle.text = shortTitle
-//        } else
-//            holder.bookTitle.text = book.book_name
-//
-//        if (book.info.length > 30) {
-//            val shortInfo = book.info.substring(0, 29) + " ..."
-//            holder.bookInfo.text = shortInfo
-//        } else
-//            holder.bookInfo.text = book.info
+
         Glide.with(context).load(book.pic).into(holder.bookImage)   // 加载图片
 //        holder.bookImage.setImageResource(Glide.with(context).load(book.pic).into(holder.bookImage))
-
-
-//        viewModel.authorLiveData.observe(fragment.viewLifecycleOwner, Observer { result ->
-//            val authors = result.getOrNull()
-//            if (authors != null) {
-//                viewModel.authorList.clear()
-//                viewModel.authorList.addAll(authors)
-//            }
-//        })
-//        viewModel.searchAuthorByBookId(book.book_id.toString())
-//        holder.bookAuthor.text = viewModel.authorList[0].author_name   // 设置作者
 
         holder.deleteBtn.setOnClickListener {
             viewModel.deleteBookById(book.book_id)
