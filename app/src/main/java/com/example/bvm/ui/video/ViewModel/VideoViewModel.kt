@@ -4,25 +4,32 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.bvm.logic.Repository
-import com.example.bvm.logic.model.Actor
-import com.example.bvm.logic.model.ActorOfVideo
-import com.example.bvm.logic.model.Book
-import com.example.bvm.logic.model.Video
+import com.example.bvm.logic.model.*
 import kotlin.concurrent.thread
 
 class VideoViewModel : ViewModel() {
 
     private val searchLiveData = MutableLiveData<String>()
+    private val markByIdLiveData = MutableLiveData<String>()
 
     val videoList = ArrayList<Video>()
+    val markList = ArrayList<VideoMark>()
 
     val videoLiveData = Transformations.switchMap(searchLiveData) { video_name ->
         Repository.searchAllVideo()
 //        Repository.searchVideoByName(video_name)
     }
 
+    val markLiveData = Transformations.switchMap(markByIdLiveData) { user_id ->
+        Repository.searchVideoMarkById(user_id)
+    }
+
     fun searchAllVideos() {
         searchLiveData.value = ""
+    }
+
+    fun searchAllMarkById(userId: String) {
+        markByIdLiveData.value = userId
     }
 
     fun searchVideoByName(video_name: String) {
@@ -41,6 +48,12 @@ class VideoViewModel : ViewModel() {
     fun deleteVideoById(video_id: Long) {
         thread {
             Repository.deleteVideoById(video_id)
+        }
+    }
+
+    fun insertVideoMark(videoMark: VideoMark) {
+        thread {
+            Repository.insertVideoMark(videoMark)
         }
     }
 }

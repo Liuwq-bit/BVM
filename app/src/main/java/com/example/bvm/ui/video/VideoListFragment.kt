@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.bvm.BVMApplication
 import com.example.bvm.R
 import com.example.bvm.ui.book.Adapter.BookAdapter
 import com.example.bvm.ui.video.Adapter.VideoAdapter
@@ -41,7 +42,7 @@ class VideoListFragment: Fragment() {
         val layoutManager = LinearLayoutManager(activity)
 //        val layoutManager = GridLayoutManager(activity, 2)
         videoRecyclerView.layoutManager = layoutManager
-        adapter = VideoAdapter(this, viewModel.videoList)
+        adapter = VideoAdapter(this, viewModel.videoList, viewModel.markList)
         videoRecyclerView.adapter = adapter
 
         videoListSwipeRefresh.setColorSchemeResources(R.color.cardview_shadow_end_color)
@@ -69,7 +70,17 @@ class VideoListFragment: Fragment() {
             }
         })
 
+        viewModel.markLiveData.observe(viewLifecycleOwner, Observer { result ->
+            val marks = result.getOrNull()
+            if (marks != null) {
+                viewModel.markList.clear()
+                viewModel.markList.addAll(marks)
+                adapter.notifyDataSetChanged()
+            }
+        })
+
         viewModel.searchAllVideos()  // 显示所有书籍
+        viewModel.searchAllMarkById(BVMApplication.USER?.user_id.toString())
 
     }
 
@@ -79,7 +90,7 @@ class VideoListFragment: Fragment() {
             activity?.runOnUiThread {
 
                 viewModel.searchAllVideos()
-
+                viewModel.searchAllMarkById(BVMApplication.USER?.user_id.toString())
                 adapter.notifyDataSetChanged()
                 videoListSwipeRefresh.isRefreshing = false
             }

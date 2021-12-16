@@ -275,4 +275,125 @@ object Repository {
         return LinkDatabase.getDatabase(BVMApplication.context).singerOfMusic().insertSingerOfMusic(singerOfMusic)
     }
 
+    /**
+     * 插入图书标记信息
+     */
+    fun insertBookMark(bookMark: BookMark) {
+        MarkDatabase.getDatabase(BVMApplication.context).bookMarkDao().insertOrUpdateBookMark(bookMark)
+    }
+
+//    /**
+//     * 更新图书标记数据
+//     */
+//    fun updateBookMark(newBookMark: BookMark) : Long {
+//        return MarkDatabase.getDatabase(BVMApplication.context).bookMarkDao().updateBookMark(newBookMark)
+//    }
+
+    /**
+     * 搜索当前用户图书标记信息
+     */
+    fun searchBookMarkByIdType(user_id: String, type: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val response = MarkDatabase.getDatabase(BVMApplication.context).bookMarkDao().searchBookMarkByIdType(user_id, type)
+            Result.success(response)
+        } catch (e: Exception) {
+            Result.failure<List<BookMark>>(e)
+        }
+        emit(result)
+    }
+
+    /**
+     * 搜索当前用户图书标记信息
+     */
+    fun searchBookMarkById(user_id: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val response = MarkDatabase.getDatabase(BVMApplication.context).bookMarkDao().searchBookMarkById(user_id)
+            Result.success(response)
+        } catch (e: Exception) {
+            Result.failure<List<BookMark>>(e)
+        }
+        emit(result)
+    }
+
+
+    /**
+     * 插入影视标记信息
+     */
+    fun insertVideoMark(videoMark: VideoMark) {
+        MarkDatabase.getDatabase(BVMApplication.context).videoMarkDao().insertOrUpdateVideoMark(videoMark)
+    }
+
+//    /**
+//     * 更新影视标记信息
+//     */
+//    fun updateVideoMark(newVideoMark: VideoMark): Long {
+//        return MarkDatabase.getDatabase(BVMApplication.context).videoMarkDao().updateVideoMark(newVideoMark)
+//    }
+
+    /**
+     * 搜索当前用户影视标记信息
+     */
+    fun searchVideoMarkByIdType(user_id: String, type: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val response = MarkDatabase.getDatabase(BVMApplication.context).videoMarkDao().searchVideoMarkByIdType(user_id, type)
+            Result.success(response)
+        } catch (e: Exception) {
+            Result.failure<List<VideoMark>>(e)
+        }
+        emit(result)
+    }
+
+    /**
+     * 搜索当前用户图书标记信息
+     */
+    fun searchVideoMarkById(user_id: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val response = MarkDatabase.getDatabase(BVMApplication.context).videoMarkDao().searchVideoMarkById(user_id)
+            Result.success(response)
+        } catch (e: Exception) {
+            Result.failure<List<VideoMark>>(e)
+        }
+        emit(result)
+    }
+
+    /**
+     * 插入音乐标记信息
+     */
+    fun insertMusicMark(musicMark: MusicMark) {
+        MarkDatabase.getDatabase(BVMApplication.context).musicMarkDao().insertOrUpdateMusicMark(musicMark)
+    }
+
+//    /**
+//     * 更新音乐标记信息
+//     */
+//    fun updateMusicMark(newMusicMark: MusicMark): Long {
+//        return MarkDatabase.getDatabase(BVMApplication.context).musicMarkDao().updateMusicMark(newMusicMark)
+//    }
+
+    /**
+     * 搜索当前用户音乐标记信息
+     */
+    fun searchMusicMarkByIdType(user_id: String, type: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val response = MarkDatabase.getDatabase(BVMApplication.context).musicMarkDao().searchMusicMarkByIdType(user_id, type)
+            Result.success(response)
+        } catch (e: Exception) {
+            Result.failure<List<MusicMark>>(e)
+        }
+        emit(result)
+    }
+
+    /**
+     * 搜索当前用户图书标记信息
+     */
+    fun searchMusicMarkById(user_id: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val response = MarkDatabase.getDatabase(BVMApplication.context).musicMarkDao().searchMusicMarkById(user_id)
+            Result.success(response)
+        } catch (e: Exception) {
+            Result.failure<List<MusicMark>>(e)
+        }
+        emit(result)
+    }
+
 }

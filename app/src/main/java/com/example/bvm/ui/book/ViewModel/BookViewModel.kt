@@ -8,20 +8,31 @@ import com.example.bvm.logic.Repository
 import com.example.bvm.logic.model.Author
 import com.example.bvm.logic.model.AuthorOfBook
 import com.example.bvm.logic.model.Book
+import com.example.bvm.logic.model.BookMark
 import kotlin.concurrent.thread
 
 class BookViewModel : ViewModel() {
 
     private val searchLiveData = MutableLiveData<String>()
+    private val markByIdLiveData = MutableLiveData<String>()
 
     val bookList = ArrayList<Book>()
+    val markList = ArrayList<BookMark>()
 
     val bookLiveData = Transformations.switchMap(searchLiveData) { book_name ->
         Repository.searchAllBook()
     }
 
+    val markLiveData = Transformations.switchMap(markByIdLiveData) { user_id ->
+        Repository.searchBookMarkById(user_id)
+    }
+
     fun searchAllBooks() {
         searchLiveData.value = ""
+    }
+
+    fun searchAllMarkById(userId: String) {
+        markByIdLiveData.value = userId
     }
 
     fun searchBookByTitle(title: String) {
@@ -42,4 +53,16 @@ class BookViewModel : ViewModel() {
             Repository.deleteBookById(book_id)
         }
     }
+
+    fun insertBookMark(bookMark: BookMark) {
+        thread {
+            Repository.insertBookMark(bookMark)
+        }
+    }
+
+//    fun updateBookMark(bookMark: BookMark) {
+//        thread {
+//            Repository.updateBookMark(bookMark)
+//        }
+//    }
 }

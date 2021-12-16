@@ -4,25 +4,32 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.bvm.logic.Repository
-import com.example.bvm.logic.model.Music
-import com.example.bvm.logic.model.Singer
-import com.example.bvm.logic.model.SingerOfMusic
-import com.example.bvm.logic.model.Video
+import com.example.bvm.logic.model.*
 import kotlin.concurrent.thread
 
 class MusicViewModel : ViewModel() {
 
     private val searchLiveData = MutableLiveData<String>()
+    private val markByIdLiveData = MutableLiveData<String>()
 
     val musicList = ArrayList<Music>()
+    val markList = ArrayList<MusicMark>()
 
     val musicLiveData = Transformations.switchMap(searchLiveData) { music_name ->
         Repository.searchAllMusic()
 //        Repository.searchMusicByName(music_name)
     }
 
+    val markLiveData = Transformations.switchMap(markByIdLiveData) { user_id ->
+        Repository.searchMusicMarkById(user_id)
+    }
+
     fun searchAllMusics() {
         searchLiveData.value = ""
+    }
+
+    fun searchAllMarkById(userId: String) {
+        markByIdLiveData.value = userId
     }
 
     fun searchMusicByName(music_name: String) {
@@ -41,6 +48,12 @@ class MusicViewModel : ViewModel() {
     fun deleteMusicById(music_id: Long) {
         thread {
             Repository.deleteMusicById(music_id)
+        }
+    }
+
+    fun insertMusicMark(musicMark: MusicMark) {
+        thread {
+            Repository.insertMusicMark(musicMark)
         }
     }
 

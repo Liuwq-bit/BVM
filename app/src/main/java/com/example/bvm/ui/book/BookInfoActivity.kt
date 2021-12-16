@@ -20,7 +20,9 @@ import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
 
-
+/**
+ * 图书信息展示页面
+ */
 class BookInfoActivity : AppCompatActivity() {
 
     companion object {
@@ -94,9 +96,7 @@ class BookInfoActivity : AppCompatActivity() {
                     success.invoke(resource)
                 }
 
-                override fun onLoadCleared(placeholder: Drawable?) {
-
-                }
+                override fun onLoadCleared(placeholder: Drawable?) {}
             })
     }
 }

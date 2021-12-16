@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.bvm.BVMApplication
 import com.example.bvm.R
 import com.example.bvm.ui.book.Adapter.BookAdapter
 import com.example.bvm.ui.book.ViewModel.BookViewModel
@@ -41,7 +42,7 @@ class BookListFragment: Fragment() {
         val layoutManager = LinearLayoutManager(activity)
 //        val layoutManager = GridLayoutManager(activity, 2)
         bookRecyclerView.layoutManager = layoutManager
-        adapter = BookAdapter(this, viewModel.bookList)
+        adapter = BookAdapter(this, viewModel.bookList, viewModel.markList)
         bookRecyclerView.adapter = adapter
 
         bookListSwipeRefresh.setColorSchemeResources(R.color.cardview_shadow_end_color)
@@ -62,7 +63,17 @@ class BookListFragment: Fragment() {
             }
         })
 
+        viewModel.markLiveData.observe(viewLifecycleOwner, Observer { result ->
+            val marks = result.getOrNull()
+            if (marks != null) {
+                viewModel.markList.clear()
+                viewModel.markList.addAll(marks)
+                adapter.notifyDataSetChanged()
+            }
+        })
+
         viewModel.searchAllBooks()  // 显示所有书籍
+        viewModel.searchAllMarkById(BVMApplication.USER?.user_id.toString())
 
     }
 
@@ -72,7 +83,7 @@ class BookListFragment: Fragment() {
             activity?.runOnUiThread {
 
                 viewModel.searchAllBooks()  // 显示所有书籍
-
+                viewModel.searchAllMarkById(BVMApplication.USER?.user_id.toString())
                 adapter.notifyDataSetChanged()
                 bookListSwipeRefresh.isRefreshing = false
             }

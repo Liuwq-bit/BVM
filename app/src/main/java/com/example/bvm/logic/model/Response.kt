@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 /**
-    数据模型，定义数据库信息信息
+    数据模型，定义数据库信息
  */
 
 /**
@@ -92,66 +92,66 @@ data class Singer(var singer_name: String,
 }
 
 /**
- * 标记图书表
+ * 标记图书表， type：0，1，2分别对应想看、在看、看过
  */
 @Entity
-data class BookMark(@PrimaryKey var user_id: Long,
+data class BookMark(var user_id: Long,
                     var book_id: Long,
                     var type: Int,
-                    var change_time: String)
+                    @PrimaryKey var change_time: String)
 
 
 /**
  * 标记影视表
  */
 @Entity
-data class VideoMark(@PrimaryKey var user_id: Long,
+data class VideoMark(var user_id: Long,
                     var video_id: Long,
                     var type: Int,
-                    var change_time: String)
+                     @PrimaryKey var change_time: String)
 
 
 /**
  * 标记音乐表
  */
 @Entity
-data class MusicMark(@PrimaryKey var user_id: Long,
+data class MusicMark(var user_id: Long,
                     var music_id: Long,
                     var type: Int,
-                    var change_time: String)
+                    @PrimaryKey var change_time: String)
 
 
 /**
  * 图书点评表
  */
 @Entity
-data class BookComment(@PrimaryKey var book_id: Long,
+data class BookComment(var book_id: Long,
                         var user_id: Long,
                         var comment: String,
                         var grade: Double,
-                        var change_time: String)
+                        @PrimaryKey var change_time: String)
 
 
 /**
  * 影视点评表
  */
 @Entity
-data class VideoComment(@PrimaryKey var video_id: Long,
+data class VideoComment(var video_id: Long,
                         var user_id: Long,
                         var comment: String,
                         var grade: Double,
-                        var change_time: String)
+                        @PrimaryKey var change_time: String)
 
 
 /**
  * 音乐点评表
  */
 @Entity
-data class MusicComment(@PrimaryKey var music_id: Long,
+data class MusicComment(var music_id: Long,
                         var user_id: Long,
                         var comment: String,
                         var grade: Double,
-                        var change_time: String)
+                        @PrimaryKey var change_time: String)
 
 
 /**

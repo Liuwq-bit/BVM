@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.bvm.BVMApplication
 import com.example.bvm.R
 import com.example.bvm.ui.music.Adapter.MusicAdapter
 import com.example.bvm.ui.music.ViewModel.MusicViewModel
@@ -40,7 +41,7 @@ class MusicListFragment: Fragment() {
         super.onActivityCreated(savedInstanceState)
         val layoutManager = LinearLayoutManager(activity)
         musicRecyclerView.layoutManager = layoutManager
-        adapter = MusicAdapter(this, viewModel.musicList)
+        adapter = MusicAdapter(this, viewModel.musicList, viewModel.markList)
         musicRecyclerView.adapter = adapter
 
         musicListSwipeRefresh.setColorSchemeResources(R.color.cardview_shadow_end_color)
@@ -60,7 +61,17 @@ class MusicListFragment: Fragment() {
             }
         })
 
+        viewModel.markLiveData.observe(viewLifecycleOwner, Observer { result ->
+            val marks = result.getOrNull()
+            if (marks != null) {
+                viewModel.markList.clear()
+                viewModel.markList.addAll(marks)
+                adapter.notifyDataSetChanged()
+            }
+        })
+
         viewModel.searchAllMusics() // 显示所有音乐
+        viewModel.searchAllMarkById(BVMApplication.USER?.user_id.toString())
     }
 
     private fun reFreshMusics(adapter: MusicAdapter) {
@@ -69,7 +80,7 @@ class MusicListFragment: Fragment() {
             activity?.runOnUiThread {
 
                 viewModel.searchAllMusics()
-
+                viewModel.searchAllMarkById(BVMApplication.USER?.user_id.toString())
                 adapter.notifyDataSetChanged()
                 musicListSwipeRefresh.isRefreshing = false
             }
