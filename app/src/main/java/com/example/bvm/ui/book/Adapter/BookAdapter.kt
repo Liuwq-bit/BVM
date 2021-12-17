@@ -3,6 +3,7 @@ package com.example.bvm.ui.book.Adapter
 import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,12 +53,14 @@ class BookAdapter(private val fragment: Fragment, private val bookList: List<Boo
         holder.itemView.setOnClickListener {
             val position = holder.adapterPosition
             val book = bookList[position]
+//            Log.d("TestBookId", book.book_id.toString())
             val intent = Intent(context, BookInfoActivity::class.java).apply {
                 putExtra(BookInfoActivity.BOOK_TITLE, book.book_name)
                 putExtra(BookInfoActivity.BOOK_INFO, book.info)
                 putExtra(BookInfoActivity.BOOK_PIC, book.pic)
                 putExtra(BookInfoActivity.BOOK_AUTHOR, book.author)
                 putExtra(BookInfoActivity.BOOK_AUTHOR_INFO, book.authorInfo)
+                putExtra(BookInfoActivity.BOOK_ID, book.book_id.toString())
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK // 在新的task中开启activity
             }
             context.startActivity(intent)

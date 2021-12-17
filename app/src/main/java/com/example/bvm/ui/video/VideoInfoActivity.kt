@@ -1,6 +1,7 @@
 package com.example.bvm.ui.video
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
@@ -20,6 +21,7 @@ import kotlinx.android.synthetic.main.activity_video_info.*
 class VideoInfoActivity : AppCompatActivity() {
 
     companion object {
+        const val VIDEO_ID = "videoId"
         const val VIDEO_TITLE = "videoTitle"
         const val VIDEO_INFO = "videoInfo"
         const val VIDEO_IMAGE = "videoImage"
@@ -31,6 +33,7 @@ class VideoInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video_info)
 
+        val videoId = intent.getStringExtra(VIDEO_ID) ?: ""
         val videoTitle = intent.getStringExtra(VIDEO_TITLE) ?: ""
         val videoInfo = intent.getStringExtra(VIDEO_INFO) ?: ""
         val videoPic = intent.getStringExtra(VIDEO_IMAGE) ?: ""
@@ -51,6 +54,13 @@ class VideoInfoActivity : AppCompatActivity() {
             load(videoPic) { bitmap ->
                 bigImageLoader(bitmap)
             }
+        }
+
+        videoInfoCommit.setOnClickListener {
+            val intent = Intent(context, VideoCommentActivity::class.java).apply {
+                putExtra(VIDEO_ID, videoId)
+            }
+            startActivity(intent)
         }
 
     }

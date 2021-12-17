@@ -125,11 +125,12 @@ data class MusicMark(var user_id: Long,
  * 图书点评表
  */
 @Entity
-data class BookComment(var book_id: Long,
-                        var user_id: Long,
-                        var comment: String,
-                        var grade: Double,
-                        @PrimaryKey var change_time: String)
+data class BookComment(
+    var book_id: Long,
+    var user_id: Long,
+    var comment: String,
+    var rating: Float,
+    @PrimaryKey var change_time: String)
 
 
 /**
@@ -139,7 +140,7 @@ data class BookComment(var book_id: Long,
 data class VideoComment(var video_id: Long,
                         var user_id: Long,
                         var comment: String,
-                        var grade: Double,
+                        var rating: Float,
                         @PrimaryKey var change_time: String)
 
 
@@ -150,7 +151,7 @@ data class VideoComment(var video_id: Long,
 data class MusicComment(var music_id: Long,
                         var user_id: Long,
                         var comment: String,
-                        var grade: Double,
+                        var rating: Float,
                         @PrimaryKey var change_time: String)
 
 

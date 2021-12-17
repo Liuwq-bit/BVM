@@ -5,10 +5,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.bvm.logic.Repository
-import com.example.bvm.logic.model.Author
-import com.example.bvm.logic.model.AuthorOfBook
-import com.example.bvm.logic.model.Book
-import com.example.bvm.logic.model.BookMark
+import com.example.bvm.logic.model.*
 import kotlin.concurrent.thread
 
 class BookViewModel : ViewModel() {
@@ -57,6 +54,12 @@ class BookViewModel : ViewModel() {
     fun insertBookMark(bookMark: BookMark) {
         thread {
             Repository.insertBookMark(bookMark)
+        }
+    }
+
+    fun insertBookComment(bookComment: BookComment) {
+        thread {
+            Repository.insertBookComment(bookComment)
         }
     }
 

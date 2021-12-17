@@ -396,4 +396,63 @@ object Repository {
         emit(result)
     }
 
+    /**
+     * 插入图书评分评论信息
+     */
+    fun insertBookComment(bookComment: BookComment): Long {
+        return CommentDatabase.getDatabase(BVMApplication.context).bookCommentDao().insertBookComment(bookComment)
+    }
+
+    /**
+     * 搜索当前图书评分评论数据
+     */
+    fun searchBookCommentByBookId(book_id: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val commentResponse = CommentDatabase.getDatabase(BVMApplication.context).bookCommentDao().searchBookCommentByBookId(book_id)
+            Result.success(commentResponse)
+        } catch (e: Exception) {
+            Result.failure<List<BookComment>>(e)
+        }
+        emit(result)
+    }
+
+    /**
+     * 插入影视评分评论信息
+     */
+    fun insertVideoComment(videoComment: VideoComment): Long {
+        return CommentDatabase.getDatabase(BVMApplication.context).videoCommentDao().insertVideoComment(videoComment)
+    }
+
+    /**
+     * 搜索当前影视评分评论信息
+     */
+    fun searchVideoCommentByVideoId(videoId: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val commentResponse = CommentDatabase.getDatabase(BVMApplication.context).videoCommentDao().searchVideoCommentByVideoId(videoId)
+            Result.success(commentResponse)
+        } catch (e: Exception) {
+            Result.failure<List<VideoComment>>(e)
+        }
+        emit(result)
+    }
+
+    /**
+     * 插入音乐评分评论信息
+     */
+    fun insertMusicComment(musicComment: MusicComment): Long {
+        return CommentDatabase.getDatabase(BVMApplication.context).musicCommentDao().insertMusicComment(musicComment)
+    }
+
+    /**
+     * 搜索当前音乐评分评论信息
+     */
+    fun searchMusicCommentByMusicId(musicId: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val commentResponse = CommentDatabase.getDatabase(BVMApplication.context).musicCommentDao().searchMusicCommentByMusicId(musicId)
+            Result.success(commentResponse)
+        } catch (e: Exception) {
+            Result.failure<List<MusicComment>>(e)
+        }
+        emit(result)
+    }
 }

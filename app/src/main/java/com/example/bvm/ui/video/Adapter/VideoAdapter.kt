@@ -62,6 +62,7 @@ class VideoAdapter(private val fragment: Fragment, private val videoList: List<V
                 putExtra(VideoInfoActivity.VIDEO_IMAGE, video.pic)
                 putExtra(VideoInfoActivity.VIDEO_ACTOR, video.actor)
                 putExtra(VideoInfoActivity.VIDEO_ACTOR_INFO, video.actorInfo)
+                putExtra(VideoInfoActivity.VIDEO_ID, video.video_id.toString())
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK // 在新的task中开启activity
             }
             context.startActivity(intent)

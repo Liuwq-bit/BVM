@@ -64,6 +64,7 @@ class MusicAdapter(private val fragment: Fragment, private val musicList: List<M
                 putExtra(MusicInfoActivity.MUSIC_IMAGE, music.pic)
                 putExtra(MusicInfoActivity.MUSIC_SINGER, music.singer)
                 putExtra(MusicInfoActivity.MUSIC_SINGER_INFO, music.singerInfo)
+                putExtra(MusicInfoActivity.MUSIC_ID, music.music_id.toString())
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK   // 在新的task中开启activity
             }
             context.startActivity(intent)
@@ -87,9 +88,10 @@ class MusicAdapter(private val fragment: Fragment, private val musicList: List<M
             }
         }
 
-
-        val info = music.info.substring(0, 100)
-        holder.musicInfo.text = info
+        if (music.info.length > 100) {
+            val info = music.info.substring(0, 100)
+            holder.musicInfo.text = info
+        }
 
 //        val re = Regex("^[a-zA-Z]*")  // 使用正则表达式匹配数据
 //        if (music.music_name.length > 9) {

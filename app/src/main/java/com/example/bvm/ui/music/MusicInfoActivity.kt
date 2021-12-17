@@ -1,6 +1,7 @@
 package com.example.bvm.ui.music
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
@@ -12,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.bvm.BVMApplication
+import com.example.bvm.BVMApplication.Companion.context
 import com.example.bvm.R
 import kotlinx.android.synthetic.main.activity_music_info.*
 import kotlinx.android.synthetic.main.activity_video_info.*
@@ -20,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_video_info.videoInfoToolbar
 class MusicInfoActivity : AppCompatActivity() {
 
     companion object {
+        const val MUSIC_ID = "musicId"
         const val MUSIC_TITLE = "musicTitle"
         const val MUSIC_INFO = "musicInfo"
         const val MUSIC_IMAGE = "musicImage"
@@ -31,6 +34,7 @@ class MusicInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_music_info)
 
+        val musicId = intent.getStringExtra(MUSIC_ID) ?: ""
         val musicTitle = intent.getStringExtra(MUSIC_TITLE) ?: ""
         val musicInfo = intent.getStringExtra(MUSIC_INFO) ?: ""
         val musicPic = intent.getStringExtra(MUSIC_IMAGE) ?: ""
@@ -51,7 +55,13 @@ class MusicInfoActivity : AppCompatActivity() {
             load(musicPic) { bitmap ->
                 bigImageLoader(bitmap)
             }
+        }
 
+        musicInfoCommit.setOnClickListener {
+            val intent = Intent(context, MusicCommentActivity::class.java).apply {
+                putExtra(MUSIC_ID, musicId)
+            }
+            startActivity(intent)
         }
     }
 

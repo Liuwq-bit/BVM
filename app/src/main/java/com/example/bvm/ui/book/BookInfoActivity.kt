@@ -1,24 +1,19 @@
 package com.example.bvm.ui.book
 
 import android.app.Dialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import com.example.bvm.R
 import kotlinx.android.synthetic.main.activity_book_info.*
 import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.bvm.BVMApplication.Companion.context
-import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
-import java.io.IOException
-import java.io.InputStream
-import java.net.HttpURLConnection
-import java.net.URL
 
 /**
  * 图书信息展示页面
@@ -26,6 +21,7 @@ import java.net.URL
 class BookInfoActivity : AppCompatActivity() {
 
     companion object {
+        const val BOOK_ID = "bookId"
         const val BOOK_TITLE = "bookTitle"
         const val BOOK_INFO = "bookInfo"
         const val BOOK_PIC = "bookPic"
@@ -37,6 +33,7 @@ class BookInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_info)
 
+        val bookId = intent.getStringExtra(BOOK_ID) ?: ""
         val bookTitle = intent.getStringExtra(BOOK_TITLE) ?: ""
         val bookInfo = intent.getStringExtra(BOOK_INFO) ?: ""
         val bookPic = intent.getStringExtra(BOOK_PIC) ?: ""
@@ -57,6 +54,14 @@ class BookInfoActivity : AppCompatActivity() {
             load(bookPic) { bitmap ->
                 bigImageLoader(bitmap)
             }
+        }
+
+        bookInfoCommit.setOnClickListener {
+//            Toast.makeText(BVMApplication.context, bookId, Toast.LENGTH_SHORT).show()
+            val intent = Intent(context, BookCommentActivity::class.java).apply {
+                putExtra(BOOK_ID, bookId)
+            }
+            startActivity(intent)
         }
 
     }

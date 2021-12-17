@@ -57,4 +57,10 @@ class MusicViewModel : ViewModel() {
         }
     }
 
+    fun insertMusicComment(musicComment: MusicComment) {
+        thread {
+            Repository.insertMusicComment(musicComment)
+        }
+    }
+
 }

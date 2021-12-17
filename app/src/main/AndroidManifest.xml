@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.bvm">
+    package="com.example.bvm" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,17 +12,23 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BVM">
+        android:theme="@style/Theme.BVM" >
+        <activity
+            android:name=".ui.video.VideoCommentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.music.MusicCommentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.book.BookCommentActivity"
+            android:exported="false"
+            android:label="@string/comment_string" />
         <activity
             android:name=".ui.common.SignupActivity"
             android:exported="false" />
-
         <activity
             android:name=".ui.common.LoginActivity"
-            android:exported="true" >
-
-        </activity>
-
+            android:exported="true" />
         <activity
             android:name=".ui.music.MusicInfoActivity"
             android:exported="false"
@@ -41,12 +47,12 @@
             android:theme="@style/InfoActivityTheme" />
         <activity
             android:name=".ui.common.MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 

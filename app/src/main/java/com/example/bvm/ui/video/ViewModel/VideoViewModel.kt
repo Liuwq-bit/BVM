@@ -56,4 +56,10 @@ class VideoViewModel : ViewModel() {
             Repository.insertVideoMark(videoMark)
         }
     }
+
+    fun insertVideoComment(videoComment: VideoComment) {
+        thread {
+            Repository.insertVideoComment(videoComment)
+        }
+    }
 }
