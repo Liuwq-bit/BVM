@@ -29,6 +29,7 @@ class BookCommentActivity : AppCompatActivity() {
             it.setDisplayHomeAsUpEnabled(true)
         }
         val bookId = intent.getStringExtra(BookInfoActivity.BOOK_ID) ?: "0"
+        val userId = BVMApplication.USER?.user_id ?: 0
 
         bookRatingBar.setOnRatingBarChangeListener { _, rating, _ ->
 //            Toast.makeText(this, "rating: $rating", Toast.LENGTH_SHORT).show()
@@ -40,7 +41,7 @@ class BookCommentActivity : AppCompatActivity() {
             val date = Date()
             val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
             val comment = bookCommentText.editText?.text.toString()
-            viewModel.insertBookComment(BookComment(bookId.toLong(), BVMApplication.USER?.user_id, comment, rating, dateFormat.format(date)))
+            viewModel.insertBookComment(BookComment(bookId.toLong(), userId, comment, rating, dateFormat.format(date)))
 //            Toast.makeText(BVMApplication.context, "$bookId, $comment, $rating, ${dateFormat.format(date)}", Toast.LENGTH_SHORT).show()
             finish()
         }

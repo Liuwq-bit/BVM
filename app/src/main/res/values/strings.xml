@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">BVM</string>
     <string name="model_add_name">书影音录入</string>
-    <string name="comment_string">评分评论</string>
+    <string name="comment_string">评价</string>
 </resources>

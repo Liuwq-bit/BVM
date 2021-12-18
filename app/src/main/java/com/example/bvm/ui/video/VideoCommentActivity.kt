@@ -28,6 +28,7 @@ class VideoCommentActivity : AppCompatActivity() {
             it.setDisplayHomeAsUpEnabled(true)
         }
         val videoId = intent.getStringExtra(VideoInfoActivity.VIDEO_ID) ?: "0"
+        val userId = BVMApplication.USER?.user_id ?: 0
 
         videoRatingBar.setOnRatingBarChangeListener { _, rating, _ ->
 //            Toast.makeText(this, "rating: $rating", Toast.LENGTH_SHORT).show()
@@ -38,7 +39,7 @@ class VideoCommentActivity : AppCompatActivity() {
             val date = Date()
             val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
             val comment = videoCommentText.editText?.text.toString()
-            viewModel.insertVideoComment(VideoComment(videoId.toLong(), BVMApplication.USER?.user_id, comment, rating, dateFormat.format(date)))
+            viewModel.insertVideoComment(VideoComment(videoId.toLong(), userId, comment, rating, dateFormat.format(date)))
             finish()
         }
     }

@@ -33,7 +33,8 @@ class VideoAddFragment : Fragment() {
         videoCommitFab.setOnClickListener {
             // todo 增加格式判断机制
             val videoName = videoNameText.editText?.text.toString()
-            val videoType = videoTypeText.editText?.text.toString()
+//            val videoType = videoTypeText.editText?.text.toString()
+            val videoType = "0"
             val videoActor = videoActorText.editText?.text.toString()
             val videoActorInfo = videoActorInfoText.editText?.text.toString()
             val videoLabel = videoLabelText.editText?.text.toString()

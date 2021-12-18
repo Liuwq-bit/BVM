@@ -28,6 +28,7 @@ class MusicCommentActivity : AppCompatActivity() {
             it.setDisplayHomeAsUpEnabled(true)
         }
         val musicId = intent.getStringExtra(MusicInfoActivity.MUSIC_ID) ?: "0"
+        val userId = BVMApplication.USER?.user_id ?: 0
 
         musicRatingBar.setOnRatingBarChangeListener { _, rating, _ ->
 //            Toast.makeText(this, "rating: $rating", Toast.LENGTH_SHORT).show()
@@ -38,7 +39,7 @@ class MusicCommentActivity : AppCompatActivity() {
             val date = Date()
             val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
             val comment = musicCommentText.editText?.text.toString()
-            viewModel.insertMusicComment(MusicComment(musicId.toLong(), BVMApplication.USER?.user_id, comment, rating, dateFormat.format(date)))
+            viewModel.insertMusicComment(MusicComment(musicId.toLong(), userId, comment, rating, dateFormat.format(date)))
             finish()
         }
     }

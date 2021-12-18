@@ -127,7 +127,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                app:icon="@drawable/ic_done"
+                app:icon="@drawable/ic_menu"
                 app:backgroundTint="#E80A0A"
                 style="Widget.MaterialComponents.Button.TextButton.Icon"/>
         </LinearLayout>

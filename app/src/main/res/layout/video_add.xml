@@ -13,10 +13,12 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:layout_width="90dp"
-            android:layout_height="160dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/s33995572"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/ic_main"/>
 
 
         <!--影视名-->
@@ -34,20 +36,20 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!--影视类型-->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/videoTypeText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:endIconMode="clear_text"
-            android:hint="影视类型"
-            android:layout_margin="10dp">
+<!--        &lt;!&ndash;影视类型&ndash;&gt;-->
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/videoTypeText"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:endIconMode="clear_text"-->
+<!--            android:hint="影视类型"-->
+<!--            android:layout_margin="10dp">-->
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"/>-->
 
-        </com.google.android.material.textfield.TextInputLayout>
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
         <!--影视标签-->
         <com.google.android.material.textfield.TextInputLayout

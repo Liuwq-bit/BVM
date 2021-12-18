@@ -73,6 +73,11 @@ class VideoAdapter(private val fragment: Fragment, private val videoList: List<V
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val video = videoList[position]
+        holder.videoTypeBtn0.text = "想看"
+        holder.videoTypeBtn1.text = "在看"
+        holder.videoTypeBtn2.text = "看过"
+
+
         for (i in markList.indices) {
             if (markList[i].video_id == video.video_id) {
                 when (markList[i].type) {
