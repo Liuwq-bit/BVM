@@ -9,8 +9,8 @@ import kotlin.concurrent.thread
 
 class MusicViewModel : ViewModel() {
 
-    private val searchLiveData = MutableLiveData<String>()
-    private val markByIdLiveData = MutableLiveData<String>()
+    private val searchLiveData = MutableLiveData<String>()  // 观察音乐列表
+    private val markByIdLiveData = MutableLiveData<String>()    // 观察标记列表
 
     val musicList = ArrayList<Music>()
     val markList = ArrayList<MusicMark>()
@@ -38,9 +38,9 @@ class MusicViewModel : ViewModel() {
 
     fun insertMusics(music: Music, singer: Singer) {
         thread {
-            val music_id = Repository.insertMusic(music)
-            val singer_id = Repository.insertSinger(singer)
-            val tmp = SingerOfMusic(music_id, singer_id)
+            val musicId = Repository.insertMusic(music)
+            val singerId = Repository.insertSinger(singer)
+            val tmp = SingerOfMusic(musicId, singerId)
             Repository.insertSingerOfMusic(tmp)
         }
     }

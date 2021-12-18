@@ -49,6 +49,7 @@ class VideoAddFragment : Fragment() {
             viewModel.insertVideos(video, actor)
 
             Toast.makeText(context, "添加成功", Toast.LENGTH_SHORT).show()
+            activity?.finish()
         }
     }
 }

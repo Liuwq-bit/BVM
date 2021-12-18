@@ -9,8 +9,8 @@ import kotlin.concurrent.thread
 
 class VideoViewModel : ViewModel() {
 
-    private val searchLiveData = MutableLiveData<String>()
-    private val markByIdLiveData = MutableLiveData<String>()
+    private val searchLiveData = MutableLiveData<String>()  // 观察影视列表
+    private val markByIdLiveData = MutableLiveData<String>()    // 观察标记列表
 
     val videoList = ArrayList<Video>()
     val markList = ArrayList<VideoMark>()
@@ -38,9 +38,9 @@ class VideoViewModel : ViewModel() {
 
     fun insertVideos(video: Video, actor: Actor) {
         thread {
-            val video_id = Repository.insertVideo(video)
-            val actor_id = Repository.insertActor(actor)
-            val tmp = ActorOfVideo(video_id, actor_id)
+            val videoId = Repository.insertVideo(video)
+            val actorId = Repository.insertActor(actor)
+            val tmp = ActorOfVideo(videoId, actorId)
             Repository.insertActorOfVideo(tmp)
         }
     }

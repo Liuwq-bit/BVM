@@ -57,6 +57,7 @@ class BookAddFragment : Fragment() {
             viewModel.insertBooks(book, author)
 
             Toast.makeText(context, "添加成功", Toast.LENGTH_SHORT).show()
+            activity?.finish()
         }
     }
 

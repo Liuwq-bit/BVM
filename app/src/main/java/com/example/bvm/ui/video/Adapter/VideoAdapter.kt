@@ -90,8 +90,8 @@ class VideoAdapter(private val fragment: Fragment, private val videoList: List<V
         } else
             holder.videoName.text = video.video_name
 
-        if (video.info.length > 30) {
-            val shortInfo = video.info.substring(0, 29) + " ..."
+        if (video.info.length > 60) {
+            val shortInfo = video.info.substring(0, 60) + " ..."
             holder.videoInfo.text = shortInfo
         } else
             holder.videoInfo.text = video.info

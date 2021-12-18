@@ -84,8 +84,10 @@ class BookAdapter(private val fragment: Fragment, private val bookList: List<Boo
         }
 
         holder.bookTitle.text = book.book_name
-        if (holder.bookInfo.text.length > 60)
+        if (book.info.length > 60)
             holder.bookInfo.text = book.info.substring(0, 60)+ "..."
+        else
+            holder.bookInfo.text = book.info
         holder.bookAuthor.text = book.author
 
         Glide.with(context).load(book.pic).into(holder.bookImage)   // 加载图片

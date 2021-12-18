@@ -88,10 +88,11 @@ class MusicAdapter(private val fragment: Fragment, private val musicList: List<M
             }
         }
 
-        if (music.info.length > 100) {
-            val info = music.info.substring(0, 100)
+        if (music.info.length > 60) {
+            val info = music.info.substring(0, 60) + "..."
             holder.musicInfo.text = info
-        }
+        } else
+            holder.musicInfo.text = music.info
 
 //        val re = Regex("^[a-zA-Z]*")  // 使用正则表达式匹配数据
 //        if (music.music_name.length > 9) {

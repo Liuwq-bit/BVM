@@ -10,8 +10,8 @@ import kotlin.concurrent.thread
 
 class BookViewModel : ViewModel() {
 
-    private val searchLiveData = MutableLiveData<String>()
-    private val markByIdLiveData = MutableLiveData<String>()
+    private val searchLiveData = MutableLiveData<String>()  // 观察图书列表
+    private val markByIdLiveData = MutableLiveData<String>()    // 观察标记列表
 
     val bookList = ArrayList<Book>()
     val markList = ArrayList<BookMark>()
@@ -38,9 +38,9 @@ class BookViewModel : ViewModel() {
 
     fun insertBooks(book: Book, author: Author) {
         thread {
-            val book_id = Repository.insertBook(book)
-            val author_id = Repository.insertAuthor(author)
-            val tmp = AuthorOfBook(book_id, author_id)
+            val bookId = Repository.insertBook(book)
+            val authorId = Repository.insertAuthor(author)
+            val tmp = AuthorOfBook(bookId, authorId)
             Repository.insertAuthorOfBook(tmp)
         }
     }
