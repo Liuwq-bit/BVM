@@ -11,9 +11,11 @@ class VideoViewModel : ViewModel() {
 
     private val searchLiveData = MutableLiveData<String>()  // 观察影视列表
     private val markByIdLiveData = MutableLiveData<String>()    // 观察标记列表
+    private val commentByIdLiveData = MutableLiveData<String>() // 图书评论列表
 
     val videoList = ArrayList<Video>()
     val markList = ArrayList<VideoMark>()
+    val commentList = ArrayList<VideoComment>()
 
     val videoLiveData = Transformations.switchMap(searchLiveData) { video_name ->
         Repository.searchAllVideo()
@@ -22,6 +24,10 @@ class VideoViewModel : ViewModel() {
 
     val markLiveData = Transformations.switchMap(markByIdLiveData) { user_id ->
         Repository.searchVideoMarkById(user_id)
+    }
+
+    val commentLiveData = Transformations.switchMap(commentByIdLiveData) { video_id ->
+        Repository.searchVideoCommentByVideoId(video_id)
     }
 
     fun searchAllVideos() {
@@ -61,5 +67,9 @@ class VideoViewModel : ViewModel() {
         thread {
             Repository.insertVideoComment(videoComment)
         }
+    }
+
+    fun searchVideoCommentByVideoId(video_id: String) {
+        commentByIdLiveData.value = video_id
     }
 }

@@ -9,16 +9,25 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.bvm.BVMApplication
 import com.example.bvm.BVMApplication.Companion.context
 import com.example.bvm.R
+import com.example.bvm.ui.video.ViewModel.VideoViewModel
+import kotlinx.android.synthetic.main.activity_book_info.*
+import kotlinx.android.synthetic.main.activity_music_info.*
 import kotlinx.android.synthetic.main.activity_video_info.*
+import kotlin.concurrent.thread
 
 
 class VideoInfoActivity : AppCompatActivity() {
+
+    val viewModel by lazy { ViewModelProviders.of(this).get(VideoViewModel::class.java) }
 
     companion object {
         const val VIDEO_ID = "videoId"
@@ -61,6 +70,30 @@ class VideoInfoActivity : AppCompatActivity() {
                 putExtra(VIDEO_ID, videoId)
             }
             startActivity(intent)
+        }
+
+        viewModel.commentLiveData.observe(this, Observer { result ->
+            val comments = result.getOrNull()
+            if (comments != null) {
+                viewModel.commentList.clear()
+                viewModel.commentList.addAll(comments)
+            } else {
+                result.exceptionOrNull()?.printStackTrace()
+            }
+        })
+
+        viewModel.searchVideoCommentByVideoId(videoId)
+
+        thread {
+            Thread.sleep(100)
+            var totalRating = 0F
+            for (i in 0 until viewModel.commentList.size) {
+                totalRating += viewModel.commentList[i].rating
+            }
+            totalRating /= viewModel.commentList.size
+            videoTotalRatingBar.rating = totalRating
+
+//            Toast.makeText(context, "${viewModel.commentList.size}", Toast.LENGTH_SHORT).show()
         }
 
     }

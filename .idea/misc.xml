@@ -4,7 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/activity_add_model.xml" value="0.1778115501519757" />
-        <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/activity_book_info.xml" value="0.1" />
+        <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/activity_book_comment.xml" value="0.353713768115942" />
+        <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/activity_book_info.xml" value="0.33" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/activity_book_input.xml" value="0.1" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/activity_book_rating.xml" value="0.36614583333333334" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/activity_login.xml" value="0.18009118541033434" />

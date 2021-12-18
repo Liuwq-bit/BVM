@@ -9,17 +9,24 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.bvm.BVMApplication
 import com.example.bvm.BVMApplication.Companion.context
 import com.example.bvm.R
+import com.example.bvm.ui.music.ViewModel.MusicViewModel
+import kotlinx.android.synthetic.main.activity_book_info.*
 import kotlinx.android.synthetic.main.activity_music_info.*
 import kotlinx.android.synthetic.main.activity_video_info.*
 import kotlinx.android.synthetic.main.activity_video_info.videoInfoToolbar
+import kotlin.concurrent.thread
 
 class MusicInfoActivity : AppCompatActivity() {
+
+    val viewModel by lazy { ViewModelProviders.of(this).get(MusicViewModel::class.java) }
 
     companion object {
         const val MUSIC_ID = "musicId"
@@ -63,6 +70,31 @@ class MusicInfoActivity : AppCompatActivity() {
             }
             startActivity(intent)
         }
+
+        viewModel.commentLiveData.observe(this, Observer { result ->
+            val comments = result.getOrNull()
+            if (comments != null) {
+                viewModel.commentList.clear()
+                viewModel.commentList.addAll(comments)
+            } else {
+                result.exceptionOrNull()?.printStackTrace()
+            }
+        })
+
+        viewModel.searchMusicCommentByMusicId(musicId)
+
+        thread {
+            Thread.sleep(100)
+            var totalRating = 0F
+            for (i in 0 until viewModel.commentList.size) {
+                totalRating += viewModel.commentList[i].rating
+            }
+            totalRating /= viewModel.commentList.size
+            musicTotalRatingBar.rating = totalRating
+
+//            Toast.makeText(context, "${viewModel.commentList.size}", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

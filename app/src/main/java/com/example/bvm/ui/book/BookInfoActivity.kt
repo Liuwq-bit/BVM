@@ -12,13 +12,21 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.bvm.BVMApplication.Companion.context
 import android.graphics.drawable.Drawable
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.example.bvm.BVMApplication
+import com.example.bvm.ui.book.ViewModel.BookViewModel
+import kotlin.concurrent.thread
 
 /**
  * 图书信息展示页面
  */
 class BookInfoActivity : AppCompatActivity() {
+
+    val viewModel by lazy { ViewModelProviders.of(this).get(BookViewModel::class.java) }
 
     companion object {
         const val BOOK_ID = "bookId"
@@ -64,6 +72,29 @@ class BookInfoActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        viewModel.commentLiveData.observe(this, Observer { result ->
+            val comments = result.getOrNull()
+            if (comments != null) {
+                viewModel.commentList.clear()
+                viewModel.commentList.addAll(comments)
+            } else {
+                result.exceptionOrNull()?.printStackTrace()
+            }
+        })
+
+        viewModel.searchBookCommentByBookId(bookId)
+
+        thread {
+            Thread.sleep(100)
+            var totalRating = 0F
+            for (i in 0 until viewModel.commentList.size) {
+                totalRating += viewModel.commentList[i].rating
+            }
+            totalRating /= viewModel.commentList.size
+            bookTotalRatingBar.rating = totalRating
+
+//            Toast.makeText(context, "${viewModel.commentList.size}", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

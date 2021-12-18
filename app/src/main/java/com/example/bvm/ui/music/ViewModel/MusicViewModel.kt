@@ -11,9 +11,11 @@ class MusicViewModel : ViewModel() {
 
     private val searchLiveData = MutableLiveData<String>()  // 观察音乐列表
     private val markByIdLiveData = MutableLiveData<String>()    // 观察标记列表
+    private val commentByIdLiveData = MutableLiveData<String>() // 音乐评论列表
 
     val musicList = ArrayList<Music>()
     val markList = ArrayList<MusicMark>()
+    val commentList = ArrayList<MusicComment>()
 
     val musicLiveData = Transformations.switchMap(searchLiveData) { music_name ->
         Repository.searchAllMusic()
@@ -22,6 +24,10 @@ class MusicViewModel : ViewModel() {
 
     val markLiveData = Transformations.switchMap(markByIdLiveData) { user_id ->
         Repository.searchMusicMarkById(user_id)
+    }
+
+    val commentLiveData = Transformations.switchMap(commentByIdLiveData) { music_id ->
+        Repository.searchMusicCommentByMusicId(music_id)
     }
 
     fun searchAllMusics() {
@@ -61,6 +67,10 @@ class MusicViewModel : ViewModel() {
         thread {
             Repository.insertMusicComment(musicComment)
         }
+    }
+
+    fun searchMusicCommentByMusicId(music_id: String) {
+        commentByIdLiveData.value = music_id
     }
 
 }
