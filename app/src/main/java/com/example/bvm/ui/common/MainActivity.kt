@@ -19,6 +19,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Point
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -33,6 +34,7 @@ import kotlinx.android.synthetic.main.activity_book_info.*
 import kotlinx.android.synthetic.main.nav_header.*
 import kotlinx.android.synthetic.main.nav_header.view.*
 import java.lang.Exception
+import java.lang.IllegalArgumentException
 import java.lang.reflect.Field
 import kotlin.concurrent.thread
 
@@ -53,19 +55,27 @@ class MainActivity : AppCompatActivity() {
         // 设置侧滑菜单点击事件
 //        navView.setCheckedItem(R.id.navFriends)
         navView.setNavigationItemSelectedListener { item ->
-            if (item.itemId == R.id.bookAdd) {
-                intent = Intent(this, AddModelActivity::class.java)
-                startActivity(intent)
-                drawerLayout.closeDrawers()
-            } else if (item.itemId == R.id.navQuit) {
-                intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-                finish()
-            } else if (item.itemId == R.id.navMarks) {
-                intent = Intent(this, MarkActivity::class.java)
-                startActivity(intent)
-            }else {
-                drawerLayout.closeDrawers()
+            when (item.itemId) {
+                R.id.bookAdd -> {
+                    intent = Intent(this, AddModelActivity::class.java)
+                    startActivity(intent)
+                    drawerLayout.closeDrawers()
+                }
+                R.id.navQuit -> {
+                    intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                R.id.navMarks -> {
+                    intent = Intent(this, MarkActivity::class.java)
+                    startActivity(intent)
+                    drawerLayout.closeDrawers()
+                }
+                R.id.navRanks -> {
+                    intent = Intent(this, RankActivity::class.java)
+                    startActivity(intent)
+                    drawerLayout.closeDrawers()
+                }
             }
             true
         }
@@ -105,6 +115,14 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        setDrawerLeftEdgeSize(this, drawerLayout, 0.5f)
+
+        if (navView.headerCount > 0) {  // 侧边栏用户名
+            val header: View = navView.getHeaderView(0)
+//            header.findViewById(R.id.mainUsername).setText(username)
+            header.mainNameText.text = BVMApplication.USER?.user_name ?: ""  // 设置用户名称
+        }
+
 
 //
 //        TabLayoutMediator(modelTabLayout, modelViewPager) { tab: TabLayout.Tab, position: Int ->
@@ -126,18 +144,9 @@ class MainActivity : AppCompatActivity() {
 //            override fun onTabReselected(tab: TabLayout.Tab?) {}
 //        })
 
-        if (navView.headerCount > 0) {  // 侧边栏用户名
-            val header: View = navView.getHeaderView(0)
-//            header.findViewById(R.id.mainUsername).setText(username)
-            header.mainNameText.text = BVMApplication.USER?.user_name ?: ""  // 设置用户名称
-        }
 
 
 
-        setDrawerLeftEdgeSize(this, drawerLayout, 0.1f)
-
-//        intent = Intent(this, BookInputActivity::class.java)
-//        startActivity(intent)
     }
 
     /**
@@ -161,7 +170,7 @@ class MainActivity : AppCompatActivity() {
 
     /**
      *  设置DrawerLayout侧滑范围
-      */
+     */
     private fun setDrawerLeftEdgeSize(
         activity: Activity?,
         drawerLayout: DrawerLayout?,

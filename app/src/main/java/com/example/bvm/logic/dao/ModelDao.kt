@@ -30,6 +30,9 @@ interface BookDao {
     @Query("select Book.* from Book inner join BookMark on BookMark.book_id = Book.book_id where BookMark.user_id = :user_id")
     fun searchBooksByUserId(user_id: String): List<Book>
 
+    @Query("select Book.* from Book inner join BookComment on BookComment.book_id = Book.book_id group by Book.book_id order by avg(rating) desc")
+    fun searchBookRank(): List<Book>
+
 }
 
 @Dao
@@ -46,6 +49,12 @@ interface VideoDao {
 
     @Query("delete from Video where video_id = :video_id")
     fun deleteVideoById(video_id: Long): Int
+
+    @Query("select Video.* from Video inner join VideoMark on VideoMark.video_id = Video.video_id where VideoMark.user_id = :user_id")
+    fun searchVideoByUserId(user_id: String): List<Video>
+
+    @Query("select Video.* from Video inner join VideoComment on VideoComment.video_id = Video.video_id group by Video.video_id order by avg(rating) desc")
+    fun searchVideoRank(): List<Video>
 }
 
 @Dao
@@ -62,5 +71,11 @@ interface MusicDao {
 
     @Query("delete from Music where music_id = :music_id")
     fun deleteMusicById(music_id: Long): Int
+
+    @Query("select Music.* from Music inner join MusicMark on MusicMark.music_id = Music.music_id where MusicMark.user_id = :user_id")
+    fun searchMusicByUserId(user_id: String): List<Music>
+
+    @Query("select Music.* from Music inner join MusicComment on MusicComment.music_id = Music.music_id group by Music.music_id order by avg(rating) desc")
+    fun searchMusicRank(): List<Music>
 
 }

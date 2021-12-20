@@ -10,7 +10,7 @@
             android:icon="@drawable/ic_mark"
             android:title="查看我的标记"/>
         <item
-            android:id="@+id/navLocation"
+            android:id="@+id/navRanks"
             android:icon="@drawable/ic_rank"
             android:title="排行榜"/>
         <item

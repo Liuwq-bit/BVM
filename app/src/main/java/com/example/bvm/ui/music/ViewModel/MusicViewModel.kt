@@ -10,16 +10,28 @@ import kotlin.concurrent.thread
 class MusicViewModel : ViewModel() {
 
     private val searchLiveData = MutableLiveData<String>()  // 观察音乐列表
+    private val searchByIdLiveData = MutableLiveData<String>()  // 观察由id标记查找的音乐列表
+    private val searchByRankLiveData = MutableLiveData<String>()
     private val markByIdLiveData = MutableLiveData<String>()    // 观察标记列表
     private val commentByIdLiveData = MutableLiveData<String>() // 音乐评论列表
 
     val musicList = ArrayList<Music>()
+    val musicByIdList = ArrayList<Music>()
+    val musicRankList = ArrayList<Music>()
     val markList = ArrayList<MusicMark>()
     val commentList = ArrayList<MusicComment>()
 
     val musicLiveData = Transformations.switchMap(searchLiveData) { music_name ->
         Repository.searchAllMusic()
 //        Repository.searchMusicByName(music_name)
+    }
+
+    val musicByIdLiveData = Transformations.switchMap(searchByIdLiveData) { user_id ->
+        Repository.searchMusicByUserId(user_id)
+    }
+
+    val musicRankLiveData = Transformations.switchMap(searchByRankLiveData) { music_id ->
+        Repository.searchMusicRank()
     }
 
     val markLiveData = Transformations.switchMap(markByIdLiveData) { user_id ->
@@ -32,6 +44,14 @@ class MusicViewModel : ViewModel() {
 
     fun searchAllMusics() {
         searchLiveData.value = ""
+    }
+
+    fun searchMarkMusicByUserId(user_id: String) {
+        searchByIdLiveData.value = user_id
+    }
+
+    fun searchMusicRank() {
+        searchByRankLiveData.value = ""
     }
 
     fun searchAllMarkById(userId: String) {

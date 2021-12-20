@@ -12,12 +12,16 @@ class BookViewModel : ViewModel() {
 
     private val searchLiveData = MutableLiveData<String>()  // 观察图书列表
     private val searchByIdLiveData = MutableLiveData<String>()  // 观察由id标记查找的图书列表
+    private val searchByRankLiveData = MutableLiveData<String>()    // 观察排名标记
     private val markByIdLiveData = MutableLiveData<String>()    // 观察标记列表
+//    private val markByRankLiveData = MutableLiveData<String>()
     private val commentByIdLiveData = MutableLiveData<String>() // 图书评论列表
 
     val bookList = ArrayList<Book>()
     val bookByIdList = ArrayList<Book>()
+    val bookRankList = ArrayList<Book>()
     val markList = ArrayList<BookMark>()
+//    val markByRankList = ArrayList<BookMark>()
     val commentList = ArrayList<BookComment>()
 
     val bookLiveData = Transformations.switchMap(searchLiveData) { book_name ->
@@ -28,9 +32,17 @@ class BookViewModel : ViewModel() {
         Repository.searchBookByUserId(user_id)
     }
 
+    val bookRankLiveData = Transformations.switchMap(searchByRankLiveData) { book_id ->
+        Repository.searchBookRank()
+    }
+
     val markLiveData = Transformations.switchMap(markByIdLiveData) { user_id ->
         Repository.searchBookMarkById(user_id)
     }
+
+//    val rankMarkLiveData = Transformations.switchMap(markByRankLiveData) { user_id ->
+//        Repository.searchBookMarkByRank(user_id)
+//    }
 
     val commentLiveData = Transformations.switchMap(commentByIdLiveData) { book_id ->
         Repository.searchBookCommentByBookId(book_id)
@@ -44,9 +56,17 @@ class BookViewModel : ViewModel() {
         searchByIdLiveData.value = user_id
     }
 
+    fun searchBookRank() {
+        searchByRankLiveData.value = ""
+    }
+
     fun searchAllMarkById(userId: String) {
         markByIdLiveData.value = userId
     }
+
+//    fun searchBookMarkByRank(userId: String) {
+//        markByRankLiveData.value = userId
+//    }
 
     fun searchBookByTitle(title: String) {
         searchLiveData.value = title

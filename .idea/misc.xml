@@ -14,6 +14,7 @@
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/activity_mark2.xml" value="0.36614583333333334" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/activity_music_comment.xml" value="0.1" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/activity_music_info.xml" value="0.11944444444444445" />
+        <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/activity_rank.xml" value="0.36614583333333334" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/activity_signup.xml" value="0.36614583333333334" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/activity_video_comment.xml" value="0.1" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/activity_video_info.xml" value="0.36614583333333334" />
@@ -25,13 +26,18 @@
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/item.xml" value="0.15081521739130435" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/list_item.xml" value="0.3129528985507246" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/mark_book_list.xml" value="0.3328804347826087" />
+        <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/mark_music_list.xml" value="0.36614583333333334" />
+        <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/mark_video_list.xml" value="0.11851851851851852" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/music_add.xml" value="0.36614583333333334" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/music_list.xml" value="0.36614583333333334" />
+        <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/music_rank_list.xml" value="0.11851851851851852" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/nav_header.xml" value="0.1" />
+        <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/rank_book_list.xml" value="0.45714285714285713" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/search_item.xml" value="0.10055724417426545" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/video_add.xml" value="0.36614583333333334" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/video_list.xml" value="0.36614583333333334" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/video_list_item.xml" value="0.11666666666666667" />
+        <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/layout/video_rank_list.xml" value="0.11851851851851852" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/menu/nav_menu.xml" value="0.12222222222222222" />
         <entry key="..\:/Codefield/AndroidStudioProjects/BVM/app/src/main/res/menu/nav_menu_xml.xml" value="0.1" />

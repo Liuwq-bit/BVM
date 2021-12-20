@@ -1,5 +1,6 @@
 package com.example.bvm.logic
 
+import android.os.RecoverySystem
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.example.bvm.BVMApplication
@@ -465,6 +466,97 @@ object Repository {
             Result.success(bookResponse)
         } catch (e: Exception) {
             Result.failure<List<Book>>(e)
+        }
+        emit(result)
+    }
+
+    /**
+     * 由用户id查找标记影视
+     */
+    fun searchVideoByUserId(user_id: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val videoResponse = BVMDatabase.getDatabase(BVMApplication.context).videoDao().searchVideoByUserId(user_id)
+            Result.success(videoResponse)
+        } catch (e: Exception) {
+            Result.failure<List<Video>>(e)
+        }
+        emit(result)
+    }
+
+    /**
+     * 由用户id查找标记音乐
+     */
+    fun searchMusicByUserId(user_id: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val musicResponse = BVMDatabase.getDatabase(BVMApplication.context).musicDao().searchMusicByUserId(user_id)
+            Result.success(musicResponse)
+        } catch (e: Exception) {
+            Result.failure<List<Music>>(e)
+        }
+        emit(result)
+    }
+
+    /**
+     * 查看图书排名
+     */
+    fun searchBookRank() = liveData(Dispatchers.IO) {
+        val result = try {
+            val rankResponse = BVMDatabase.getDatabase(BVMApplication.context).bookDao().searchBookRank()
+            Result.success(rankResponse)
+        } catch (e: Exception) {
+            Result.failure<List<Book>>(e)
+        }
+        emit(result)
+    }
+
+//    /**
+//     * 图书排名标记信息
+//     */
+//    fun searchBookMarkByRank(user_id: String) = liveData(Dispatchers.IO) {
+//        val result = try {
+//            val rankResponse = BVMDatabase.getDatabase(BVMApplication.context).bookCommentDao().searchBookMarkByRank(user_id)
+//            Result.success(rankResponse)
+//        } catch (e: Exception) {
+//            Result.failure<List<BookMark>>(e)
+//        }
+//        emit(result)
+//    }
+
+    /**
+     * 查看影视排名
+     */
+    fun searchVideoRank() = liveData(Dispatchers.IO) {
+        val result = try {
+            val rankResponse = BVMDatabase.getDatabase(BVMApplication.context).videoDao().searchVideoRank()
+            Result.success(rankResponse)
+        } catch (e: Exception) {
+            Result.failure<List<Video>>(e)
+        }
+        emit(result)
+    }
+
+//    /**
+//     * 影视排名标记信息
+//     */
+//    fun searchVideoMarkByRank(user_id: String) = liveData(Dispatchers.IO) {
+//        val result = try {
+//            val rankResponse = BVMDatabase.getDatabase(BVMApplication.context).videoCommentDao().searchVideoMarkByRank(user_id)
+//            Result.success(rankResponse)
+//        } catch (e: Exception) {
+//            Result.failure<List<VideoMark>>(e)
+//        }
+//        emit(result)
+//    }
+
+    /**
+     * 查看音乐排名
+     */
+    fun searchMusicRank() = liveData(Dispatchers.IO) {
+        val result = try {
+            val rankResponse = BVMDatabase.getDatabase(BVMApplication.context).musicDao().searchMusicRank()
+            Result.success(rankResponse)
+        } catch (e: Exception) {
+            Result.failure<List<Music>>(e)
         }
         emit(result)
     }

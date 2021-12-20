@@ -80,7 +80,7 @@ class BookAdapter(private val fragment: Fragment, private val bookList: List<Boo
                 when (markList[i].type) {
                     0 -> holder.bookTypeBtn0.text = "已想读"
                     1 -> holder.bookTypeBtn1.text = "已在读"
-                    2 -> holder.bookTypeBtn2.text = "已看读"
+                    2 -> holder.bookTypeBtn2.text = "已读过"
                 }
                 break
             }

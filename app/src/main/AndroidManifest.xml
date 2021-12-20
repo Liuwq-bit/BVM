@@ -14,8 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BVM">
         <activity
+            android:name=".ui.common.RankActivity"
+            android:exported="false"
+            android:label="排行榜"/>
+        <activity
             android:name=".ui.common.MarkActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="我的标记" />
         <activity
             android:name=".ui.video.VideoCommentActivity"
             android:exported="false" />
