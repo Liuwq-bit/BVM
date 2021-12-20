@@ -11,7 +11,7 @@ import com.example.bvm.logic.model.User
 class BVMApplication : Application() {
 
     companion object {
-        const val TOKEN = "令牌"
+//        const val TOKEN = "令牌"
 
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context

@@ -1,8 +1,6 @@
 package com.example.bvm.logic.dao
 
-import android.widget.Toast
 import androidx.room.*
-import com.example.bvm.BVMApplication
 import com.example.bvm.logic.model.BookMark
 import com.example.bvm.logic.model.MusicMark
 import com.example.bvm.logic.model.VideoMark

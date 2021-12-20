@@ -14,7 +14,7 @@
             android:icon="@drawable/ic_rank"
             android:title="排行榜"/>
         <item
-            android:id="@+id/navMail"
+            android:id="@+id/navQuit"
             android:icon="@drawable/ic_quit"
             android:title="登出"/>
     </group>

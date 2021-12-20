@@ -68,7 +68,7 @@ class SignupActivity : AppCompatActivity() {
     }
 
 
-    fun validate(): Boolean {
+    private fun validate(): Boolean {
         // todo 输入格式提示
         var valid = true
         val name = signupNameText.editText?.text.toString()

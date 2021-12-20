@@ -11,23 +11,25 @@ import androidx.room.PrimaryKey
  * 用户信息
  */
 @Entity
-data class User(var user_name: String,
-                var user_pwd: String,
-                var pic: String,
-                var register_time: String) {
+data class User(
+    var user_name: String,
+    var user_pwd: String,
+    var pic: String,
+    var register_time: String) {
     @PrimaryKey(autoGenerate = true) var user_id: Long = 0
 }
 
 
 @Entity
-data class Book(var book_name: String,
-                var label: String,
-                var info: String,
-                var author: String,
-                var authorInfo: String,
-                var add_time: String,
-                var publish_time: String,
-                var pic: String) {
+data class Book(
+    var book_name: String,
+    var label: String,
+    var info: String,
+    var author: String,
+    var authorInfo: String,
+    var add_time: String,
+    var publish_time: String,
+    var pic: String) {
     @PrimaryKey(autoGenerate = true) var book_id: Long = 0
 }
 
@@ -35,8 +37,9 @@ data class Book(var book_name: String,
  * 图书作者信息
  */
 @Entity
-data class Author(var author_name: String,
-                  var info: String) {
+data class Author(
+    var author_name: String,
+    var info: String) {
     @PrimaryKey(autoGenerate = true) var author_id: Long = 0
 }
 
@@ -44,15 +47,16 @@ data class Author(var author_name: String,
  * 影视信息
  */
 @Entity
-data class Video(var video_name: String,
-                 var video_type: String,
-                 var label: String,
-                 var info: String,
-                 var actor: String,
-                 var actorInfo: String,
-                 var add_time: String,
-                 var publish_time: String,
-                 var pic: String) {
+data class Video(
+    var video_name: String,
+    var video_type: String,
+    var label: String,
+    var info: String,
+    var actor: String,
+    var actorInfo: String,
+    var add_time: String,
+    var publish_time: String,
+    var pic: String) {
     @PrimaryKey(autoGenerate = true) var video_id: Long = 0
 }
 
@@ -60,8 +64,9 @@ data class Video(var video_name: String,
  * 影视参演信息
  */
 @Entity
-data class Actor(var actor_name: String,
-                 var info: String) {
+data class Actor(
+    var actor_name: String,
+    var info: String) {
     @PrimaryKey(autoGenerate = true) var actor_id: Long = 0
 }
 
@@ -70,14 +75,15 @@ data class Actor(var actor_name: String,
  * 音乐信息
  */
 @Entity
-data class Music(var music_name: String,
-                 var label: String,
-                 var info: String,
-                 var singer: String,
-                 var singerInfo: String,
-                 var add_time: String,
-                 var publish_time: String,
-                 var pic: String) {
+data class Music(
+    var music_name: String,
+    var label: String,
+    var info: String,
+    var singer: String,
+    var singerInfo: String,
+    var add_time: String,
+    var publish_time: String,
+    var pic: String) {
     @PrimaryKey(autoGenerate = true) var music_id: Long = 0
 }
 
@@ -86,93 +92,102 @@ data class Music(var music_name: String,
  * 音乐歌手信息
  */
 @Entity
-data class Singer(var singer_name: String,
-                  var info: String) {
+data class Singer(
+    var singer_name: String,
+    var info: String) {
     @PrimaryKey(autoGenerate = true) var singer_id: Long = 0
 }
 
 /**
  * 标记图书表， type：0，1，2分别对应想看、在看、看过
  */
-@Entity
-data class BookMark(var user_id: Long,
-                    var book_id: Long,
-                    var type: Int,
-                    @PrimaryKey var change_time: String)
+@Entity(primaryKeys = ["user_id", "book_id"])
+data class BookMark(
+    var user_id: Long,
+    var book_id: Long,
+    var type: Int,
+    var change_time: String)
 
 
 /**
  * 标记影视表
  */
-@Entity
-data class VideoMark(var user_id: Long,
-                    var video_id: Long,
-                    var type: Int,
-                     @PrimaryKey var change_time: String)
+@Entity(primaryKeys = ["user_id", "video_id"])
+data class VideoMark(
+    var user_id: Long,
+    var video_id: Long,
+    var type: Int,
+    var change_time: String)
 
 
 /**
  * 标记音乐表
  */
-@Entity
-data class MusicMark(var user_id: Long,
-                    var music_id: Long,
-                    var type: Int,
-                    @PrimaryKey var change_time: String)
+@Entity(primaryKeys = ["user_id", "music_id"])
+data class MusicMark(
+    var user_id: Long,
+    var music_id: Long,
+    var type: Int,
+    var change_time: String)
 
 
 /**
  * 图书点评表
  */
-@Entity
+@Entity(primaryKeys = ["book_id", "user_id"])
 data class BookComment(
     var book_id: Long,
     var user_id: Long,
     var comment: String,
     var rating: Float,
-    @PrimaryKey var change_time: String)
+    var change_time: String)
 
 
 /**
  * 影视点评表
  */
-@Entity
-data class VideoComment(var video_id: Long,
-                        var user_id: Long,
-                        var comment: String,
-                        var rating: Float,
-                        @PrimaryKey var change_time: String)
+@Entity(primaryKeys = ["video_id", "user_id"])
+data class VideoComment(
+    var video_id: Long,
+    var user_id: Long,
+    var comment: String,
+    var rating: Float,
+    var change_time: String)
 
 
 /**
  * 音乐点评表
  */
-@Entity
-data class MusicComment(var music_id: Long,
-                        var user_id: Long,
-                        var comment: String,
-                        var rating: Float,
-                        @PrimaryKey var change_time: String)
+@Entity(primaryKeys = ["music_id", "user_id"])
+data class MusicComment(
+    var music_id: Long,
+    var user_id: Long,
+    var comment: String,
+    var rating: Float,
+    var change_time: String)
 
 
 /**
  * 图书作者映射表
  */
-@Entity
-data class AuthorOfBook(@PrimaryKey var book_id: Long,
-                        var author_id: Long)
+@Entity(primaryKeys = ["book_id", "author_id"])
+data class AuthorOfBook(
+    var book_id: Long,
+    var author_id: Long)
 
 
 /**
  * 影视参演映射表
  */
-@Entity
-data class ActorOfVideo(@PrimaryKey var video_id: Long,
-                        var actor_id: Long)
+@Entity(primaryKeys = ["video_id", "actor_id"])
+data class ActorOfVideo(
+    var video_id: Long,
+    var actor_id: Long)
 
 /**
  * 音乐歌手映射表
  */
-@Entity
-data class SingerOfMusic(@PrimaryKey var music_id: Long,
-                        var singer_id: Long)
+@Entity(primaryKeys = ["music_id", "singer_id"])
+data class SingerOfMusic(
+    var music_id: Long,
+    var singer_id: Long)

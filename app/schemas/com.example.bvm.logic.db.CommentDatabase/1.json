@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "db6fe1fbb8c78fe57051a608b08d1399",
+    "identityHash": "d5c1666f0935e8d8a68104da2abaf677",
     "entities": [
       {
         "tableName": "BookComment",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`book_id` INTEGER NOT NULL, `user_id` INTEGER NOT NULL, `comment` TEXT NOT NULL, `rating` REAL NOT NULL, `change_time` TEXT NOT NULL, PRIMARY KEY(`change_time`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`book_id` INTEGER NOT NULL, `user_id` INTEGER NOT NULL, `comment` TEXT NOT NULL, `rating` REAL NOT NULL, `change_time` TEXT NOT NULL, PRIMARY KEY(`book_id`, `user_id`))",
         "fields": [
           {
             "fieldPath": "book_id",
@@ -41,7 +41,8 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "change_time"
+            "book_id",
+            "user_id"
           ],
           "autoGenerate": false
         },
@@ -50,7 +51,7 @@
       },
       {
         "tableName": "VideoComment",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`video_id` INTEGER NOT NULL, `user_id` INTEGER NOT NULL, `comment` TEXT NOT NULL, `rating` REAL NOT NULL, `change_time` TEXT NOT NULL, PRIMARY KEY(`change_time`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`video_id` INTEGER NOT NULL, `user_id` INTEGER NOT NULL, `comment` TEXT NOT NULL, `rating` REAL NOT NULL, `change_time` TEXT NOT NULL, PRIMARY KEY(`video_id`, `user_id`))",
         "fields": [
           {
             "fieldPath": "video_id",
@@ -85,7 +86,8 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "change_time"
+            "video_id",
+            "user_id"
           ],
           "autoGenerate": false
         },
@@ -94,7 +96,7 @@
       },
       {
         "tableName": "MusicComment",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`music_id` INTEGER NOT NULL, `user_id` INTEGER NOT NULL, `comment` TEXT NOT NULL, `rating` REAL NOT NULL, `change_time` TEXT NOT NULL, PRIMARY KEY(`change_time`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`music_id` INTEGER NOT NULL, `user_id` INTEGER NOT NULL, `comment` TEXT NOT NULL, `rating` REAL NOT NULL, `change_time` TEXT NOT NULL, PRIMARY KEY(`music_id`, `user_id`))",
         "fields": [
           {
             "fieldPath": "music_id",
@@ -129,7 +131,8 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "change_time"
+            "music_id",
+            "user_id"
           ],
           "autoGenerate": false
         },
@@ -140,7 +143,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'db6fe1fbb8c78fe57051a608b08d1399')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd5c1666f0935e8d8a68104da2abaf677')"
     ]
   }
 }

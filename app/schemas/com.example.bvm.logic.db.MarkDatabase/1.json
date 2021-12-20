@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "beb8f6669887ebef622b52ab04fa8c86",
+    "identityHash": "0649cc0a66cb4ccfec1188a97ac6f5d6",
     "entities": [
       {
         "tableName": "BookMark",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` INTEGER NOT NULL, `book_id` INTEGER NOT NULL, `type` INTEGER NOT NULL, `change_time` TEXT NOT NULL, PRIMARY KEY(`change_time`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` INTEGER NOT NULL, `book_id` INTEGER NOT NULL, `type` INTEGER NOT NULL, `change_time` TEXT NOT NULL, PRIMARY KEY(`user_id`, `book_id`))",
         "fields": [
           {
             "fieldPath": "user_id",
@@ -35,7 +35,8 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "change_time"
+            "user_id",
+            "book_id"
           ],
           "autoGenerate": false
         },
@@ -44,7 +45,7 @@
       },
       {
         "tableName": "VideoMark",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` INTEGER NOT NULL, `video_id` INTEGER NOT NULL, `type` INTEGER NOT NULL, `change_time` TEXT NOT NULL, PRIMARY KEY(`change_time`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` INTEGER NOT NULL, `video_id` INTEGER NOT NULL, `type` INTEGER NOT NULL, `change_time` TEXT NOT NULL, PRIMARY KEY(`user_id`, `video_id`))",
         "fields": [
           {
             "fieldPath": "user_id",
@@ -73,7 +74,8 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "change_time"
+            "user_id",
+            "video_id"
           ],
           "autoGenerate": false
         },
@@ -82,7 +84,7 @@
       },
       {
         "tableName": "MusicMark",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` INTEGER NOT NULL, `music_id` INTEGER NOT NULL, `type` INTEGER NOT NULL, `change_time` TEXT NOT NULL, PRIMARY KEY(`change_time`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` INTEGER NOT NULL, `music_id` INTEGER NOT NULL, `type` INTEGER NOT NULL, `change_time` TEXT NOT NULL, PRIMARY KEY(`user_id`, `music_id`))",
         "fields": [
           {
             "fieldPath": "user_id",
@@ -111,7 +113,8 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "change_time"
+            "user_id",
+            "music_id"
           ],
           "autoGenerate": false
         },
@@ -122,7 +125,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'beb8f6669887ebef622b52ab04fa8c86')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0649cc0a66cb4ccfec1188a97ac6f5d6')"
     ]
   }
 }

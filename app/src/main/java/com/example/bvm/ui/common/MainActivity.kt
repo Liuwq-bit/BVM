@@ -19,6 +19,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 
 import android.app.Activity
 import android.content.Intent
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -30,8 +31,13 @@ import com.example.bvm.ui.video.VideoListFragment
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_book_info.*
 import kotlinx.android.synthetic.main.nav_header.*
+import kotlinx.android.synthetic.main.nav_header.view.*
 import java.lang.Exception
 import java.lang.reflect.Field
+import kotlin.concurrent.thread
+
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -55,6 +61,10 @@ class MainActivity : AppCompatActivity() {
                 intent = Intent(this, AddModelActivity::class.java)
                 startActivity(intent)
                 drawerLayout.closeDrawers()
+            } else if (item.itemId == R.id.navQuit) {
+                intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
             } else {
                 drawerLayout.closeDrawers()
             }
@@ -116,6 +126,12 @@ class MainActivity : AppCompatActivity() {
 //
 //            override fun onTabReselected(tab: TabLayout.Tab?) {}
 //        })
+
+        if (navView.headerCount > 0) {
+            val header: View = navView.getHeaderView(0)
+//            header.findViewById(R.id.mainUsername).setText(username)
+            header.mainNameText.text = BVMApplication.USER?.user_name ?: ""  // 设置用户名称
+        }
 
 
 
