@@ -18,7 +18,7 @@ object Repository {
      *   插入用户数据并返回id
      */
     fun insertUser(user: User): Long {
-        return UserDatabase.getDatabase(BVMApplication.context).userDao().insertUser(user)
+        return BVMDatabase.getDatabase(BVMApplication.context).userDao().insertUser(user)
     }
 
     /**
@@ -26,7 +26,7 @@ object Repository {
      */
     fun searchAllUser() = liveData(Dispatchers.IO) {
         val result = try {
-            val userResponse = UserDatabase.getDatabase(BVMApplication.context).userDao().loadAllUsers()
+            val userResponse = BVMDatabase.getDatabase(BVMApplication.context).userDao().loadAllUsers()
 //            Log.d("MainActivity", bookResponse[0].title)
             Result.success(userResponse)
         } catch (e: Exception) {
@@ -40,7 +40,7 @@ object Repository {
      */
     fun searchUserByName(user_name: String) = liveData(Dispatchers.IO) {
         val result = try {
-            val userResponse = UserDatabase.getDatabase(BVMApplication.context).userDao().searchUserByName(user_name)
+            val userResponse = BVMDatabase.getDatabase(BVMApplication.context).userDao().searchUserByName(user_name)
             Result.success(userResponse)
         } catch (e: Exception) {
             Result.failure<List<User>>(e)
@@ -53,7 +53,7 @@ object Repository {
      */
     fun searchUserById(user_id: String) = liveData(Dispatchers.IO) {
         val result = try {
-            val userResponse = UserDatabase.getDatabase(BVMApplication.context).userDao().searchUserById(user_id.toLong())
+            val userResponse = BVMDatabase.getDatabase(BVMApplication.context).userDao().searchUserById(user_id.toLong())
             Result.success(userResponse)
         } catch (e: Exception) {
             Result.failure<List<User>>(e)
@@ -84,7 +84,7 @@ object Repository {
      *   插入图书数据并返回id
      */
     fun insertBook(book: Book): Long {
-        return ModelDatabase.getDatabase(BVMApplication.context).bookDao().insertBook(book)
+        return BVMDatabase.getDatabase(BVMApplication.context).bookDao().insertBook(book)
     }
 
     /**
@@ -92,7 +92,7 @@ object Repository {
      */
     fun searchAllBook() = liveData(Dispatchers.IO) {
         val result = try {
-            val bookResponse = ModelDatabase.getDatabase(BVMApplication.context).bookDao().loadAllBooks()
+            val bookResponse = BVMDatabase.getDatabase(BVMApplication.context).bookDao().loadAllBooks()
 //            Log.d("MainActivity", bookResponse[0].title)
             Result.success(bookResponse)
         } catch (e: Exception) {
@@ -106,7 +106,7 @@ object Repository {
      */
     fun searchBookByName(book_name: String) = liveData(Dispatchers.IO) {
         val result = try {
-            val bookResponse = ModelDatabase.getDatabase(BVMApplication.context).bookDao().searchBooks(book_name)
+            val bookResponse = BVMDatabase.getDatabase(BVMApplication.context).bookDao().searchBooks(book_name)
             Result.success(bookResponse)
         } catch (e: Exception) {
             Result.failure<List<Book>>(e)
@@ -118,14 +118,14 @@ object Repository {
      * 按id删除图书数据
      */
     fun deleteBookById(book_id: Long) : Int {
-        return ModelDatabase.getDatabase(BVMApplication.context).bookDao().deleteBookById(book_id)
+        return BVMDatabase.getDatabase(BVMApplication.context).bookDao().deleteBookById(book_id)
     }
 
     /**
      * 插入影视数据并返回id
      */
     fun insertVideo(video: Video): Long {
-        return ModelDatabase.getDatabase(BVMApplication.context).videoDao().insertVideo(video)
+        return BVMDatabase.getDatabase(BVMApplication.context).videoDao().insertVideo(video)
     }
 
     /**
@@ -133,7 +133,7 @@ object Repository {
      */
     fun searchAllVideo() = liveData(Dispatchers.IO) {
         val result = try {
-            val videoResponse = ModelDatabase.getDatabase(BVMApplication.context).videoDao().loadAllVideos()
+            val videoResponse = BVMDatabase.getDatabase(BVMApplication.context).videoDao().loadAllVideos()
             Result.success(videoResponse)
         } catch (e: Exception) {
             Result.failure<List<Video>>(e)
@@ -146,7 +146,7 @@ object Repository {
      */
     fun searchVideoByName(video_name: String) = liveData(Dispatchers.IO) {
         val result = try {
-            val videoResponse = ModelDatabase.getDatabase(BVMApplication.context).videoDao().searchVideos(video_name)
+            val videoResponse = BVMDatabase.getDatabase(BVMApplication.context).videoDao().searchVideos(video_name)
             Result.success(videoResponse)
         } catch (e: Exception) {
             Result.failure<List<Video>>(e)
@@ -158,7 +158,7 @@ object Repository {
      * 按id删除影视数据
      */
     fun deleteVideoById(video_id: Long) : Int {
-        return ModelDatabase.getDatabase(BVMApplication.context).videoDao().deleteVideoById(video_id)
+        return BVMDatabase.getDatabase(BVMApplication.context).videoDao().deleteVideoById(video_id)
     }
 
 
@@ -166,7 +166,7 @@ object Repository {
      * 插入音乐数据并返回id
      */
     fun insertMusic(music: Music): Long {
-        return ModelDatabase.getDatabase(BVMApplication.context).musicDao().insertMusic(music)
+        return BVMDatabase.getDatabase(BVMApplication.context).musicDao().insertMusic(music)
     }
 
     /**
@@ -174,7 +174,7 @@ object Repository {
      */
     fun searchAllMusic() = liveData(Dispatchers.IO) {
         val result = try {
-            val musicResponse = ModelDatabase.getDatabase(BVMApplication.context).musicDao().loadAllMusics()
+            val musicResponse = BVMDatabase.getDatabase(BVMApplication.context).musicDao().loadAllMusics()
             Result.success(musicResponse)
         } catch (e: Exception) {
             Result.failure<List<Music>>(e)
@@ -187,7 +187,7 @@ object Repository {
      */
     fun searchMusicByName(music_name: String) = liveData(Dispatchers.IO) {
         val result = try {
-            val musicResponse = ModelDatabase.getDatabase(BVMApplication.context).musicDao().searchMusics(music_name)
+            val musicResponse = BVMDatabase.getDatabase(BVMApplication.context).musicDao().searchMusics(music_name)
             Result.success(musicResponse)
         } catch (e: Exception) {
             Result.failure<List<Music>>(e)
@@ -199,7 +199,7 @@ object Repository {
      * 按id删除音乐数据
      */
     fun deleteMusicById(music_id: Long) : Int {
-        return ModelDatabase.getDatabase(BVMApplication.context).musicDao().deleteMusicById(music_id)
+        return BVMDatabase.getDatabase(BVMApplication.context).musicDao().deleteMusicById(music_id)
     }
 
 
@@ -279,7 +279,7 @@ object Repository {
      * 插入图书标记信息
      */
     fun insertBookMark(bookMark: BookMark) {
-        MarkDatabase.getDatabase(BVMApplication.context).bookMarkDao().insertOrUpdateBookMark(bookMark)
+        BVMDatabase.getDatabase(BVMApplication.context).bookMarkDao().insertOrUpdateBookMark(bookMark)
     }
 
 //    /**
@@ -294,7 +294,7 @@ object Repository {
      */
     fun searchBookMarkByIdType(user_id: String, type: String) = liveData(Dispatchers.IO) {
         val result = try {
-            val response = MarkDatabase.getDatabase(BVMApplication.context).bookMarkDao().searchBookMarkByIdType(user_id, type)
+            val response = BVMDatabase.getDatabase(BVMApplication.context).bookMarkDao().searchBookMarkByIdType(user_id, type)
             Result.success(response)
         } catch (e: Exception) {
             Result.failure<List<BookMark>>(e)
@@ -307,7 +307,7 @@ object Repository {
      */
     fun searchBookMarkById(user_id: String) = liveData(Dispatchers.IO) {
         val result = try {
-            val response = MarkDatabase.getDatabase(BVMApplication.context).bookMarkDao().searchBookMarkById(user_id)
+            val response = BVMDatabase.getDatabase(BVMApplication.context).bookMarkDao().searchBookMarkById(user_id)
             Result.success(response)
         } catch (e: Exception) {
             Result.failure<List<BookMark>>(e)
@@ -320,7 +320,7 @@ object Repository {
      * 插入影视标记信息
      */
     fun insertVideoMark(videoMark: VideoMark) {
-        MarkDatabase.getDatabase(BVMApplication.context).videoMarkDao().insertOrUpdateVideoMark(videoMark)
+        BVMDatabase.getDatabase(BVMApplication.context).videoMarkDao().insertOrUpdateVideoMark(videoMark)
     }
 
 //    /**
@@ -335,7 +335,7 @@ object Repository {
      */
     fun searchVideoMarkByIdType(user_id: String, type: String) = liveData(Dispatchers.IO) {
         val result = try {
-            val response = MarkDatabase.getDatabase(BVMApplication.context).videoMarkDao().searchVideoMarkByIdType(user_id, type)
+            val response = BVMDatabase.getDatabase(BVMApplication.context).videoMarkDao().searchVideoMarkByIdType(user_id, type)
             Result.success(response)
         } catch (e: Exception) {
             Result.failure<List<VideoMark>>(e)
@@ -348,7 +348,7 @@ object Repository {
      */
     fun searchVideoMarkById(user_id: String) = liveData(Dispatchers.IO) {
         val result = try {
-            val response = MarkDatabase.getDatabase(BVMApplication.context).videoMarkDao().searchVideoMarkById(user_id)
+            val response = BVMDatabase.getDatabase(BVMApplication.context).videoMarkDao().searchVideoMarkById(user_id)
             Result.success(response)
         } catch (e: Exception) {
             Result.failure<List<VideoMark>>(e)
@@ -360,7 +360,7 @@ object Repository {
      * 插入音乐标记信息
      */
     fun insertMusicMark(musicMark: MusicMark) {
-        MarkDatabase.getDatabase(BVMApplication.context).musicMarkDao().insertOrUpdateMusicMark(musicMark)
+        BVMDatabase.getDatabase(BVMApplication.context).musicMarkDao().insertOrUpdateMusicMark(musicMark)
     }
 
 //    /**
@@ -375,7 +375,7 @@ object Repository {
      */
     fun searchMusicMarkByIdType(user_id: String, type: String) = liveData(Dispatchers.IO) {
         val result = try {
-            val response = MarkDatabase.getDatabase(BVMApplication.context).musicMarkDao().searchMusicMarkByIdType(user_id, type)
+            val response = BVMDatabase.getDatabase(BVMApplication.context).musicMarkDao().searchMusicMarkByIdType(user_id, type)
             Result.success(response)
         } catch (e: Exception) {
             Result.failure<List<MusicMark>>(e)
@@ -388,7 +388,7 @@ object Repository {
      */
     fun searchMusicMarkById(user_id: String) = liveData(Dispatchers.IO) {
         val result = try {
-            val response = MarkDatabase.getDatabase(BVMApplication.context).musicMarkDao().searchMusicMarkById(user_id)
+            val response = BVMDatabase.getDatabase(BVMApplication.context).musicMarkDao().searchMusicMarkById(user_id)
             Result.success(response)
         } catch (e: Exception) {
             Result.failure<List<MusicMark>>(e)
@@ -400,7 +400,7 @@ object Repository {
      * 插入图书评分评论信息
      */
     fun insertBookComment(bookComment: BookComment): Long {
-        return CommentDatabase.getDatabase(BVMApplication.context).bookCommentDao().insertBookComment(bookComment)
+        return BVMDatabase.getDatabase(BVMApplication.context).bookCommentDao().insertBookComment(bookComment)
     }
 
     /**
@@ -408,7 +408,7 @@ object Repository {
      */
     fun searchBookCommentByBookId(book_id: String) = liveData(Dispatchers.IO) {
         val result = try {
-            val commentResponse = CommentDatabase.getDatabase(BVMApplication.context).bookCommentDao().searchBookCommentByBookId(book_id)
+            val commentResponse = BVMDatabase.getDatabase(BVMApplication.context).bookCommentDao().searchBookCommentByBookId(book_id)
             Result.success(commentResponse)
         } catch (e: Exception) {
             Result.failure<List<BookComment>>(e)
@@ -420,7 +420,7 @@ object Repository {
      * 插入影视评分评论信息
      */
     fun insertVideoComment(videoComment: VideoComment): Long {
-        return CommentDatabase.getDatabase(BVMApplication.context).videoCommentDao().insertVideoComment(videoComment)
+        return BVMDatabase.getDatabase(BVMApplication.context).videoCommentDao().insertVideoComment(videoComment)
     }
 
     /**
@@ -428,7 +428,7 @@ object Repository {
      */
     fun searchVideoCommentByVideoId(videoId: String) = liveData(Dispatchers.IO) {
         val result = try {
-            val commentResponse = CommentDatabase.getDatabase(BVMApplication.context).videoCommentDao().searchVideoCommentByVideoId(videoId)
+            val commentResponse = BVMDatabase.getDatabase(BVMApplication.context).videoCommentDao().searchVideoCommentByVideoId(videoId)
             Result.success(commentResponse)
         } catch (e: Exception) {
             Result.failure<List<VideoComment>>(e)
@@ -440,7 +440,7 @@ object Repository {
      * 插入音乐评分评论信息
      */
     fun insertMusicComment(musicComment: MusicComment): Long {
-        return CommentDatabase.getDatabase(BVMApplication.context).musicCommentDao().insertMusicComment(musicComment)
+        return BVMDatabase.getDatabase(BVMApplication.context).musicCommentDao().insertMusicComment(musicComment)
     }
 
     /**
@@ -448,10 +448,23 @@ object Repository {
      */
     fun searchMusicCommentByMusicId(musicId: String) = liveData(Dispatchers.IO) {
         val result = try {
-            val commentResponse = CommentDatabase.getDatabase(BVMApplication.context).musicCommentDao().searchMusicCommentByMusicId(musicId)
+            val commentResponse = BVMDatabase.getDatabase(BVMApplication.context).musicCommentDao().searchMusicCommentByMusicId(musicId)
             Result.success(commentResponse)
         } catch (e: Exception) {
             Result.failure<List<MusicComment>>(e)
+        }
+        emit(result)
+    }
+
+    /**
+     * 由用户id查找标记图书
+     */
+    fun searchBookByUserId(user_id: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val bookResponse = BVMDatabase.getDatabase(BVMApplication.context).bookDao().searchBooksByUserId(user_id)
+            Result.success(bookResponse)
+        } catch (e: Exception) {
+            Result.failure<List<Book>>(e)
         }
         emit(result)
     }

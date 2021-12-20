@@ -7,6 +7,10 @@ import androidx.room.Query
 import com.example.bvm.logic.model.Book
 import com.example.bvm.logic.model.Music
 import com.example.bvm.logic.model.Video
+import androidx.room.ColumnInfo
+
+
+
 
 @Dao
 interface BookDao {
@@ -22,6 +26,9 @@ interface BookDao {
 
     @Query("delete from Book where book_id = :book_id")
     fun deleteBookById(book_id: Long): Int
+
+    @Query("select Book.* from Book inner join BookMark on BookMark.book_id = Book.book_id where BookMark.user_id = :user_id")
+    fun searchBooksByUserId(user_id: String): List<Book>
 
 }
 

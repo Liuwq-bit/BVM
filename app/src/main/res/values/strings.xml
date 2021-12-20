@@ -2,4 +2,8 @@
     <string name="app_name">BVM</string>
     <string name="model_add_name">书影音录入</string>
     <string name="comment_string">评价</string>
+    <string name="title_activity_mark2">MarkActivity2</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

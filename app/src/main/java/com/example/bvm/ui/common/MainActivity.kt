@@ -36,10 +36,6 @@ import java.lang.Exception
 import java.lang.reflect.Field
 import kotlin.concurrent.thread
 
-
-
-
-
 class MainActivity : AppCompatActivity() {
 
     val titleList = listOf(BookListFragment.type, VideoListFragment.type, MusicListFragment.type)   // 各个页面类型的标题
@@ -65,7 +61,10 @@ class MainActivity : AppCompatActivity() {
                 intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
-            } else {
+            } else if (item.itemId == R.id.navMarks) {
+                intent = Intent(this, MarkActivity::class.java)
+                startActivity(intent)
+            }else {
                 drawerLayout.closeDrawers()
             }
             true
@@ -127,7 +126,7 @@ class MainActivity : AppCompatActivity() {
 //            override fun onTabReselected(tab: TabLayout.Tab?) {}
 //        })
 
-        if (navView.headerCount > 0) {
+        if (navView.headerCount > 0) {  // 侧边栏用户名
             val header: View = navView.getHeaderView(0)
 //            header.findViewById(R.id.mainUsername).setText(username)
             header.mainNameText.text = BVMApplication.USER?.user_name ?: ""  // 设置用户名称

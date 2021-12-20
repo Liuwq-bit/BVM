@@ -6,7 +6,7 @@
             android:icon="@drawable/ic_input"
             android:title="@string/model_add_name"/>
         <item
-            android:id="@+id/navFriends"
+            android:id="@+id/navMarks"
             android:icon="@drawable/ic_mark"
             android:title="查看我的标记"/>
         <item

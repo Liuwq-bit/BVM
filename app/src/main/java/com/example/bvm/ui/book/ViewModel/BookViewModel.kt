@@ -11,15 +11,21 @@ import kotlin.concurrent.thread
 class BookViewModel : ViewModel() {
 
     private val searchLiveData = MutableLiveData<String>()  // 观察图书列表
+    private val searchByIdLiveData = MutableLiveData<String>()  // 观察由id标记查找的图书列表
     private val markByIdLiveData = MutableLiveData<String>()    // 观察标记列表
     private val commentByIdLiveData = MutableLiveData<String>() // 图书评论列表
 
     val bookList = ArrayList<Book>()
+    val bookByIdList = ArrayList<Book>()
     val markList = ArrayList<BookMark>()
     val commentList = ArrayList<BookComment>()
 
     val bookLiveData = Transformations.switchMap(searchLiveData) { book_name ->
         Repository.searchAllBook()
+    }
+
+    val bookByIdLiveData = Transformations.switchMap(searchByIdLiveData) { user_id ->
+        Repository.searchBookByUserId(user_id)
     }
 
     val markLiveData = Transformations.switchMap(markByIdLiveData) { user_id ->
@@ -32,6 +38,10 @@ class BookViewModel : ViewModel() {
 
     fun searchAllBooks() {
         searchLiveData.value = ""
+    }
+
+    fun searchMarkBookByUserId(user_id: String) {
+        searchByIdLiveData.value = user_id
     }
 
     fun searchAllMarkById(userId: String) {
