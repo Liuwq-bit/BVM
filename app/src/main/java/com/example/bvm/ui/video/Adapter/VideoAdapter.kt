@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -168,6 +169,9 @@ class VideoAdapter(private val fragment: Fragment, private val videoList: List<V
 
             reFreshVideo()
         }
+
+        if (BVMApplication.USER?.user_id != 1L)
+            holder.deleteBtn.isVisible = false
 
     }
 

@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.bvm.BVMApplication.Companion.context
 import android.graphics.drawable.Drawable
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.request.target.CustomTarget
@@ -90,6 +91,9 @@ class BookInfoActivity : AppCompatActivity() {
             }
             startActivity(intent)
         }
+
+        if (BVMApplication.USER?.user_id != 1L)
+            bookInfoChangeFab.isVisible = false
 
         viewModel.commentLiveData.observe(this, Observer { result ->
             val comments = result.getOrNull()

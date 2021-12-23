@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
@@ -18,6 +19,7 @@ import com.example.bvm.BVMApplication
 import com.example.bvm.BVMApplication.Companion.context
 import com.example.bvm.R
 import com.example.bvm.ui.video.ViewModel.VideoViewModel
+import kotlinx.android.synthetic.main.activity_book_info.*
 import kotlinx.android.synthetic.main.activity_video_info.*
 import kotlin.concurrent.thread
 
@@ -88,6 +90,9 @@ class VideoInfoActivity : AppCompatActivity() {
 //            Toast.makeText(BVMApplication.context, "打开", Toast.LENGTH_SHORT).show()
             startActivity(intent)
         }
+
+        if (BVMApplication.USER?.user_id != 1L)
+            videoInfoChangeFab.isVisible = false
 
         viewModel.commentLiveData.observe(this, Observer { result ->
             val comments = result.getOrNull()
