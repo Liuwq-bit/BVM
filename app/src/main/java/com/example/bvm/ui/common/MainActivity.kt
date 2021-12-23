@@ -30,6 +30,7 @@ import com.example.bvm.BVMApplication
 import com.example.bvm.R
 import com.example.bvm.ui.video.VideoListFragment
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.android.synthetic.main.activity_add_model.*
 import kotlinx.android.synthetic.main.activity_book_info.*
 import kotlinx.android.synthetic.main.nav_header.*
 import kotlinx.android.synthetic.main.nav_header.view.*
@@ -123,6 +124,8 @@ class MainActivity : AppCompatActivity() {
             header.mainNameText.text = BVMApplication.USER?.user_name ?: ""  // 设置用户名称
         }
 
+        modelViewPager.offscreenPageLimit = 3    // 预加载3个fragment
+
 
 //
 //        TabLayoutMediator(modelTabLayout, modelViewPager) { tab: TabLayout.Tab, position: Int ->
@@ -193,5 +196,6 @@ class MainActivity : AppCompatActivity() {
             e.printStackTrace()
         }
     }
+
 
 }

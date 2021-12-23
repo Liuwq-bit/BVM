@@ -113,7 +113,10 @@ class VideoAdapter(private val fragment: Fragment, private val videoList: List<V
             val date = Date()
             val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
             viewModel.insertVideoMark(VideoMark(userId, video.video_id, 0, dateFormat.format(date)))
-            holder.videoTypeBtn0.text = "已想看"
+            if (holder.videoTypeBtn0.text == "已想看")
+                holder.videoTypeBtn0.text = "想看"
+            else
+                holder.videoTypeBtn0.text = "已想看"
             holder.videoTypeBtn1.text = "在看"
             holder.videoTypeBtn2.text = "看过"
         }
@@ -124,7 +127,10 @@ class VideoAdapter(private val fragment: Fragment, private val videoList: List<V
             val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
             viewModel.insertVideoMark(VideoMark(userId, video.video_id, 1, dateFormat.format(date)))
             holder.videoTypeBtn0.text = "想看"
-            holder.videoTypeBtn1.text = "已在看"
+            if (holder.videoTypeBtn1.text == "已看过")
+                holder.videoTypeBtn1.text = "在看"
+            else
+                holder.videoTypeBtn1.text = "已在看"
             holder.videoTypeBtn2.text = "看过"
         }
         holder.videoTypeBtn2.setOnClickListener {
@@ -135,7 +141,10 @@ class VideoAdapter(private val fragment: Fragment, private val videoList: List<V
             viewModel.insertVideoMark(VideoMark(userId, video.video_id, 2, dateFormat.format(date)))
             holder.videoTypeBtn0.text = "想看"
             holder.videoTypeBtn1.text = "在看"
-            holder.videoTypeBtn2.text = "已看过"
+            if (holder.videoTypeBtn2.text == "已看过")
+                holder.videoTypeBtn2.text = "看过"
+            else
+                holder.videoTypeBtn2.text = "已看过"
         }
 
 

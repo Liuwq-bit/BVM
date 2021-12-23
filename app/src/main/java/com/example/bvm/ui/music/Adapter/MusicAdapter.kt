@@ -123,7 +123,10 @@ class MusicAdapter(private val fragment: Fragment, private val musicList: List<M
             val date = Date()
             val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
             viewModel.insertMusicMark(MusicMark(userId, music.music_id, 0, dateFormat.format(date)))
-            holder.musicTypeBtn0.text = "已想听"
+            if (holder.musicTypeBtn0.text == "已想听")
+                holder.musicTypeBtn0.text = "想听"
+            else
+                holder.musicTypeBtn0.text = "已想听"
             holder.musicTypeBtn1.text = "在听"
             holder.musicTypeBtn2.text = "听过"
         }
@@ -134,7 +137,10 @@ class MusicAdapter(private val fragment: Fragment, private val musicList: List<M
             val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
             viewModel.insertMusicMark(MusicMark(userId, music.music_id, 1, dateFormat.format(date)))
             holder.musicTypeBtn0.text = "想听"
-            holder.musicTypeBtn1.text = "已在听"
+            if (holder.musicTypeBtn1.text == "已在听")
+                holder.musicTypeBtn1.text = "在听"
+            else
+                holder.musicTypeBtn1.text = "已在听"
             holder.musicTypeBtn2.text = "听过"
         }
         holder.musicTypeBtn2.setOnClickListener {
@@ -145,7 +151,10 @@ class MusicAdapter(private val fragment: Fragment, private val musicList: List<M
             viewModel.insertMusicMark(MusicMark(userId, music.music_id, 2, dateFormat.format(date)))
             holder.musicTypeBtn0.text = "想听"
             holder.musicTypeBtn1.text = "在听"
-            holder.musicTypeBtn2.text = "已听过"
+            if (holder.musicTypeBtn2.text == "已听过")
+                holder.musicTypeBtn2.text = "听过"
+            else
+                holder.musicTypeBtn2.text = "已听过"
         }
 
 
