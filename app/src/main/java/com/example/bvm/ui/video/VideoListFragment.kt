@@ -22,6 +22,8 @@ import kotlin.concurrent.thread
 class VideoListFragment: Fragment() {
 
     val viewModel by lazy { ViewModelProviders.of(this).get(VideoViewModel::class.java) }
+    var tag1 = true
+    var tag2 = true
 
     private lateinit var adapter: VideoAdapter
 
@@ -63,7 +65,10 @@ class VideoListFragment: Fragment() {
             if (videos != null) {
                 viewModel.videoList.clear()
                 viewModel.videoList.addAll(videos)
-                adapter.notifyDataSetChanged()
+                if (tag1) {
+                    adapter.notifyDataSetChanged()
+                    tag1 = false
+                }
             } else {
                 Toast.makeText(activity, "未能查询到任何影视", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()
@@ -75,7 +80,10 @@ class VideoListFragment: Fragment() {
             if (marks != null) {
                 viewModel.markList.clear()
                 viewModel.markList.addAll(marks)
-                adapter.notifyDataSetChanged()
+                if (tag2) {
+                    adapter.notifyDataSetChanged()
+                    tag2 = false
+                }
             }
         })
 
@@ -86,11 +94,13 @@ class VideoListFragment: Fragment() {
 
     private fun reFreshVideos(adapter: VideoAdapter) {
         thread {
-            Thread.sleep(2000)
             activity?.runOnUiThread {
-
                 viewModel.searchAllVideos()
                 viewModel.searchAllMarkById(BVMApplication.USER?.user_id.toString())
+            }
+            Thread.sleep(2000)
+            activity?.runOnUiThread {
+                viewModel.videoList.shuffle()
                 adapter.notifyDataSetChanged()
                 videoListSwipeRefresh.isRefreshing = false
             }

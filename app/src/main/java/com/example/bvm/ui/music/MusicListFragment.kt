@@ -22,6 +22,8 @@ import kotlin.concurrent.thread
 class MusicListFragment: Fragment() {
 
     val viewModel by lazy { ViewModelProviders.of(this).get(MusicViewModel::class.java) }
+    var tag1 = true
+    var tag2 = true
 
     private lateinit var adapter: MusicAdapter
 
@@ -54,7 +56,10 @@ class MusicListFragment: Fragment() {
             if (musics != null) {
                 viewModel.musicList.clear()
                 viewModel.musicList.addAll(musics)
-                adapter.notifyDataSetChanged()
+                if (tag1) {
+                    adapter.notifyDataSetChanged()
+                    tag1 = false
+                }
             } else {
                 Toast.makeText(activity, "未能查询到任何音乐", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()
@@ -66,7 +71,10 @@ class MusicListFragment: Fragment() {
             if (marks != null) {
                 viewModel.markList.clear()
                 viewModel.markList.addAll(marks)
-                adapter.notifyDataSetChanged()
+                if (tag2) {
+                    adapter.notifyDataSetChanged()
+                    tag2 = false
+                }
             }
         })
 
@@ -76,11 +84,13 @@ class MusicListFragment: Fragment() {
 
     private fun reFreshMusics(adapter: MusicAdapter) {
         thread {
-            Thread.sleep(2000)
             activity?.runOnUiThread {
-
                 viewModel.searchAllMusics()
                 viewModel.searchAllMarkById(BVMApplication.USER?.user_id.toString())
+            }
+            Thread.sleep(2000)
+            activity?.runOnUiThread {
+                viewModel.musicList.shuffle()
                 adapter.notifyDataSetChanged()
                 musicListSwipeRefresh.isRefreshing = false
             }

@@ -11,9 +11,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bvm.BVMApplication
 import com.example.bvm.R
+import com.example.bvm.logic.model.Book
 import com.example.bvm.ui.book.Adapter.BookAdapter
 import com.example.bvm.ui.book.ViewModel.BookViewModel
 import kotlinx.android.synthetic.main.book_list.*
+import java.util.*
 import kotlin.concurrent.thread
 
 /**
@@ -22,6 +24,8 @@ import kotlin.concurrent.thread
 class BookListFragment: Fragment() {
 
     val viewModel by lazy { ViewModelProviders.of(this).get(BookViewModel::class.java) }
+    var tag1 = true
+    var tag2 = true
 
     private lateinit var adapter: BookAdapter
 
@@ -56,7 +60,10 @@ class BookListFragment: Fragment() {
 //                bookRecyclerView.visibility = View.VISIBLE
                 viewModel.bookList.clear()
                 viewModel.bookList.addAll(books)
-                adapter.notifyDataSetChanged()
+                if (tag1) { // 仅执行一次
+                    adapter.notifyDataSetChanged()
+                    tag1 = false
+                }
             } else {
                 Toast.makeText(activity, "未能查询到任何书籍", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()
@@ -68,7 +75,10 @@ class BookListFragment: Fragment() {
             if (marks != null) {
                 viewModel.markList.clear()
                 viewModel.markList.addAll(marks)
-                adapter.notifyDataSetChanged()
+                if (tag2) {
+                    adapter.notifyDataSetChanged()
+                    tag2 = false
+                }
             }
         })
 
@@ -79,14 +89,17 @@ class BookListFragment: Fragment() {
 
     private fun reFreshBooks(adapter: BookAdapter) {
         thread {
-            Thread.sleep(2000)
             activity?.runOnUiThread {
-
                 viewModel.searchAllBooks()  // 显示所有书籍
                 viewModel.searchAllMarkById(BVMApplication.USER?.user_id.toString())
+            }
+            Thread.sleep(2000)
+            activity?.runOnUiThread {
+                viewModel.bookList.shuffle()    // 洗牌
                 adapter.notifyDataSetChanged()
                 bookListSwipeRefresh.isRefreshing = false
             }
         }
     }
+
 }
