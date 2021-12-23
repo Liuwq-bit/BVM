@@ -22,6 +22,7 @@ import com.example.bvm.logic.model.BookMark
 import com.example.bvm.logic.model.MusicMark
 import com.example.bvm.logic.model.Music
 import com.example.bvm.ui.book.Adapter.BookAdapter
+import com.example.bvm.ui.book.BookInfoActivity
 import com.example.bvm.ui.music.MusicInfoActivity
 import com.example.bvm.ui.music.ViewModel.MusicViewModel
 import com.google.android.material.button.MaterialButton
@@ -65,6 +66,8 @@ class MusicAdapter(private val fragment: Fragment, private val musicList: List<M
                 putExtra(MusicInfoActivity.MUSIC_SINGER, music.singer)
                 putExtra(MusicInfoActivity.MUSIC_SINGER_INFO, music.singerInfo)
                 putExtra(MusicInfoActivity.MUSIC_ID, music.music_id.toString())
+                putExtra(MusicInfoActivity.MUSIC_LABEL, music.label)
+                putExtra(MusicInfoActivity.MUSIC_PUBLISH_TIME, music.publish_time)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK   // 在新的task中开启activity
             }
             context.startActivity(intent)
@@ -122,7 +125,7 @@ class MusicAdapter(private val fragment: Fragment, private val musicList: List<M
             val music = musicList[position]
             val date = Date()
             val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-            viewModel.insertMusicMark(MusicMark(userId, music.music_id, 0, dateFormat.format(date)))
+            viewModel.insertMusicMark(MusicMark(userId, music.music_id ?: 0, 0, dateFormat.format(date)))
             if (holder.musicTypeBtn0.text == "已想听")
                 holder.musicTypeBtn0.text = "想听"
             else
@@ -135,7 +138,7 @@ class MusicAdapter(private val fragment: Fragment, private val musicList: List<M
             val music = musicList[position]
             val date = Date()
             val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-            viewModel.insertMusicMark(MusicMark(userId, music.music_id, 1, dateFormat.format(date)))
+            viewModel.insertMusicMark(MusicMark(userId, music.music_id ?: 0, 1, dateFormat.format(date)))
             holder.musicTypeBtn0.text = "想听"
             if (holder.musicTypeBtn1.text == "已在听")
                 holder.musicTypeBtn1.text = "在听"
@@ -148,7 +151,7 @@ class MusicAdapter(private val fragment: Fragment, private val musicList: List<M
             val music = musicList[position]
             val date = Date()
             val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-            viewModel.insertMusicMark(MusicMark(userId, music.music_id, 2, dateFormat.format(date)))
+            viewModel.insertMusicMark(MusicMark(userId, music.music_id ?: 0, 2, dateFormat.format(date)))
             holder.musicTypeBtn0.text = "想听"
             holder.musicTypeBtn1.text = "在听"
             if (holder.musicTypeBtn2.text == "已听过")
@@ -160,7 +163,7 @@ class MusicAdapter(private val fragment: Fragment, private val musicList: List<M
 
 
         holder.deleteBtn.setOnClickListener {
-            viewModel.deleteMusicById(music.music_id)
+            viewModel.deleteMusicById(music.music_id ?: 0)
 
             viewModel.musicLiveData.observe(fragment.viewLifecycleOwner, Observer { result -> // 动态查询数据
                 val musics = result.getOrNull()

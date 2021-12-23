@@ -63,6 +63,8 @@ class VideoAdapter(private val fragment: Fragment, private val videoList: List<V
                 putExtra(VideoInfoActivity.VIDEO_ACTOR, video.actor)
                 putExtra(VideoInfoActivity.VIDEO_ACTOR_INFO, video.actorInfo)
                 putExtra(VideoInfoActivity.VIDEO_ID, video.video_id.toString())
+                putExtra(VideoInfoActivity.VIDEO_LABEL, video.label)
+                putExtra(VideoInfoActivity.VIDEO_PUBLISH_TIME, video.publish_time)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK // 在新的task中开启activity
             }
             context.startActivity(intent)
@@ -112,7 +114,7 @@ class VideoAdapter(private val fragment: Fragment, private val videoList: List<V
             val video = videoList[position]
             val date = Date()
             val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-            viewModel.insertVideoMark(VideoMark(userId, video.video_id, 0, dateFormat.format(date)))
+            viewModel.insertVideoMark(VideoMark(userId, video.video_id ?: 0, 0, dateFormat.format(date)))
             if (holder.videoTypeBtn0.text == "已想看")
                 holder.videoTypeBtn0.text = "想看"
             else
@@ -125,9 +127,9 @@ class VideoAdapter(private val fragment: Fragment, private val videoList: List<V
             val video = videoList[position]
             val date = Date()
             val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-            viewModel.insertVideoMark(VideoMark(userId, video.video_id, 1, dateFormat.format(date)))
+            viewModel.insertVideoMark(VideoMark(userId, video.video_id ?: 0, 1, dateFormat.format(date)))
             holder.videoTypeBtn0.text = "想看"
-            if (holder.videoTypeBtn1.text == "已看过")
+            if (holder.videoTypeBtn1.text == "已在看")
                 holder.videoTypeBtn1.text = "在看"
             else
                 holder.videoTypeBtn1.text = "已在看"
@@ -138,7 +140,7 @@ class VideoAdapter(private val fragment: Fragment, private val videoList: List<V
             val video = videoList[position]
             val date = Date()
             val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-            viewModel.insertVideoMark(VideoMark(userId, video.video_id, 2, dateFormat.format(date)))
+            viewModel.insertVideoMark(VideoMark(userId, video.video_id ?: 0, 2, dateFormat.format(date)))
             holder.videoTypeBtn0.text = "想看"
             holder.videoTypeBtn1.text = "在看"
             if (holder.videoTypeBtn2.text == "已看过")
@@ -150,7 +152,7 @@ class VideoAdapter(private val fragment: Fragment, private val videoList: List<V
 
 
         holder.deleteBtn.setOnClickListener {
-            viewModel.deleteVideoById(video.video_id)
+            viewModel.deleteVideoById(video.video_id ?: 0)
 
             viewModel.videoLiveData.observe(fragment.viewLifecycleOwner, Observer { result -> // 动态查询数据
                 val videos = result.getOrNull()

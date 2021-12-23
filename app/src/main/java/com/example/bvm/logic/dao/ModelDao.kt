@@ -1,21 +1,15 @@
 package com.example.bvm.logic.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.example.bvm.logic.model.Book
 import com.example.bvm.logic.model.Music
 import com.example.bvm.logic.model.Video
-import androidx.room.ColumnInfo
-
-
 
 
 @Dao
 interface BookDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertBook(book: Book): Long
 
     @Query("select * from Book")
@@ -38,7 +32,7 @@ interface BookDao {
 @Dao
 interface VideoDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertVideo(video: Video): Long
 
     @Query("select * from Video")
@@ -60,7 +54,7 @@ interface VideoDao {
 @Dao
 interface MusicDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMusic(music: Music): Long
 
     @Query("select * from Music")

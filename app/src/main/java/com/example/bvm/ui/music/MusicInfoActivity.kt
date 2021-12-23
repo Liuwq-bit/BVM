@@ -17,6 +17,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.example.bvm.BVMApplication
 import com.example.bvm.BVMApplication.Companion.context
 import com.example.bvm.R
+import com.example.bvm.ui.book.BookInfoActivity
 import com.example.bvm.ui.music.ViewModel.MusicViewModel
 import kotlinx.android.synthetic.main.activity_book_info.*
 import kotlinx.android.synthetic.main.activity_music_info.*
@@ -31,6 +32,8 @@ class MusicInfoActivity : AppCompatActivity() {
     companion object {
         const val MUSIC_ID = "musicId"
         const val MUSIC_TITLE = "musicTitle"
+        const val MUSIC_LABEL = "musicLabel"
+        const val MUSIC_PUBLISH_TIME = "musicPublishTime"
         const val MUSIC_INFO = "musicInfo"
         const val MUSIC_IMAGE = "musicImage"
         const val MUSIC_SINGER = "musicSinger"
@@ -47,6 +50,8 @@ class MusicInfoActivity : AppCompatActivity() {
         val musicPic = intent.getStringExtra(MUSIC_IMAGE) ?: ""
         val musicSinger = intent.getStringExtra(MUSIC_SINGER) ?: ""
         val musicSingerInfo = intent.getStringExtra(MUSIC_SINGER_INFO) ?: ""
+        val musicLabel = intent.getStringExtra(MusicInfoActivity.MUSIC_LABEL) ?: ""
+        val musicPublishTime = intent.getStringExtra(MusicInfoActivity.MUSIC_PUBLISH_TIME) ?: ""
         setSupportActionBar(musicInfoToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         musicInfoCollapsingToolbar.title = musicTitle
@@ -67,6 +72,20 @@ class MusicInfoActivity : AppCompatActivity() {
         musicInfoCommit.setOnClickListener {
             val intent = Intent(context, MusicCommentActivity::class.java).apply {
                 putExtra(MUSIC_ID, musicId)
+            }
+            startActivity(intent)
+        }
+
+        musicInfoChangeFab.setOnClickListener {
+            val intent = Intent(context, MusicChangeActivity::class.java).apply {
+                putExtra(MusicInfoActivity.MUSIC_TITLE, musicTitle)
+                putExtra(MusicInfoActivity.MUSIC_INFO, musicInfo)
+                putExtra(MusicInfoActivity.MUSIC_IMAGE, musicPic)
+                putExtra(MusicInfoActivity.MUSIC_SINGER, musicSinger)
+                putExtra(MusicInfoActivity.MUSIC_SINGER_INFO, musicSingerInfo)
+                putExtra(MusicInfoActivity.MUSIC_ID, musicId)
+                putExtra(MusicInfoActivity.MUSIC_LABEL, musicLabel)
+                putExtra(MusicInfoActivity.MUSIC_PUBLISH_TIME, musicPublishTime)
             }
             startActivity(intent)
         }

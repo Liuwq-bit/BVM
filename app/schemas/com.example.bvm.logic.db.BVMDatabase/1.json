@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "8243777f43852f5ffe771f522c03d531",
+    "identityHash": "2050e2de00568b14cb6fb9272081602c",
     "entities": [
       {
         "tableName": "User",
@@ -50,8 +50,14 @@
       },
       {
         "tableName": "Book",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`book_name` TEXT NOT NULL, `label` TEXT NOT NULL, `info` TEXT NOT NULL, `author` TEXT NOT NULL, `authorInfo` TEXT NOT NULL, `add_time` TEXT NOT NULL, `publish_time` TEXT NOT NULL, `pic` TEXT NOT NULL, `book_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`book_id` INTEGER PRIMARY KEY AUTOINCREMENT, `book_name` TEXT NOT NULL, `label` TEXT NOT NULL, `info` TEXT NOT NULL, `author` TEXT NOT NULL, `authorInfo` TEXT NOT NULL, `add_time` TEXT NOT NULL, `publish_time` TEXT NOT NULL, `pic` TEXT NOT NULL)",
         "fields": [
+          {
+            "fieldPath": "book_id",
+            "columnName": "book_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
           {
             "fieldPath": "book_name",
             "columnName": "book_name",
@@ -99,12 +105,6 @@
             "columnName": "pic",
             "affinity": "TEXT",
             "notNull": true
-          },
-          {
-            "fieldPath": "book_id",
-            "columnName": "book_id",
-            "affinity": "INTEGER",
-            "notNull": true
           }
         ],
         "primaryKey": {
@@ -118,8 +118,14 @@
       },
       {
         "tableName": "Video",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`video_name` TEXT NOT NULL, `video_type` TEXT NOT NULL, `label` TEXT NOT NULL, `info` TEXT NOT NULL, `actor` TEXT NOT NULL, `actorInfo` TEXT NOT NULL, `add_time` TEXT NOT NULL, `publish_time` TEXT NOT NULL, `pic` TEXT NOT NULL, `video_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`video_id` INTEGER PRIMARY KEY AUTOINCREMENT, `video_name` TEXT NOT NULL, `video_type` TEXT NOT NULL, `label` TEXT NOT NULL, `info` TEXT NOT NULL, `actor` TEXT NOT NULL, `actorInfo` TEXT NOT NULL, `add_time` TEXT NOT NULL, `publish_time` TEXT NOT NULL, `pic` TEXT NOT NULL)",
         "fields": [
+          {
+            "fieldPath": "video_id",
+            "columnName": "video_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
           {
             "fieldPath": "video_name",
             "columnName": "video_name",
@@ -173,12 +179,6 @@
             "columnName": "pic",
             "affinity": "TEXT",
             "notNull": true
-          },
-          {
-            "fieldPath": "video_id",
-            "columnName": "video_id",
-            "affinity": "INTEGER",
-            "notNull": true
           }
         ],
         "primaryKey": {
@@ -192,8 +192,14 @@
       },
       {
         "tableName": "Music",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`music_name` TEXT NOT NULL, `label` TEXT NOT NULL, `info` TEXT NOT NULL, `singer` TEXT NOT NULL, `singerInfo` TEXT NOT NULL, `add_time` TEXT NOT NULL, `publish_time` TEXT NOT NULL, `pic` TEXT NOT NULL, `music_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`music_id` INTEGER PRIMARY KEY AUTOINCREMENT, `music_name` TEXT NOT NULL, `label` TEXT NOT NULL, `info` TEXT NOT NULL, `singer` TEXT NOT NULL, `singerInfo` TEXT NOT NULL, `add_time` TEXT NOT NULL, `publish_time` TEXT NOT NULL, `pic` TEXT NOT NULL)",
         "fields": [
+          {
+            "fieldPath": "music_id",
+            "columnName": "music_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
           {
             "fieldPath": "music_name",
             "columnName": "music_name",
@@ -240,12 +246,6 @@
             "fieldPath": "pic",
             "columnName": "pic",
             "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "music_id",
-            "columnName": "music_id",
-            "affinity": "INTEGER",
             "notNull": true
           }
         ],
@@ -514,7 +514,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8243777f43852f5ffe771f522c03d531')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2050e2de00568b14cb6fb9272081602c')"
     ]
   }
 }

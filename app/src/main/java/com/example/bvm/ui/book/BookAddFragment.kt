@@ -52,7 +52,7 @@ class BookAddFragment : Fragment() {
             val dateFormat = SimpleDateFormat("yyyy-MM-dd")
 
 //            val book = Book(bookName, bookLabel, bookInfo, dateFormat.format(date), bookPublishTime, bookPic)
-            val book = Book(bookName, bookLabel, bookInfo, bookAuthor, bookAuthorInfo, dateFormat.format(date), bookPublishTime, bookPic)
+            val book = Book(null, bookName, bookLabel, bookInfo, bookAuthor, bookAuthorInfo, dateFormat.format(date), bookPublishTime, bookPic)
             val author = Author(bookAuthor, bookAuthorInfo)
             viewModel.insertBooks(book, author)
 

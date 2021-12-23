@@ -19,6 +19,7 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.bvm.BVMApplication
 import com.example.bvm.ui.book.ViewModel.BookViewModel
+import kotlinx.android.synthetic.main.activity_book_change.*
 import kotlin.concurrent.thread
 
 /**
@@ -31,6 +32,8 @@ class BookInfoActivity : AppCompatActivity() {
     companion object {
         const val BOOK_ID = "bookId"
         const val BOOK_TITLE = "bookTitle"
+        const val BOOK_LABEL = "bookLabel"
+        const val BOOK_PUBLISH_TIME = "bookPublishTime"
         const val BOOK_INFO = "bookInfo"
         const val BOOK_PIC = "bookPic"
         const val BOOK_AUTHOR = "bookAuthor"
@@ -47,6 +50,8 @@ class BookInfoActivity : AppCompatActivity() {
         val bookPic = intent.getStringExtra(BOOK_PIC) ?: ""
         val bookAuthor = intent.getStringExtra(BOOK_AUTHOR) ?: ""
         val bookAuthorInfo = intent.getStringExtra(BOOK_AUTHOR_INFO) ?: ""
+        val bookLabel = intent.getStringExtra(BOOK_LABEL) ?: ""
+        val bookPublishTime = intent.getStringExtra(BOOK_PUBLISH_TIME) ?: ""
         setSupportActionBar(bookInfoToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         bookInfoCollapsingToolbar.title = bookTitle
@@ -68,6 +73,20 @@ class BookInfoActivity : AppCompatActivity() {
 //            Toast.makeText(BVMApplication.context, bookId, Toast.LENGTH_SHORT).show()
             val intent = Intent(context, BookCommentActivity::class.java).apply {
                 putExtra(BOOK_ID, bookId)
+            }
+            startActivity(intent)
+        }
+
+        bookInfoChangeFab.setOnClickListener {
+            val intent = Intent(context, BookChangeActivity::class.java).apply {
+                putExtra(BookInfoActivity.BOOK_TITLE, bookTitle)
+                putExtra(BookInfoActivity.BOOK_INFO, bookInfo)
+                putExtra(BookInfoActivity.BOOK_PIC, bookPic)
+                putExtra(BookInfoActivity.BOOK_AUTHOR, bookAuthor)
+                putExtra(BookInfoActivity.BOOK_AUTHOR_INFO, bookAuthorInfo)
+                putExtra(BookInfoActivity.BOOK_ID, bookId)
+                putExtra(BookInfoActivity.BOOK_LABEL, bookLabel)
+                putExtra(BookInfoActivity.BOOK_PUBLISH_TIME, bookPublishTime)
             }
             startActivity(intent)
         }

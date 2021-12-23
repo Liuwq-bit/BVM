@@ -61,6 +61,8 @@ class BookAdapter(private val fragment: Fragment, private val bookList: List<Boo
                 putExtra(BookInfoActivity.BOOK_AUTHOR, book.author)
                 putExtra(BookInfoActivity.BOOK_AUTHOR_INFO, book.authorInfo)
                 putExtra(BookInfoActivity.BOOK_ID, book.book_id.toString())
+                putExtra(BookInfoActivity.BOOK_LABEL, book.label)
+                putExtra(BookInfoActivity.BOOK_PUBLISH_TIME, book.publish_time)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK // 在新的task中开启activity
             }
             context.startActivity(intent)
@@ -104,7 +106,7 @@ class BookAdapter(private val fragment: Fragment, private val bookList: List<Boo
             val book = bookList[position]
             val date = Date()
             val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-            viewModel.insertBookMark(BookMark(userId, book.book_id, 0, dateFormat.format(date)))
+            viewModel.insertBookMark(BookMark(userId, book.book_id ?: 0, 0, dateFormat.format(date)))
             if (holder.bookTypeBtn0.text == "已想读")
                 holder.bookTypeBtn0.text = "想读"
             else
@@ -117,7 +119,7 @@ class BookAdapter(private val fragment: Fragment, private val bookList: List<Boo
             val book = bookList[position]
             val date = Date()
             val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-            viewModel.insertBookMark(BookMark(userId, book.book_id, 1, dateFormat.format(date)))
+            viewModel.insertBookMark(BookMark(userId, book.book_id ?: 0, 1, dateFormat.format(date)))
             holder.bookTypeBtn0.text = "想读"
             if (holder.bookTypeBtn1.text == "已在读")
                 holder.bookTypeBtn1.text = "在读"
@@ -130,7 +132,7 @@ class BookAdapter(private val fragment: Fragment, private val bookList: List<Boo
             val book = bookList[position]
             val date = Date()
             val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-            viewModel.insertBookMark(BookMark(userId, book.book_id, 2, dateFormat.format(date)))
+            viewModel.insertBookMark(BookMark(userId, book.book_id ?: 0, 2, dateFormat.format(date)))
             holder.bookTypeBtn0.text = "想读"
             holder.bookTypeBtn1.text = "在读"
             if (holder.bookTypeBtn2.text == "已读过")
@@ -142,7 +144,7 @@ class BookAdapter(private val fragment: Fragment, private val bookList: List<Boo
 
 
         holder.deleteBtn.setOnClickListener {
-            viewModel.deleteBookById(book.book_id)
+            viewModel.deleteBookById(book.book_id ?: 0)
             viewModel.bookLiveData.observe(fragment.viewLifecycleOwner, Observer { result -> // 动态查询数据
                 val books = result.getOrNull()
                 if (books != null) {

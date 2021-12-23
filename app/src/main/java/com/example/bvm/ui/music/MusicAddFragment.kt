@@ -43,7 +43,7 @@ class MusicAddFragment : Fragment() {
             val date = Date()
             val dateFormat = SimpleDateFormat("yyyy-MM-dd")
 
-            val music = Music(musicName, musicLabel, musicInfo, musicSinger, musicSingerInfo, dateFormat.format(date), musicPublish, musicPic)
+            val music = Music(null, musicName, musicLabel, musicInfo, musicSinger, musicSingerInfo, dateFormat.format(date), musicPublish, musicPic)
             val singer = Singer(musicSinger, musicSingerInfo)
             viewModel.insertMusics(music, singer)
 

@@ -45,7 +45,7 @@ class VideoAddFragment : Fragment() {
             val date = Date()
             val dateFormat = SimpleDateFormat("yyyy-MM-dd")
 
-            val video = Video(videoName, videoType, videoLabel, videoInfo, videoActor, videoActorInfo, dateFormat.format(date), videoPublish, videoPic)
+            val video = Video(null, videoName, videoType, videoLabel, videoInfo, videoActor, videoActorInfo, dateFormat.format(date), videoPublish, videoPic)
             val actor = Actor(videoActor, videoActorInfo)
             viewModel.insertVideos(video, actor)
 

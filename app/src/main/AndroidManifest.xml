@@ -14,9 +14,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BVM">
         <activity
+            android:name=".ui.music.MusicChangeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.video.VideoChangeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.book.BookChangeActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.common.RankActivity"
             android:exported="false"
-            android:label="排行榜"/>
+            android:label="排行榜" />
         <activity
             android:name=".ui.common.MarkActivity"
             android:exported="false"

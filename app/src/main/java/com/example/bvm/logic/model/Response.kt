@@ -22,6 +22,8 @@ data class User(
 
 @Entity
 data class Book(
+    @PrimaryKey(autoGenerate = true)
+    var book_id: Long?,
     var book_name: String,
     var label: String,
     var info: String,
@@ -29,9 +31,7 @@ data class Book(
     var authorInfo: String,
     var add_time: String,
     var publish_time: String,
-    var pic: String) {
-    @PrimaryKey(autoGenerate = true) var book_id: Long = 0
-}
+    var pic: String)
 
 /**
  * 图书作者信息
@@ -43,11 +43,14 @@ data class Author(
     @PrimaryKey(autoGenerate = true) var author_id: Long = 0
 }
 
+
 /**
  * 影视信息
  */
 @Entity
 data class Video(
+    @PrimaryKey(autoGenerate = true)
+    var video_id: Long?,
     var video_name: String,
     var video_type: String,
     var label: String,
@@ -56,9 +59,7 @@ data class Video(
     var actorInfo: String,
     var add_time: String,
     var publish_time: String,
-    var pic: String) {
-    @PrimaryKey(autoGenerate = true) var video_id: Long = 0
-}
+    var pic: String)
 
 /**
  * 影视参演信息
@@ -76,6 +77,8 @@ data class Actor(
  */
 @Entity
 data class Music(
+    @PrimaryKey(autoGenerate = true)
+    var music_id: Long?,
     var music_name: String,
     var label: String,
     var info: String,
@@ -83,9 +86,7 @@ data class Music(
     var singerInfo: String,
     var add_time: String,
     var publish_time: String,
-    var pic: String) {
-    @PrimaryKey(autoGenerate = true) var music_id: Long = 0
-}
+    var pic: String)
 
 
 /**

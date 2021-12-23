@@ -151,4 +151,12 @@
         app:layout_anchor="@id/videoInfoAppBar"
         app:layout_anchorGravity="bottom|end"/>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/videoInfoChangeFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_input"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
