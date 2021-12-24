@@ -137,6 +137,12 @@
 
             </com.google.android.material.card.MaterialCardView>
 
+            <fragment
+                android:id="@+id/videoCommentList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:name="com.example.bvm.ui.video.VideoCommentFragment"
+                android:layout_margin="8dp"/>
 
         </LinearLayout>
 

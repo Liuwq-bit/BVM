@@ -31,6 +31,7 @@ class BookInfoActivity : AppCompatActivity() {
     val viewModel by lazy { ViewModelProviders.of(this).get(BookViewModel::class.java) }
 
     companion object {
+        var book_id = "0"
         const val BOOK_ID = "bookId"
         const val BOOK_TITLE = "bookTitle"
         const val BOOK_LABEL = "bookLabel"
@@ -46,6 +47,7 @@ class BookInfoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_book_info)
 
         val bookId = intent.getStringExtra(BOOK_ID) ?: ""
+        book_id = bookId
         val bookTitle = intent.getStringExtra(BOOK_TITLE) ?: ""
         val bookInfo = intent.getStringExtra(BOOK_INFO) ?: ""
         val bookPic = intent.getStringExtra(BOOK_PIC) ?: ""
@@ -100,6 +102,7 @@ class BookInfoActivity : AppCompatActivity() {
             if (comments != null) {
                 viewModel.commentList.clear()
                 viewModel.commentList.addAll(comments)
+//                Toast.makeText(context, "装载完成", Toast.LENGTH_SHORT).show()
             } else {
                 result.exceptionOrNull()?.printStackTrace()
             }
@@ -117,6 +120,7 @@ class BookInfoActivity : AppCompatActivity() {
             bookTotalRatingBar.rating = totalRating
 
 //            Toast.makeText(context, "${viewModel.commentList.size}", Toast.LENGTH_SHORT).show()
+
         }
     }
 

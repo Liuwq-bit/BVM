@@ -29,6 +29,7 @@ class VideoInfoActivity : AppCompatActivity() {
     val viewModel by lazy { ViewModelProviders.of(this).get(VideoViewModel::class.java) }
 
     companion object {
+        var video_id = "0"
         const val VIDEO_ID = "videoId"
         const val VIDEO_TITLE = "videoTitle"
         const val VIDEO_LABEL = "videoLabel"
@@ -44,6 +45,7 @@ class VideoInfoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_video_info)
 
         val videoId = intent.getStringExtra(VIDEO_ID) ?: ""
+        video_id = videoId
         val videoTitle = intent.getStringExtra(VIDEO_TITLE) ?: ""
         val videoInfo = intent.getStringExtra(VIDEO_INFO) ?: ""
         val videoPic = intent.getStringExtra(VIDEO_IMAGE) ?: ""

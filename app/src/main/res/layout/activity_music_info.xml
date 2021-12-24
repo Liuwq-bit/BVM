@@ -140,6 +140,13 @@
 
             </com.google.android.material.card.MaterialCardView>
 
+            <fragment
+                android:id="@+id/musicCommentList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:name="com.example.bvm.ui.music.MusicCommentFragment"
+                android:layout_margin="8dp"/>
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

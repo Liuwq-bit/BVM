@@ -31,6 +31,7 @@ class MusicInfoActivity : AppCompatActivity() {
     val viewModel by lazy { ViewModelProviders.of(this).get(MusicViewModel::class.java) }
 
     companion object {
+        var music_id = "0"
         const val MUSIC_ID = "musicId"
         const val MUSIC_TITLE = "musicTitle"
         const val MUSIC_LABEL = "musicLabel"
@@ -46,6 +47,7 @@ class MusicInfoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_music_info)
 
         val musicId = intent.getStringExtra(MUSIC_ID) ?: ""
+        music_id = musicId
         val musicTitle = intent.getStringExtra(MUSIC_TITLE) ?: ""
         val musicInfo = intent.getStringExtra(MUSIC_INFO) ?: ""
         val musicPic = intent.getStringExtra(MUSIC_IMAGE) ?: ""
