@@ -146,20 +146,9 @@ class BookAdapter(private val fragment: Fragment, private val bookList: List<Boo
 
         holder.deleteBtn.setOnClickListener {
             viewModel.deleteBookById(book.book_id ?: 0)
-            viewModel.bookLiveData.observe(fragment.viewLifecycleOwner, Observer { result -> // 动态查询数据
-                val books = result.getOrNull()
-                if (books != null) {
-//                bookRecyclerView.visibility = View.VISIBLE
-                    viewModel.bookList.clear()
-                    viewModel.bookList.addAll(books)
-                    notifyDataSetChanged()
-                } else {
-                    Toast.makeText(context, "未能查询到任何书籍", Toast.LENGTH_SHORT).show()
-                    result.exceptionOrNull()?.printStackTrace()
-                }
-            })
+            viewModel.bookList.removeAt(position)
 
-            reFreshBooks()
+            notifyDataSetChanged()
         }
 
         if (BVMApplication.USER?.user_id != 1L)
@@ -168,15 +157,5 @@ class BookAdapter(private val fragment: Fragment, private val bookList: List<Boo
 
     override fun getItemCount() = bookList.size
 
-    private fun reFreshBooks() {
-        thread {
-            Thread.sleep(500)
-            fragment.activity?.runOnUiThread {
-                viewModel.searchAllBooks()  // 显示所有书籍
-                viewModel.searchAllMarkById(BVMApplication.USER?.user_id.toString())
-                notifyDataSetChanged()
-            }
-        }
-    }
 
 }

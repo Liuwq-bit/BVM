@@ -165,20 +165,9 @@ class MusicAdapter(private val fragment: Fragment, private val musicList: List<M
 
         holder.deleteBtn.setOnClickListener {
             viewModel.deleteMusicById(music.music_id ?: 0)
+            viewModel.musicList.removeAt(position)
 
-            viewModel.musicLiveData.observe(fragment.viewLifecycleOwner, Observer { result -> // 动态查询数据
-                val musics = result.getOrNull()
-                if (musics != null) {
-                    viewModel.musicList.clear()
-                    viewModel.musicList.addAll(musics)
-                    notifyDataSetChanged()
-                } else {
-                    Toast.makeText(context, "未能查询到任何书籍", Toast.LENGTH_SHORT).show()
-                    result.exceptionOrNull()?.printStackTrace()
-                }
-            })
-
-            reFreshMusic()
+            notifyDataSetChanged()
         }
 
         if (BVMApplication.USER?.user_id != 1L)
@@ -188,16 +177,5 @@ class MusicAdapter(private val fragment: Fragment, private val musicList: List<M
 
     override fun getItemCount() = musicList.size
 
-    private fun reFreshMusic() {
-        thread {
-            Thread.sleep(500)
-            fragment.activity?.runOnUiThread {
-
-                viewModel.searchAllMusics()  // 显示所有音乐
-                viewModel.searchAllMarkById(BVMApplication.USER?.user_id.toString())
-                notifyDataSetChanged()
-            }
-        }
-    }
 
 }

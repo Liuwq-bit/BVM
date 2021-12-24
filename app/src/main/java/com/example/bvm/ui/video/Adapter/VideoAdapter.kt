@@ -154,20 +154,9 @@ class VideoAdapter(private val fragment: Fragment, private val videoList: List<V
 
         holder.deleteBtn.setOnClickListener {
             viewModel.deleteVideoById(video.video_id ?: 0)
+            viewModel.videoList.removeAt(position)
 
-            viewModel.videoLiveData.observe(fragment.viewLifecycleOwner, Observer { result -> // 动态查询数据
-                val videos = result.getOrNull()
-                if (videos != null) {
-                    viewModel.videoList.clear()
-                    viewModel.videoList.addAll(videos)
-                    notifyDataSetChanged()
-                } else {
-                    Toast.makeText(context, "未能查询到任何书籍", Toast.LENGTH_SHORT).show()
-                    result.exceptionOrNull()?.printStackTrace()
-                }
-            })
-
-            reFreshVideo()
+            notifyDataSetChanged()
         }
 
         if (BVMApplication.USER?.user_id != 1L)
@@ -177,14 +166,4 @@ class VideoAdapter(private val fragment: Fragment, private val videoList: List<V
 
     override fun getItemCount() = videoList.size
 
-    private fun reFreshVideo() {
-        thread {
-            Thread.sleep(500)
-            fragment.activity?.runOnUiThread {
-                viewModel.searchAllVideos()
-                viewModel.searchAllMarkById(BVMApplication.USER?.user_id.toString())
-                notifyDataSetChanged()
-            }
-        }
-    }
 }
